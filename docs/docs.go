@@ -70,6 +70,26 @@ const docTemplate = `{
                 }
             }
         },
+        "/app/logout": {
+            "get": {
+                "description": "Löscht den Auth-Cookie und entfernt das Token aus dem Speicher",
+                "produces": [
+                    "text/plain"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Logout",
+                "responses": {
+                    "204": {
+                        "description": "No Content",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
         "/app/me": {
             "get": {
                 "description": "Gibt Charakter-ID und Name zurück (aus Cookie)",
@@ -121,9 +141,185 @@ const docTemplate = `{
                     }
                 }
             }
+        },
+        "/app/routes": {
+            "get": {
+                "description": "Gibt alle verfügbaren Transport-Routen zurück",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Routes"
+                ],
+                "summary": "Get all active routes",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/structs.Route"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Erstellt eine neue Transport-Route",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Routes"
+                ],
+                "summary": "Neue Route anlegen",
+                "parameters": [
+                    {
+                        "description": "Neue Route",
+                        "name": "route",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/structs.Route"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/structs.Route"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid JSON",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "DB Insert error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/app/routes/{id}": {
+            "put": {
+                "description": "Aktualisiert eine bestehende Transport-Route anhand der ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Routes"
+                ],
+                "summary": "Route aktualisieren",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Route ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Route-Daten",
+                        "name": "route",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/structs.Route"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/structs.Route"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid JSON",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "DB Update error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Löscht eine Transport-Route anhand der ID",
+                "produces": [
+                    "text/plain"
+                ],
+                "tags": [
+                    "Routes"
+                ],
+                "summary": "Route löschen",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Route ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Deleted",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "DB Delete error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
+        "structs.Route": {
+            "type": "object",
+            "properties": {
+                "collateralFeePercent": {
+                    "type": "number"
+                },
+                "from": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "pricePerM3": {
+                    "type": "integer"
+                },
+                "to": {
+                    "type": "string"
+                },
+                "volumeMax": {
+                    "type": "integer"
+                }
+            }
+        },
         "structs.VerifyResponse": {
             "type": "object",
             "properties": {

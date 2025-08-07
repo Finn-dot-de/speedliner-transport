@@ -1,0 +1,24 @@
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: speedliner
+      POSTGRES_PASSWORD: supersecret
+      POSTGRES_DB: speedliner
+    ports:
+      - "5432:5432"
+
+  speedliner-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: speedliner
+      DB_PASSWORD: supersecret
+      DB_NAME: speedliner

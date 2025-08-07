@@ -40,7 +40,7 @@ func main() {
 	}
 
 	log.Println("🚀 Server läuft auf Port " + appPort)
-	log.Println("http://localhost:" + appPort)
+	log.Println("http://0.0.0.0:" + appPort)
 	log.Fatal(http.ListenAndServe(":"+appPort, r))
 }
 

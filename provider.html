@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Route Management</title>
+  <link rel="stylesheet" href="assets/style/style.css"/>
+  <script type="module" src="assets/js/provider.js"></script>
+</head>
+<body>
+  <h1>Speedliner Route Management</h1>
+
+  <table id="routeTable">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>From</th>
+        <th>To</th>
+        <th>Preis/m³</th>
+        <th>Collateral %</th>
+        <th>Max m³</th>
+        <th>Aktionen</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <button onclick="showRouteForm()">➕ Neue Route</button>
+
+  <div id="routeFormContainer" style="display: none; margin-top: 2rem;">
+    <h3 id="formTitle">Neue Route</h3>
+    <form id="routeForm">
+      <input type="hidden" id="routeId" />
+      <input placeholder="Name" id="routeName" required />
+      <input placeholder="From" id="routeFrom" required />
+      <input placeholder="To" id="routeTo" required />
+      <input type="number" placeholder="Preis/m³" id="routePricePerM3" required />
+      <button type="submit">💾 Speichern</button>
+    </form>
+  </div>
+</body>
+</html>

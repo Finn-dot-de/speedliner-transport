@@ -24,7 +24,9 @@ func DefineGetRoutes(r chi.Router) {
 	r.Get("/me", MeHandler)
 	r.Get("/logout", LogoutHandler)
 	r.Get("/routes", RoutesHandler)
-
+	r.Post("/routes", CreateRouteHandler)
+	r.Put("/routes/{id}", UpdateRouteHandler)
+	r.Delete("/routes/{id}", DeleteRouteHandler)
 }
 
 // PingHandler godoc
@@ -199,4 +201,74 @@ func RoutesHandler(w http.ResponseWriter, r *http.Request) {
 	if err := json.NewEncoder(w).Encode(routes); err != nil {
 		http.Error(w, "Failed to encode routes: "+err.Error(), http.StatusInternalServerError)
 	}
+}
+
+// CreateRouteHandler godoc
+// @Summary      Neue Route anlegen
+// @Description  Erstellt eine neue Transport-Route
+// @Tags         Routes
+// @Accept       json
+// @Produce      json
+// @Param        route body structs.Route true "Neue Route"
+// @Success      201 {object} structs.Route
+// @Failure      400 {string} string "Invalid JSON"
+// @Failure      500 {string} string "DB Insert error"
+// @Router       /app/routes [post]
+func CreateRouteHandler(w http.ResponseWriter, r *http.Request) {
+	var route structs.Route
+	if err := json.NewDecoder(r.Body).Decode(&route); err != nil {
+		http.Error(w, "Invalid JSON: "+err.Error(), http.StatusBadRequest)
+		return
+	}
+	if err := db.InsertRoute(route); err != nil {
+		http.Error(w, "DB Insert error: "+err.Error(), http.StatusInternalServerError)
+		return
+	}
+	w.WriteHeader(http.StatusCreated)
+	_ = json.NewEncoder(w).Encode(route)
+}
+
+// UpdateRouteHandler godoc
+// @Summary      Route aktualisieren
+// @Description  Aktualisiert eine bestehende Transport-Route anhand der ID
+// @Tags         Routes
+// @Accept       json
+// @Produce      json
+// @Param        id path string true "Route ID"
+// @Param        route body structs.Route true "Route-Daten"
+// @Success      200 {object} structs.Route
+// @Failure      400 {string} string "Invalid JSON"
+// @Failure      500 {string} string "DB Update error"
+// @Router       /app/routes/{id} [put]
+func UpdateRouteHandler(w http.ResponseWriter, r *http.Request) {
+	id := chi.URLParam(r, "id")
+	var route structs.Route
+	if err := json.NewDecoder(r.Body).Decode(&route); err != nil {
+		http.Error(w, "Invalid JSON: "+err.Error(), http.StatusBadRequest)
+		return
+	}
+	route.ID = id
+	if err := db.UpdateRoute(route); err != nil {
+		http.Error(w, "DB Update error: "+err.Error(), http.StatusInternalServerError)
+		return
+	}
+	_ = json.NewEncoder(w).Encode(route)
+}
+
+// DeleteRouteHandler godoc
+// @Summary      Route löschen
+// @Description  Löscht eine Transport-Route anhand der ID
+// @Tags         Routes
+// @Produce      plain
+// @Param        id path string true "Route ID"
+// @Success      204 {string} string "Deleted"
+// @Failure      500 {string} string "DB Delete error"
+// @Router       /app/routes/{id} [delete]
+func DeleteRouteHandler(w http.ResponseWriter, r *http.Request) {
+	id := chi.URLParam(r, "id")
+	if err := db.DeleteRoute(id); err != nil {
+		http.Error(w, "DB Delete error: "+err.Error(), http.StatusInternalServerError)
+		return
+	}
+	w.WriteHeader(http.StatusNoContent)
 }

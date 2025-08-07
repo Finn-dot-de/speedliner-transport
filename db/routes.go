@@ -2,18 +2,40 @@ package db
 
 import (
 	"context"
+	"speedliner-server/src/utils/structs"
 )
 
-type Route struct {
-	ID                   string  `json:"id"`
-	FromSystem           string  `json:"from"`
-	ToSystem             string  `json:"to"`
-	PricePerM3           float64 `json:"pricePerM3"`
-	CollateralFeePercent float64 `json:"collateralFeePercent"`
-	VolumeMax            float64 `json:"volumeMax"`
+// InsertRoute fügt eine neue Route in die DB ein
+func InsertRoute(route structs.Route) error {
+	_, err := Pool.Exec(context.Background(), `
+		INSERT INTO routes (id, from_system, to_system, price_per_m3, collateral_fee_percent, volume_max)
+		VALUES (gen_random_uuid(), $1, $2, $3, 0.03, 337000)
+	`, route.From, route.To, route.PricePerM3, route.CollateralFeePercent, route.VolumeMax)
+	return err
 }
 
-func GetAllRoutes() ([]Route, error) {
+// UpdateRoute aktualisiert eine bestehende Route anhand ihrer ID
+func UpdateRoute(route structs.Route) error {
+	_, err := Pool.Exec(context.Background(), `
+		UPDATE routes
+		SET from_system = $1,
+		    to_system = $2,
+		    price_per_m3 = $3
+		WHERE id = $6
+	`, route.From, route.To, route.PricePerM3, route.CollateralFeePercent, route.VolumeMax, route.ID)
+	return err
+}
+
+// DeleteRoute löscht eine Route anhand ihrer ID
+func DeleteRoute(id string) error {
+	_, err := Pool.Exec(context.Background(), `
+		DELETE FROM routes WHERE id = $1
+	`, id)
+	return err
+}
+
+// GetAllRoutes gibt alle Routen aus der DB zurück
+func GetAllRoutes() ([]structs.Route, error) {
 	rows, err := Pool.Query(context.Background(), `
 		SELECT id, from_system, to_system, price_per_m3, collateral_fee_percent, volume_max
 		FROM routes
@@ -23,15 +45,14 @@ func GetAllRoutes() ([]Route, error) {
 	}
 	defer rows.Close()
 
-	var result []Route
+	var routes []structs.Route
 	for rows.Next() {
-		var r Route
-		err := rows.Scan(&r.ID, &r.FromSystem, &r.ToSystem, &r.PricePerM3, &r.CollateralFeePercent, &r.VolumeMax)
-		if err != nil {
+		var r structs.Route
+		if err := rows.Scan(&r.ID, &r.From, &r.To, &r.PricePerM3, &r.CollateralFeePercent, &r.VolumeMax); err != nil {
 			return nil, err
 		}
-		result = append(result, r)
+		routes = append(routes, r)
 	}
 
-	return result, nil
+	return routes, nil
 }

@@ -51,8 +51,6 @@ func ensureSchema() error {
 			from_system TEXT NOT NULL,
 			to_system TEXT NOT NULL,
 			price_per_m3 NUMERIC(10, 2),
-			collateral_fee_percent NUMERIC(5, 2),
-			volume_max NUMERIC(10, 2)
 		);`,
 	}
 

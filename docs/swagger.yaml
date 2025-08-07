@@ -1,5 +1,20 @@
 basePath: /
 definitions:
+  structs.Route:
+    properties:
+      collateralFeePercent:
+        type: number
+      from:
+        type: string
+      id:
+        type: string
+      pricePerM3:
+        type: integer
+      to:
+        type: string
+      volumeMax:
+        type: integer
+    type: object
   structs.VerifyResponse:
     properties:
       CharacterID:
@@ -52,6 +67,19 @@ paths:
       summary: Login redirect
       tags:
       - Auth
+  /app/logout:
+    get:
+      description: Löscht den Auth-Cookie und entfernt das Token aus dem Speicher
+      produces:
+      - text/plain
+      responses:
+        "204":
+          description: No Content
+          schema:
+            type: string
+      summary: Logout
+      tags:
+      - Auth
   /app/me:
     get:
       description: Gibt Charakter-ID und Name zurück (aus Cookie)
@@ -86,6 +114,107 @@ paths:
       summary: Healthcheck
       tags:
       - System
+  /app/routes:
+    get:
+      description: Gibt alle verfügbaren Transport-Routen zurück
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/structs.Route'
+            type: array
+      summary: Get all active routes
+      tags:
+      - Routes
+    post:
+      consumes:
+      - application/json
+      description: Erstellt eine neue Transport-Route
+      parameters:
+      - description: Neue Route
+        in: body
+        name: route
+        required: true
+        schema:
+          $ref: '#/definitions/structs.Route'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/structs.Route'
+        "400":
+          description: Invalid JSON
+          schema:
+            type: string
+        "500":
+          description: DB Insert error
+          schema:
+            type: string
+      summary: Neue Route anlegen
+      tags:
+      - Routes
+  /app/routes/{id}:
+    delete:
+      description: Löscht eine Transport-Route anhand der ID
+      parameters:
+      - description: Route ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - text/plain
+      responses:
+        "204":
+          description: Deleted
+          schema:
+            type: string
+        "500":
+          description: DB Delete error
+          schema:
+            type: string
+      summary: Route löschen
+      tags:
+      - Routes
+    put:
+      consumes:
+      - application/json
+      description: Aktualisiert eine bestehende Transport-Route anhand der ID
+      parameters:
+      - description: Route ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Route-Daten
+        in: body
+        name: route
+        required: true
+        schema:
+          $ref: '#/definitions/structs.Route'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/structs.Route'
+        "400":
+          description: Invalid JSON
+          schema:
+            type: string
+        "500":
+          description: DB Update error
+          schema:
+            type: string
+      summary: Route aktualisieren
+      tags:
+      - Routes
 schemes:
 - http
 swagger: "2.0"
