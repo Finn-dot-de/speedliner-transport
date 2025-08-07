@@ -1,0 +1,91 @@
+basePath: /
+definitions:
+  structs.VerifyResponse:
+    properties:
+      CharacterID:
+        example: 12345678
+        type: integer
+      CharacterName:
+        example: Pilot McFly
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: REST API für Speedliner
+  title: Speedliner API
+  version: "1.0"
+paths:
+  /app/callback:
+    get:
+      description: OAuth2 Callback für ESI, speichert Token und setzt Cookie
+      parameters:
+      - description: Authorization Code
+        in: query
+        name: code
+        required: true
+        type: string
+      produces:
+      - text/html
+      responses:
+        "302":
+          description: Redirect to home
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: ESI Callback
+      tags:
+      - Auth
+  /app/login:
+    get:
+      description: Leitet zum ESI-Login um
+      produces:
+      - text/html
+      responses:
+        "302":
+          description: Redirect
+          schema:
+            type: string
+      summary: Login redirect
+      tags:
+      - Auth
+  /app/me:
+    get:
+      description: Gibt Charakter-ID und Name zurück (aus Cookie)
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/structs.VerifyResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: User Info
+      tags:
+      - Auth
+  /app/ping:
+    get:
+      description: Gibt "pong" zurück
+      produces:
+      - text/plain
+      responses:
+        "200":
+          description: pong
+          schema:
+            type: string
+      summary: Healthcheck
+      tags:
+      - System
+schemes:
+- http
+swagger: "2.0"

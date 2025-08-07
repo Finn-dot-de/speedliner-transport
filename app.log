@@ -1,0 +1,612 @@
+2025/08/07 22:09:25 main.go:42: 🚀 Server läuft auf Port 8080
+2025/08/07 22:09:25 main.go:43: http://localhost:8080
+2025/08/07 22:09:28 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:09:28 CEST | Methode: GET | URL: / | RemoteAddr: [::1]:38656
+2025/08/07 22:09:28 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:09:28 CEST | Dauer: 1.793885ms | Statuscode: 200 | Antwortgröße: 3757 Bytes
+2025/08/07 22:09:28 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:09:28 CEST | Methode: GET | URL: /assets/style/style.css | RemoteAddr: [::1]:38656
+2025/08/07 22:09:28 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:09:28 CEST | Dauer: 212.753µs | Statuscode: 200 | Antwortgröße: 1446 Bytes
+2025/08/07 22:09:28 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:09:28 CEST | Methode: GET | URL: /assets/banner.png | RemoteAddr: [::1]:38672
+2025/08/07 22:09:28 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:09:28 CEST | Methode: GET | URL: /assets/js/script.js | RemoteAddr: [::1]:38688
+2025/08/07 22:09:28 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:09:28 CEST | Dauer: 192.096µs | Statuscode: 200 | Antwortgröße: 1228 Bytes
+2025/08/07 22:09:28 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:09:28 CEST | Dauer: 2.919093ms | Statuscode: 200 | Antwortgröße: 3268666 Bytes
+2025/08/07 22:09:28 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:09:28 CEST | Methode: GET | URL: /assets/js/utils.js | RemoteAddr: [::1]:38672
+2025/08/07 22:09:28 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:09:28 CEST | Dauer: 86.909µs | Statuscode: 200 | Antwortgröße: 1736 Bytes
+2025/08/07 22:09:28 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:09:28 CEST | Methode: GET | URL: /assets/js/calculator.js | RemoteAddr: [::1]:38688
+2025/08/07 22:09:28 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:09:28 CEST | Methode: GET | URL: /assets/js/user.js | RemoteAddr: [::1]:38656
+2025/08/07 22:09:28 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:09:28 CEST | Dauer: 37.835µs | Statuscode: 200 | Antwortgröße: 1288 Bytes
+2025/08/07 22:09:28 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:09:28 CEST | Dauer: 37.985µs | Statuscode: 200 | Antwortgröße: 2041 Bytes
+2025/08/07 22:09:28 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:09:28 CEST | Methode: GET | URL: /assets/js/routes.js | RemoteAddr: [::1]:38694
+2025/08/07 22:09:28 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:09:28 CEST | Methode: GET | URL: /assets/js/pricing.js | RemoteAddr: [::1]:38702
+2025/08/07 22:09:28 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:09:28 CEST | Dauer: 63.642µs | Statuscode: 200 | Antwortgröße: 173 Bytes
+2025/08/07 22:09:28 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:09:28 CEST | Dauer: 162.06µs | Statuscode: 200 | Antwortgröße: 894 Bytes
+2025/08/07 22:09:28 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:09:28 CEST | Methode: GET | URL: /app/me | RemoteAddr: [::1]:38702
+2025/08/07 22:09:28 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:09:28 CEST | Methode: GET | URL: /app/routes | RemoteAddr: [::1]:38694
+2025/08/07 22:09:28 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:09:28 CEST | Dauer: 44.654µs | Statuscode: 401 | Antwortgröße: 18 Bytes
+2025/08/07 22:09:28 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:09:28 CEST | Methode: GET | URL: /app/me | RemoteAddr: [::1]:38656
+2025/08/07 22:09:28 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:09:28 CEST | Dauer: 32.046µs | Statuscode: 401 | Antwortgröße: 18 Bytes
+2025/08/07 22:09:28 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:09:28 CEST | Dauer: 1.232665ms | Statuscode: 200 | Antwortgröße: 421 Bytes
+2025/08/07 22:11:22 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:11:22 CEST | Methode: GET | URL: / | RemoteAddr: [::1]:38694
+2025/08/07 22:11:22 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:11:22 CEST | Dauer: 148.939µs | Statuscode: 200 | Antwortgröße: 3743 Bytes
+2025/08/07 22:11:22 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:11:22 CEST | Methode: GET | URL: /assets/style/style.css | RemoteAddr: [::1]:38694
+2025/08/07 22:11:22 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:11:22 CEST | Dauer: 67.144µs | Statuscode: 200 | Antwortgröße: 1446 Bytes
+2025/08/07 22:11:22 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:11:22 CEST | Methode: GET | URL: /assets/banner.png | RemoteAddr: [::1]:38656
+2025/08/07 22:11:22 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:11:22 CEST | Methode: GET | URL: /assets/js/script.js | RemoteAddr: [::1]:38702
+2025/08/07 22:11:22 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:11:22 CEST | Dauer: 79.325µs | Statuscode: 200 | Antwortgröße: 2105 Bytes
+2025/08/07 22:11:22 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:11:22 CEST | Dauer: 1.841761ms | Statuscode: 200 | Antwortgröße: 3268666 Bytes
+2025/08/07 22:11:22 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:11:22 CEST | Methode: GET | URL: /assets/favicon.ico | RemoteAddr: [::1]:38656
+2025/08/07 22:11:22 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:11:22 CEST | Dauer: 135.459µs | Statuscode: 200 | Antwortgröße: 54750 Bytes
+2025/08/07 22:11:31 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:11:31 CEST | Methode: GET | URL: / | RemoteAddr: [::1]:38656
+2025/08/07 22:11:31 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:11:31 CEST | Dauer: 122.316µs | Statuscode: 200 | Antwortgröße: 3757 Bytes
+2025/08/07 22:11:31 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:11:31 CEST | Methode: GET | URL: /assets/style/style.css | RemoteAddr: [::1]:38656
+2025/08/07 22:11:31 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:11:31 CEST | Dauer: 78.904µs | Statuscode: 200 | Antwortgröße: 1446 Bytes
+2025/08/07 22:11:31 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:11:31 CEST | Methode: GET | URL: /assets/banner.png | RemoteAddr: [::1]:38702
+2025/08/07 22:11:31 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:11:31 CEST | Methode: GET | URL: /assets/js/script.js | RemoteAddr: [::1]:38694
+2025/08/07 22:11:31 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:11:31 CEST | Dauer: 72.714µs | Statuscode: 200 | Antwortgröße: 2105 Bytes
+2025/08/07 22:11:31 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:11:31 CEST | Dauer: 1.840357ms | Statuscode: 200 | Antwortgröße: 3268666 Bytes
+2025/08/07 22:11:31 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:11:31 CEST | Methode: GET | URL: /assets/js/utils.js | RemoteAddr: [::1]:38702
+2025/08/07 22:11:31 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:11:31 CEST | Dauer: 67.993µs | Statuscode: 200 | Antwortgröße: 795 Bytes
+2025/08/07 22:11:31 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:11:31 CEST | Methode: GET | URL: /assets/js/calculator.js | RemoteAddr: [::1]:38694
+2025/08/07 22:11:31 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:11:31 CEST | Methode: GET | URL: /assets/js/routes.js | RemoteAddr: [::1]:38688
+2025/08/07 22:11:31 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:11:31 CEST | Methode: GET | URL: /assets/js/user.js | RemoteAddr: [::1]:38656
+2025/08/07 22:11:31 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:11:31 CEST | Dauer: 49.273µs | Statuscode: 200 | Antwortgröße: 173 Bytes
+2025/08/07 22:11:31 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:11:31 CEST | Methode: GET | URL: /assets/js/pricing.js | RemoteAddr: [::1]:38672
+2025/08/07 22:11:31 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:11:31 CEST | Dauer: 101.685µs | Statuscode: 200 | Antwortgröße: 2041 Bytes
+2025/08/07 22:11:31 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:11:31 CEST | Dauer: 98.125µs | Statuscode: 200 | Antwortgröße: 1288 Bytes
+2025/08/07 22:11:31 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:11:31 CEST | Dauer: 66.643µs | Statuscode: 200 | Antwortgröße: 894 Bytes
+2025/08/07 22:11:31 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:11:31 CEST | Methode: GET | URL: /app/me | RemoteAddr: [::1]:38672
+2025/08/07 22:11:31 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:11:31 CEST | Dauer: 27.631µs | Statuscode: 401 | Antwortgröße: 18 Bytes
+2025/08/07 22:11:31 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:11:31 CEST | Methode: GET | URL: /app/routes | RemoteAddr: [::1]:38694
+2025/08/07 22:11:31 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:11:31 CEST | Methode: GET | URL: /app/me | RemoteAddr: [::1]:38656
+2025/08/07 22:11:31 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:11:31 CEST | Dauer: 37.332µs | Statuscode: 401 | Antwortgröße: 18 Bytes
+2025/08/07 22:11:31 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:11:31 CEST | Dauer: 328.807µs | Statuscode: 200 | Antwortgröße: 421 Bytes
+2025/08/07 22:11:31 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:11:31 CEST | Methode: GET | URL: /assets/favicon.ico | RemoteAddr: [::1]:38694
+2025/08/07 22:11:31 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:11:31 CEST | Dauer: 88.815µs | Statuscode: 200 | Antwortgröße: 54750 Bytes
+2025/08/07 22:14:48 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:14:48 CEST | Methode: GET | URL: / | RemoteAddr: [::1]:38694
+2025/08/07 22:14:48 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:14:48 CEST | Dauer: 132.796µs | Statuscode: 200 | Antwortgröße: 3757 Bytes
+2025/08/07 22:14:48 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:14:48 CEST | Methode: GET | URL: /assets/style/style.css | RemoteAddr: [::1]:38694
+2025/08/07 22:14:48 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:14:48 CEST | Dauer: 68.098µs | Statuscode: 200 | Antwortgröße: 1446 Bytes
+2025/08/07 22:14:48 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:14:48 CEST | Methode: GET | URL: /assets/banner.png | RemoteAddr: [::1]:38656
+2025/08/07 22:14:48 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:14:48 CEST | Methode: GET | URL: /assets/js/script.js | RemoteAddr: [::1]:38672
+2025/08/07 22:14:48 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:14:48 CEST | Dauer: 53.298µs | Statuscode: 200 | Antwortgröße: 1162 Bytes
+2025/08/07 22:14:48 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:14:48 CEST | Dauer: 886.492µs | Statuscode: 200 | Antwortgröße: 3268666 Bytes
+2025/08/07 22:14:48 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:14:48 CEST | Methode: GET | URL: /assets/js/utils.js | RemoteAddr: [::1]:38656
+2025/08/07 22:14:48 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:14:48 CEST | Methode: GET | URL: /assets/js/calculator.js | RemoteAddr: [::1]:38672
+2025/08/07 22:14:48 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:14:48 CEST | Dauer: 72.848µs | Statuscode: 200 | Antwortgröße: 1736 Bytes
+2025/08/07 22:14:48 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:14:48 CEST | Dauer: 53.048µs | Statuscode: 200 | Antwortgröße: 1382 Bytes
+2025/08/07 22:14:48 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:14:48 CEST | Methode: GET | URL: /assets/js/pricing.js | RemoteAddr: [::1]:38688
+2025/08/07 22:14:48 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:14:48 CEST | Dauer: 95.787µs | Statuscode: 200 | Antwortgröße: 725 Bytes
+2025/08/07 22:14:48 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:14:48 CEST | Methode: GET | URL: /assets/js/routes.js | RemoteAddr: [::1]:38694
+2025/08/07 22:14:48 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:14:48 CEST | Dauer: 230.842µs | Statuscode: 200 | Antwortgröße: 173 Bytes
+2025/08/07 22:14:48 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:14:48 CEST | Methode: GET | URL: /assets/js/user.js | RemoteAddr: [::1]:38702
+2025/08/07 22:14:48 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:14:48 CEST | Dauer: 270.371µs | Statuscode: 200 | Antwortgröße: 1941 Bytes
+2025/08/07 22:14:48 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:14:48 CEST | Methode: GET | URL: /app/routes | RemoteAddr: [::1]:38702
+2025/08/07 22:14:48 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:14:48 CEST | Methode: GET | URL: /app/me | RemoteAddr: [::1]:38694
+2025/08/07 22:14:48 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:14:48 CEST | Dauer: 48.958µs | Statuscode: 401 | Antwortgröße: 18 Bytes
+2025/08/07 22:14:48 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:14:48 CEST | Dauer: 645.009µs | Statuscode: 200 | Antwortgröße: 421 Bytes
+2025/08/07 22:14:48 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:14:48 CEST | Methode: GET | URL: /assets/favicon.ico | RemoteAddr: [::1]:38702
+2025/08/07 22:14:48 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:14:48 CEST | Dauer: 161.545µs | Statuscode: 200 | Antwortgröße: 54750 Bytes
+2025/08/07 22:15:11 main.go:42: 🚀 Server läuft auf Port 8080
+2025/08/07 22:15:11 main.go:43: http://localhost:8080
+2025/08/07 22:15:13 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:15:13 CEST | Methode: GET | URL: / | RemoteAddr: [::1]:57608
+2025/08/07 22:15:13 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:15:13 CEST | Dauer: 2.556598ms | Statuscode: 200 | Antwortgröße: 3757 Bytes
+2025/08/07 22:15:13 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:15:13 CEST | Methode: GET | URL: /assets/style/style.css | RemoteAddr: [::1]:57608
+2025/08/07 22:15:13 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:15:13 CEST | Dauer: 112.146µs | Statuscode: 200 | Antwortgröße: 1446 Bytes
+2025/08/07 22:15:13 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:15:13 CEST | Methode: GET | URL: /assets/banner.png | RemoteAddr: [::1]:57624
+2025/08/07 22:15:13 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:15:13 CEST | Methode: GET | URL: /assets/js/script.js | RemoteAddr: [::1]:57630
+2025/08/07 22:15:13 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:15:13 CEST | Dauer: 95.327µs | Statuscode: 200 | Antwortgröße: 1162 Bytes
+2025/08/07 22:15:13 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:15:13 CEST | Dauer: 2.129743ms | Statuscode: 200 | Antwortgröße: 3268666 Bytes
+2025/08/07 22:15:13 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:15:13 CEST | Methode: GET | URL: /assets/js/utils.js | RemoteAddr: [::1]:57624
+2025/08/07 22:15:13 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:15:13 CEST | Dauer: 65.628µs | Statuscode: 200 | Antwortgröße: 1736 Bytes
+2025/08/07 22:15:13 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:15:13 CEST | Methode: GET | URL: /assets/js/calculator.js | RemoteAddr: [::1]:57630
+2025/08/07 22:15:13 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:15:13 CEST | Dauer: 61.828µs | Statuscode: 200 | Antwortgröße: 1382 Bytes
+2025/08/07 22:15:13 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:15:13 CEST | Methode: GET | URL: /assets/js/routes.js | RemoteAddr: [::1]:57608
+2025/08/07 22:15:13 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:15:13 CEST | Dauer: 79.207µs | Statuscode: 200 | Antwortgröße: 173 Bytes
+2025/08/07 22:15:13 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:15:13 CEST | Methode: GET | URL: /assets/js/pricing.js | RemoteAddr: [::1]:57646
+2025/08/07 22:15:13 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:15:13 CEST | Dauer: 77.147µs | Statuscode: 200 | Antwortgröße: 725 Bytes
+2025/08/07 22:15:13 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:15:13 CEST | Methode: GET | URL: /assets/js/user.js | RemoteAddr: [::1]:57654
+2025/08/07 22:15:13 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:15:13 CEST | Dauer: 54.208µs | Statuscode: 200 | Antwortgröße: 1941 Bytes
+2025/08/07 22:15:13 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:15:13 CEST | Methode: GET | URL: /app/routes | RemoteAddr: [::1]:57654
+2025/08/07 22:15:13 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:15:13 CEST | Methode: GET | URL: /app/me | RemoteAddr: [::1]:57646
+2025/08/07 22:15:13 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:15:13 CEST | Dauer: 36.659µs | Statuscode: 401 | Antwortgröße: 18 Bytes
+2025/08/07 22:15:13 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:15:13 CEST | Dauer: 1.037923ms | Statuscode: 200 | Antwortgröße: 421 Bytes
+2025/08/07 22:15:15 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:15:15 CEST | Methode: GET | URL: / | RemoteAddr: [::1]:57654
+2025/08/07 22:15:15 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:15:15 CEST | Dauer: 118.556µs | Statuscode: 200 | Antwortgröße: 3757 Bytes
+2025/08/07 22:15:15 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:15:15 CEST | Methode: GET | URL: /assets/style/style.css | RemoteAddr: [::1]:57654
+2025/08/07 22:15:15 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:15:15 CEST | Dauer: 85.867µs | Statuscode: 200 | Antwortgröße: 1446 Bytes
+2025/08/07 22:15:15 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:15:15 CEST | Methode: GET | URL: /assets/banner.png | RemoteAddr: [::1]:57646
+2025/08/07 22:15:15 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:15:15 CEST | Methode: GET | URL: /assets/js/script.js | RemoteAddr: [::1]:57608
+2025/08/07 22:15:15 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:15:15 CEST | Dauer: 82.407µs | Statuscode: 200 | Antwortgröße: 1162 Bytes
+2025/08/07 22:15:15 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:15:15 CEST | Dauer: 1.813574ms | Statuscode: 200 | Antwortgröße: 3268666 Bytes
+2025/08/07 22:15:15 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:15:15 CEST | Methode: GET | URL: /assets/js/utils.js | RemoteAddr: [::1]:57646
+2025/08/07 22:15:15 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:15:15 CEST | Methode: GET | URL: /assets/js/routes.js | RemoteAddr: [::1]:57654
+2025/08/07 22:15:15 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:15:15 CEST | Methode: GET | URL: /assets/js/pricing.js | RemoteAddr: [::1]:57630
+2025/08/07 22:15:15 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:15:15 CEST | Dauer: 94.407µs | Statuscode: 200 | Antwortgröße: 1736 Bytes
+2025/08/07 22:15:15 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:15:15 CEST | Dauer: 90.857µs | Statuscode: 200 | Antwortgröße: 725 Bytes
+2025/08/07 22:15:15 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:15:15 CEST | Dauer: 60.168µs | Statuscode: 200 | Antwortgröße: 173 Bytes
+2025/08/07 22:15:15 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:15:15 CEST | Methode: GET | URL: /assets/js/user.js | RemoteAddr: [::1]:57624
+2025/08/07 22:15:15 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:15:15 CEST | Dauer: 105.027µs | Statuscode: 200 | Antwortgröße: 1941 Bytes
+2025/08/07 22:15:15 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:15:15 CEST | Methode: GET | URL: /assets/js/calculator.js | RemoteAddr: [::1]:57608
+2025/08/07 22:15:15 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:15:15 CEST | Dauer: 305.129µs | Statuscode: 200 | Antwortgröße: 1382 Bytes
+2025/08/07 22:15:15 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:15:15 CEST | Methode: GET | URL: /app/routes | RemoteAddr: [::1]:57608
+2025/08/07 22:15:15 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:15:15 CEST | Methode: GET | URL: /app/me | RemoteAddr: [::1]:57624
+2025/08/07 22:15:15 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:15:15 CEST | Dauer: 40.758µs | Statuscode: 401 | Antwortgröße: 18 Bytes
+2025/08/07 22:15:15 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:15:15 CEST | Dauer: 642.626µs | Statuscode: 200 | Antwortgröße: 421 Bytes
+2025/08/07 22:15:15 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:15:15 CEST | Methode: GET | URL: /assets/favicon.ico | RemoteAddr: [::1]:57608
+2025/08/07 22:15:15 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:15:15 CEST | Dauer: 152.485µs | Statuscode: 200 | Antwortgröße: 54750 Bytes
+2025/08/07 22:17:24 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:17:24 CEST | Methode: GET | URL: /assets/style/style.css | RemoteAddr: [::1]:57608
+2025/08/07 22:17:24 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:17:24 CEST | Dauer: 171.732µs | Statuscode: 200 | Antwortgröße: 1446 Bytes
+2025/08/07 22:17:24 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:17:24 CEST | Methode: GET | URL: /.well-known/appspecific/com.chrome.devtools.json | RemoteAddr: [::1]:57608
+2025/08/07 22:17:24 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:17:24 CEST | Dauer: 141.013µs | Statuscode: 404 | Antwortgröße: 19 Bytes
+2025/08/07 22:18:44 main.go:42: 🚀 Server läuft auf Port 8080
+2025/08/07 22:18:44 main.go:43: http://localhost:8080
+2025/08/07 22:18:48 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:18:48 CEST | Methode: GET | URL: / | RemoteAddr: [::1]:35608
+2025/08/07 22:18:48 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:18:48 CEST | Dauer: 1.34788ms | Statuscode: 200 | Antwortgröße: 3757 Bytes
+2025/08/07 22:18:48 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:18:48 CEST | Methode: GET | URL: /assets/banner.png | RemoteAddr: [::1]:35620
+2025/08/07 22:18:48 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:18:48 CEST | Methode: GET | URL: /assets/style/style.css | RemoteAddr: [::1]:35608
+2025/08/07 22:18:48 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:18:48 CEST | Methode: GET | URL: /assets/js/script.js | RemoteAddr: [::1]:35632
+2025/08/07 22:18:48 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:18:48 CEST | Dauer: 282.796µs | Statuscode: 200 | Antwortgröße: 1162 Bytes
+2025/08/07 22:18:48 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:18:48 CEST | Dauer: 264.896µs | Statuscode: 200 | Antwortgröße: 1446 Bytes
+2025/08/07 22:18:48 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:18:48 CEST | Dauer: 2.746099ms | Statuscode: 200 | Antwortgröße: 3268666 Bytes
+2025/08/07 22:18:48 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:18:48 CEST | Methode: GET | URL: /assets/js/utils.js | RemoteAddr: [::1]:35620
+2025/08/07 22:18:48 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:18:48 CEST | Dauer: 76.816µs | Statuscode: 200 | Antwortgröße: 1736 Bytes
+2025/08/07 22:18:48 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:18:48 CEST | Methode: GET | URL: /assets/js/calculator.js | RemoteAddr: [::1]:35608
+2025/08/07 22:18:48 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:18:48 CEST | Dauer: 60.916µs | Statuscode: 200 | Antwortgröße: 1382 Bytes
+2025/08/07 22:18:48 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:18:48 CEST | Methode: GET | URL: /assets/js/routes.js | RemoteAddr: [::1]:35632
+2025/08/07 22:18:48 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:18:48 CEST | Dauer: 96.745µs | Statuscode: 200 | Antwortgröße: 173 Bytes
+2025/08/07 22:18:48 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:18:48 CEST | Methode: GET | URL: /assets/js/pricing.js | RemoteAddr: [::1]:35644
+2025/08/07 22:18:48 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:18:48 CEST | Methode: GET | URL: /assets/js/user.js | RemoteAddr: [::1]:35656
+2025/08/07 22:18:48 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:18:48 CEST | Dauer: 68.667µs | Statuscode: 200 | Antwortgröße: 725 Bytes
+2025/08/07 22:18:48 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:18:48 CEST | Dauer: 79.626µs | Statuscode: 200 | Antwortgröße: 1941 Bytes
+2025/08/07 22:18:48 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:18:48 CEST | Methode: GET | URL: /app/routes | RemoteAddr: [::1]:35656
+2025/08/07 22:18:48 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:18:48 CEST | Methode: GET | URL: /app/me | RemoteAddr: [::1]:35644
+2025/08/07 22:18:48 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:18:48 CEST | Dauer: 25.278µs | Statuscode: 401 | Antwortgröße: 18 Bytes
+2025/08/07 22:18:48 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:18:48 CEST | Dauer: 818.038µs | Statuscode: 200 | Antwortgröße: 421 Bytes
+2025/08/07 22:18:50 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:18:50 CEST | Methode: GET | URL: / | RemoteAddr: [::1]:35656
+2025/08/07 22:18:50 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:18:50 CEST | Dauer: 124.744µs | Statuscode: 200 | Antwortgröße: 3757 Bytes
+2025/08/07 22:18:50 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:18:50 CEST | Methode: GET | URL: /assets/style/style.css | RemoteAddr: [::1]:35656
+2025/08/07 22:18:50 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:18:50 CEST | Dauer: 72.936µs | Statuscode: 200 | Antwortgröße: 1446 Bytes
+2025/08/07 22:18:50 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:18:50 CEST | Methode: GET | URL: /assets/banner.png | RemoteAddr: [::1]:35644
+2025/08/07 22:18:50 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:18:50 CEST | Methode: GET | URL: /assets/js/script.js | RemoteAddr: [::1]:35632
+2025/08/07 22:18:50 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:18:50 CEST | Dauer: 41.348µs | Statuscode: 200 | Antwortgröße: 1162 Bytes
+2025/08/07 22:18:50 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:18:50 CEST | Dauer: 2.107322ms | Statuscode: 200 | Antwortgröße: 3268666 Bytes
+2025/08/07 22:18:50 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:18:50 CEST | Methode: GET | URL: /assets/js/utils.js | RemoteAddr: [::1]:35644
+2025/08/07 22:18:50 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:18:50 CEST | Methode: GET | URL: /assets/js/user.js | RemoteAddr: [::1]:35620
+2025/08/07 22:18:50 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:18:50 CEST | Methode: GET | URL: /assets/js/routes.js | RemoteAddr: [::1]:35656
+2025/08/07 22:18:50 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:18:50 CEST | Dauer: 145.062µs | Statuscode: 200 | Antwortgröße: 173 Bytes
+2025/08/07 22:18:50 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:18:50 CEST | Methode: GET | URL: /assets/js/pricing.js | RemoteAddr: [::1]:35608
+2025/08/07 22:18:50 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:18:50 CEST | Methode: GET | URL: /assets/js/calculator.js | RemoteAddr: [::1]:35632
+2025/08/07 22:18:50 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:18:50 CEST | Dauer: 122.384µs | Statuscode: 200 | Antwortgröße: 1736 Bytes
+2025/08/07 22:18:50 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:18:50 CEST | Dauer: 302.674µs | Statuscode: 200 | Antwortgröße: 1382 Bytes
+2025/08/07 22:18:50 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:18:50 CEST | Dauer: 49.567µs | Statuscode: 200 | Antwortgröße: 1941 Bytes
+2025/08/07 22:18:50 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:18:50 CEST | Dauer: 274.256µs | Statuscode: 200 | Antwortgröße: 725 Bytes
+2025/08/07 22:18:50 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:18:50 CEST | Methode: GET | URL: /app/routes | RemoteAddr: [::1]:35608
+2025/08/07 22:18:50 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:18:50 CEST | Methode: GET | URL: /app/me | RemoteAddr: [::1]:35620
+2025/08/07 22:18:50 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:18:50 CEST | Dauer: 29.348µs | Statuscode: 401 | Antwortgröße: 18 Bytes
+2025/08/07 22:18:50 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:18:50 CEST | Dauer: 388.08µs | Statuscode: 200 | Antwortgröße: 421 Bytes
+2025/08/07 22:18:50 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:18:50 CEST | Methode: GET | URL: /assets/favicon.ico | RemoteAddr: [::1]:35608
+2025/08/07 22:18:50 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:18:50 CEST | Dauer: 101.934µs | Statuscode: 200 | Antwortgröße: 54750 Bytes
+2025/08/07 22:18:50 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:18:50 CEST | Methode: GET | URL: / | RemoteAddr: [::1]:35608
+2025/08/07 22:18:50 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:18:50 CEST | Dauer: 95.165µs | Statuscode: 200 | Antwortgröße: 3757 Bytes
+2025/08/07 22:18:50 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:18:50 CEST | Methode: GET | URL: /assets/style/style.css | RemoteAddr: [::1]:35608
+2025/08/07 22:18:50 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:18:50 CEST | Dauer: 95.825µs | Statuscode: 200 | Antwortgröße: 1446 Bytes
+2025/08/07 22:18:50 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:18:50 CEST | Methode: GET | URL: /assets/banner.png | RemoteAddr: [::1]:35620
+2025/08/07 22:18:50 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:18:50 CEST | Methode: GET | URL: /assets/js/script.js | RemoteAddr: [::1]:35632
+2025/08/07 22:18:50 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:18:50 CEST | Dauer: 40.578µs | Statuscode: 200 | Antwortgröße: 1162 Bytes
+2025/08/07 22:18:50 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:18:50 CEST | Dauer: 1.305502ms | Statuscode: 200 | Antwortgröße: 3268666 Bytes
+2025/08/07 22:18:50 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:18:50 CEST | Methode: GET | URL: /assets/js/utils.js | RemoteAddr: [::1]:35620
+2025/08/07 22:18:50 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:18:50 CEST | Dauer: 42.107µs | Statuscode: 200 | Antwortgröße: 1736 Bytes
+2025/08/07 22:18:50 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:18:50 CEST | Methode: GET | URL: /assets/js/calculator.js | RemoteAddr: [::1]:35632
+2025/08/07 22:18:50 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:18:50 CEST | Methode: GET | URL: /assets/js/routes.js | RemoteAddr: [::1]:35608
+2025/08/07 22:18:50 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:18:50 CEST | Dauer: 58.517µs | Statuscode: 200 | Antwortgröße: 1382 Bytes
+2025/08/07 22:18:50 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:18:50 CEST | Methode: GET | URL: /assets/js/pricing.js | RemoteAddr: [::1]:35644
+2025/08/07 22:18:50 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:18:50 CEST | Dauer: 58.777µs | Statuscode: 200 | Antwortgröße: 173 Bytes
+2025/08/07 22:18:50 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:18:50 CEST | Methode: GET | URL: /assets/js/user.js | RemoteAddr: [::1]:35656
+2025/08/07 22:18:50 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:18:50 CEST | Dauer: 53.327µs | Statuscode: 200 | Antwortgröße: 725 Bytes
+2025/08/07 22:18:50 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:18:50 CEST | Dauer: 44.698µs | Statuscode: 200 | Antwortgröße: 1941 Bytes
+2025/08/07 22:18:50 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:18:50 CEST | Methode: GET | URL: /app/routes | RemoteAddr: [::1]:35656
+2025/08/07 22:18:50 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:18:50 CEST | Methode: GET | URL: /app/me | RemoteAddr: [::1]:35644
+2025/08/07 22:18:50 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:18:50 CEST | Dauer: 27.519µs | Statuscode: 401 | Antwortgröße: 18 Bytes
+2025/08/07 22:18:50 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:18:50 CEST | Dauer: 254.607µs | Statuscode: 200 | Antwortgröße: 421 Bytes
+2025/08/07 22:18:50 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:18:50 CEST | Methode: GET | URL: /assets/favicon.ico | RemoteAddr: [::1]:35656
+2025/08/07 22:18:50 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:18:50 CEST | Dauer: 108.565µs | Statuscode: 200 | Antwortgröße: 54750 Bytes
+2025/08/07 22:18:53 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:18:53 CEST | Methode: GET | URL: /assets/style/style.css | RemoteAddr: [::1]:35656
+2025/08/07 22:18:53 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:18:53 CEST | Dauer: 88.965µs | Statuscode: 200 | Antwortgröße: 1446 Bytes
+2025/08/07 22:18:53 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:18:53 CEST | Methode: GET | URL: /.well-known/appspecific/com.chrome.devtools.json | RemoteAddr: [::1]:35656
+2025/08/07 22:18:53 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:18:53 CEST | Dauer: 101.145µs | Statuscode: 404 | Antwortgröße: 19 Bytes
+2025/08/07 22:18:55 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:18:55 CEST | Methode: GET | URL: /app/login | RemoteAddr: [::1]:35656
+2025/08/07 22:18:55 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:18:55 CEST | Dauer: 84.845µs | Statuscode: 302 | Antwortgröße: 414 Bytes
+2025/08/07 22:18:57 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:18:57 CEST | Methode: GET | URL: /app/callback?code=VZwlj3pmGEeuWCeT4PLQLg&state=state-token | RemoteAddr: [::1]:35656
+2025/08/07 22:18:58 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:18:58 CEST | Dauer: 719.063904ms | Statuscode: 302 | Antwortgröße: 24 Bytes
+2025/08/07 22:18:58 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:18:58 CEST | Methode: GET | URL: / | RemoteAddr: [::1]:35656
+2025/08/07 22:18:58 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:18:58 CEST | Dauer: 70.727µs | Statuscode: 200 | Antwortgröße: 3757 Bytes
+2025/08/07 22:18:58 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:18:58 CEST | Methode: GET | URL: /.well-known/appspecific/com.chrome.devtools.json | RemoteAddr: [::1]:35656
+2025/08/07 22:18:58 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:18:58 CEST | Dauer: 67.446µs | Statuscode: 404 | Antwortgröße: 19 Bytes
+2025/08/07 22:18:58 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:18:58 CEST | Methode: GET | URL: /assets/style/style.css | RemoteAddr: [::1]:35644
+2025/08/07 22:18:58 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:18:58 CEST | Dauer: 73.446µs | Statuscode: 200 | Antwortgröße: 1446 Bytes
+2025/08/07 22:18:58 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:18:58 CEST | Methode: GET | URL: /assets/banner.png | RemoteAddr: [::1]:35608
+2025/08/07 22:18:58 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:18:58 CEST | Methode: GET | URL: /assets/js/script.js | RemoteAddr: [::1]:35632
+2025/08/07 22:18:58 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:18:58 CEST | Dauer: 97.945µs | Statuscode: 200 | Antwortgröße: 1162 Bytes
+2025/08/07 22:18:58 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:18:58 CEST | Dauer: 3.509258ms | Statuscode: 200 | Antwortgröße: 3268666 Bytes
+2025/08/07 22:18:58 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:18:58 CEST | Methode: GET | URL: /assets/js/utils.js | RemoteAddr: [::1]:35608
+2025/08/07 22:18:58 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:18:58 CEST | Dauer: 82.405µs | Statuscode: 200 | Antwortgröße: 1736 Bytes
+2025/08/07 22:18:58 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:18:58 CEST | Methode: GET | URL: /assets/js/routes.js | RemoteAddr: [::1]:35656
+2025/08/07 22:18:58 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:18:58 CEST | Methode: GET | URL: /assets/js/pricing.js | RemoteAddr: [::1]:35644
+2025/08/07 22:18:58 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:18:58 CEST | Dauer: 55.297µs | Statuscode: 200 | Antwortgröße: 173 Bytes
+2025/08/07 22:18:58 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:18:58 CEST | Methode: GET | URL: /assets/js/calculator.js | RemoteAddr: [::1]:35632
+2025/08/07 22:18:58 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:18:58 CEST | Dauer: 146.802µs | Statuscode: 200 | Antwortgröße: 1382 Bytes
+2025/08/07 22:18:58 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:18:58 CEST | Dauer: 71.956µs | Statuscode: 200 | Antwortgröße: 725 Bytes
+2025/08/07 22:18:58 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:18:58 CEST | Methode: GET | URL: /assets/js/user.js | RemoteAddr: [::1]:35620
+2025/08/07 22:18:58 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:18:58 CEST | Dauer: 156.652µs | Statuscode: 200 | Antwortgröße: 1941 Bytes
+2025/08/07 22:18:58 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:18:58 CEST | Methode: GET | URL: /app/routes | RemoteAddr: [::1]:35620
+2025/08/07 22:18:58 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:18:58 CEST | Methode: GET | URL: /app/me | RemoteAddr: [::1]:35656
+2025/08/07 22:18:58 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:18:58 CEST | Dauer: 297.134µs | Statuscode: 200 | Antwortgröße: 421 Bytes
+2025/08/07 22:18:58 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:18:58 CEST | Dauer: 70.812874ms | Statuscode: 200 | Antwortgröße: 60 Bytes
+2025/08/07 22:20:16 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:20:16 CEST | Methode: GET | URL: /app/routes | RemoteAddr: [::1]:35656
+2025/08/07 22:20:16 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:20:16 CEST | Dauer: 340.821µs | Statuscode: 200 | Antwortgröße: 421 Bytes
+2025/08/07 22:20:17 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:20:17 CEST | Methode: GET | URL: /.well-known/appspecific/com.chrome.devtools.json | RemoteAddr: [::1]:35656
+2025/08/07 22:20:17 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:20:17 CEST | Dauer: 84.413µs | Statuscode: 404 | Antwortgröße: 19 Bytes
+2025/08/07 22:20:59 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:20:59 CEST | Methode: GET | URL: / | RemoteAddr: [::1]:35656
+2025/08/07 22:20:59 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:20:59 CEST | Dauer: 161.723µs | Statuscode: 200 | Antwortgröße: 3757 Bytes
+2025/08/07 22:20:59 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:20:59 CEST | Methode: GET | URL: /.well-known/appspecific/com.chrome.devtools.json | RemoteAddr: [::1]:35656
+2025/08/07 22:20:59 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:20:59 CEST | Dauer: 71.542µs | Statuscode: 404 | Antwortgröße: 19 Bytes
+2025/08/07 22:20:59 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:20:59 CEST | Methode: GET | URL: /assets/style/style.css | RemoteAddr: [::1]:35620
+2025/08/07 22:20:59 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:20:59 CEST | Dauer: 150.263µs | Statuscode: 200 | Antwortgröße: 1446 Bytes
+2025/08/07 22:20:59 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:20:59 CEST | Methode: GET | URL: /assets/banner.png | RemoteAddr: [::1]:35620
+2025/08/07 22:20:59 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:20:59 CEST | Methode: GET | URL: /assets/js/script.js | RemoteAddr: [::1]:35656
+2025/08/07 22:20:59 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:20:59 CEST | Dauer: 46.001µs | Statuscode: 200 | Antwortgröße: 1162 Bytes
+2025/08/07 22:20:59 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:20:59 CEST | Dauer: 1.118803ms | Statuscode: 200 | Antwortgröße: 3268666 Bytes
+2025/08/07 22:20:59 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:20:59 CEST | Methode: GET | URL: /assets/js/utils.js | RemoteAddr: [::1]:35620
+2025/08/07 22:20:59 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:20:59 CEST | Dauer: 144.864µs | Statuscode: 200 | Antwortgröße: 1736 Bytes
+2025/08/07 22:20:59 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:20:59 CEST | Methode: GET | URL: /assets/js/calculator.js | RemoteAddr: [::1]:35656
+2025/08/07 22:20:59 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:20:59 CEST | Methode: GET | URL: /assets/js/routes.js | RemoteAddr: [::1]:35644
+2025/08/07 22:20:59 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:20:59 CEST | Dauer: 48.731µs | Statuscode: 200 | Antwortgröße: 1382 Bytes
+2025/08/07 22:20:59 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:20:59 CEST | Dauer: 46.071µs | Statuscode: 200 | Antwortgröße: 173 Bytes
+2025/08/07 22:20:59 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:20:59 CEST | Methode: GET | URL: /assets/js/pricing.js | RemoteAddr: [::1]:35632
+2025/08/07 22:20:59 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:20:59 CEST | Dauer: 53.812µs | Statuscode: 200 | Antwortgröße: 725 Bytes
+2025/08/07 22:20:59 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:20:59 CEST | Methode: GET | URL: /assets/js/user.js | RemoteAddr: [::1]:35608
+2025/08/07 22:20:59 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:20:59 CEST | Dauer: 141.523µs | Statuscode: 200 | Antwortgröße: 1941 Bytes
+2025/08/07 22:20:59 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:20:59 CEST | Methode: GET | URL: /app/routes | RemoteAddr: [::1]:35608
+2025/08/07 22:20:59 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:20:59 CEST | Methode: GET | URL: /app/me | RemoteAddr: [::1]:35632
+2025/08/07 22:20:59 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:20:59 CEST | Dauer: 496.541µs | Statuscode: 200 | Antwortgröße: 421 Bytes
+2025/08/07 22:21:00 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:21:00 CEST | Dauer: 352.933584ms | Statuscode: 200 | Antwortgröße: 60 Bytes
+2025/08/07 22:21:42 main.go:42: 🚀 Server läuft auf Port 8080
+2025/08/07 22:21:42 main.go:43: http://localhost:8080
+2025/08/07 22:21:44 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:21:44 CEST | Methode: GET | URL: / | RemoteAddr: [::1]:43986
+2025/08/07 22:21:44 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:21:44 CEST | Dauer: 1.352814ms | Statuscode: 200 | Antwortgröße: 3757 Bytes
+2025/08/07 22:21:44 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:21:44 CEST | Methode: GET | URL: /assets/style/style.css | RemoteAddr: [::1]:43986
+2025/08/07 22:21:44 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:21:44 CEST | Dauer: 126.521µs | Statuscode: 200 | Antwortgröße: 1446 Bytes
+2025/08/07 22:21:44 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:21:44 CEST | Methode: GET | URL: /assets/banner.png | RemoteAddr: [::1]:43992
+2025/08/07 22:21:44 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:21:44 CEST | Methode: GET | URL: /assets/js/script.js | RemoteAddr: [::1]:43986
+2025/08/07 22:21:44 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:21:44 CEST | Dauer: 67.331µs | Statuscode: 200 | Antwortgröße: 1162 Bytes
+2025/08/07 22:21:44 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:21:44 CEST | Dauer: 2.575328ms | Statuscode: 200 | Antwortgröße: 3268666 Bytes
+2025/08/07 22:21:44 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:21:44 CEST | Methode: GET | URL: /assets/js/utils.js | RemoteAddr: [::1]:43986
+2025/08/07 22:21:44 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:21:44 CEST | Dauer: 58.751µs | Statuscode: 200 | Antwortgröße: 1736 Bytes
+2025/08/07 22:21:44 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:21:44 CEST | Methode: GET | URL: /assets/js/calculator.js | RemoteAddr: [::1]:43994
+2025/08/07 22:21:44 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:21:44 CEST | Methode: GET | URL: /assets/js/routes.js | RemoteAddr: [::1]:44006
+2025/08/07 22:21:44 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:21:44 CEST | Dauer: 57.301µs | Statuscode: 200 | Antwortgröße: 1382 Bytes
+2025/08/07 22:21:44 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:21:44 CEST | Dauer: 51.611µs | Statuscode: 200 | Antwortgröße: 173 Bytes
+2025/08/07 22:21:44 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:21:44 CEST | Methode: GET | URL: /assets/js/pricing.js | RemoteAddr: [::1]:44020
+2025/08/07 22:21:44 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:21:44 CEST | Dauer: 94.441µs | Statuscode: 200 | Antwortgröße: 1292 Bytes
+2025/08/07 22:21:44 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:21:44 CEST | Methode: GET | URL: /assets/js/user.js | RemoteAddr: [::1]:44036
+2025/08/07 22:21:44 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:21:44 CEST | Dauer: 55.4µs | Statuscode: 200 | Antwortgröße: 1941 Bytes
+2025/08/07 22:21:44 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:21:44 CEST | Methode: GET | URL: /app/routes | RemoteAddr: [::1]:43992
+2025/08/07 22:21:44 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:21:44 CEST | Methode: GET | URL: /app/me | RemoteAddr: [::1]:44036
+2025/08/07 22:21:44 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:21:44 CEST | Dauer: 88.531µs | Statuscode: 401 | Antwortgröße: 18 Bytes
+2025/08/07 22:21:44 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:21:44 CEST | Dauer: 1.460946ms | Statuscode: 200 | Antwortgröße: 421 Bytes
+2025/08/07 22:21:44 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:21:44 CEST | Methode: GET | URL: /assets/favicon.ico | RemoteAddr: [::1]:43992
+2025/08/07 22:21:44 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:21:44 CEST | Dauer: 129.472µs | Statuscode: 200 | Antwortgröße: 54750 Bytes
+2025/08/07 22:21:47 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:21:47 CEST | Methode: GET | URL: /assets/style/style.css | RemoteAddr: [::1]:43992
+2025/08/07 22:21:47 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:21:47 CEST | Dauer: 101.841µs | Statuscode: 200 | Antwortgröße: 1446 Bytes
+2025/08/07 22:21:47 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:21:47 CEST | Methode: GET | URL: /.well-known/appspecific/com.chrome.devtools.json | RemoteAddr: [::1]:43992
+2025/08/07 22:21:47 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:21:47 CEST | Dauer: 68.001µs | Statuscode: 404 | Antwortgröße: 19 Bytes
+2025/08/07 22:21:58 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:21:58 CEST | Methode: GET | URL: /app/login | RemoteAddr: [::1]:43992
+2025/08/07 22:21:58 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:21:58 CEST | Dauer: 122.711µs | Statuscode: 302 | Antwortgröße: 414 Bytes
+2025/08/07 22:22:01 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:22:01 CEST | Methode: GET | URL: /app/callback?code=kkbCXTu9sUej3cS-zKw75w&state=state-token | RemoteAddr: [::1]:43992
+2025/08/07 22:22:01 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:22:01 CEST | Dauer: 710.31528ms | Statuscode: 302 | Antwortgröße: 24 Bytes
+2025/08/07 22:22:01 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:22:01 CEST | Methode: GET | URL: / | RemoteAddr: [::1]:43992
+2025/08/07 22:22:01 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:22:01 CEST | Dauer: 79.411µs | Statuscode: 200 | Antwortgröße: 3757 Bytes
+2025/08/07 22:22:01 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:22:01 CEST | Methode: GET | URL: /.well-known/appspecific/com.chrome.devtools.json | RemoteAddr: [::1]:43992
+2025/08/07 22:22:01 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:22:01 CEST | Dauer: 75.331µs | Statuscode: 404 | Antwortgröße: 19 Bytes
+2025/08/07 22:22:01 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:22:01 CEST | Methode: GET | URL: /assets/style/style.css | RemoteAddr: [::1]:44036
+2025/08/07 22:22:01 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:22:01 CEST | Dauer: 100.54µs | Statuscode: 200 | Antwortgröße: 1446 Bytes
+2025/08/07 22:22:01 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:22:01 CEST | Methode: GET | URL: /assets/banner.png | RemoteAddr: [::1]:43992
+2025/08/07 22:22:01 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:22:01 CEST | Methode: GET | URL: /assets/js/script.js | RemoteAddr: [::1]:44020
+2025/08/07 22:22:01 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:22:01 CEST | Dauer: 183.031µs | Statuscode: 200 | Antwortgröße: 1162 Bytes
+2025/08/07 22:22:01 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:22:01 CEST | Dauer: 1.36221ms | Statuscode: 200 | Antwortgröße: 3268666 Bytes
+2025/08/07 22:22:01 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:22:01 CEST | Methode: GET | URL: /assets/js/utils.js | RemoteAddr: [::1]:43992
+2025/08/07 22:22:01 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:22:01 CEST | Methode: GET | URL: /assets/js/routes.js | RemoteAddr: [::1]:44036
+2025/08/07 22:22:01 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:22:01 CEST | Methode: GET | URL: /assets/js/calculator.js | RemoteAddr: [::1]:44020
+2025/08/07 22:22:01 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:22:01 CEST | Dauer: 44.941µs | Statuscode: 200 | Antwortgröße: 173 Bytes
+2025/08/07 22:22:01 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:22:01 CEST | Methode: GET | URL: /assets/js/user.js | RemoteAddr: [::1]:43994
+2025/08/07 22:22:01 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:22:01 CEST | Dauer: 84.701µs | Statuscode: 200 | Antwortgröße: 1382 Bytes
+2025/08/07 22:22:01 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:22:01 CEST | Dauer: 60.3µs | Statuscode: 200 | Antwortgröße: 1941 Bytes
+2025/08/07 22:22:01 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:22:01 CEST | Methode: GET | URL: /assets/js/pricing.js | RemoteAddr: [::1]:44006
+2025/08/07 22:22:01 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:22:01 CEST | Dauer: 67.12µs | Statuscode: 200 | Antwortgröße: 1736 Bytes
+2025/08/07 22:22:01 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:22:01 CEST | Dauer: 177.052µs | Statuscode: 200 | Antwortgröße: 1292 Bytes
+2025/08/07 22:22:01 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:22:01 CEST | Methode: GET | URL: /app/routes | RemoteAddr: [::1]:44006
+2025/08/07 22:22:01 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:22:01 CEST | Methode: GET | URL: /app/me | RemoteAddr: [::1]:43992
+2025/08/07 22:22:01 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:22:01 CEST | Dauer: 2.090865ms | Statuscode: 200 | Antwortgröße: 421 Bytes
+2025/08/07 22:22:02 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:22:02 CEST | Dauer: 118.234224ms | Statuscode: 200 | Antwortgröße: 60 Bytes
+2025/08/07 22:26:25 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:26:25 CEST | Methode: GET | URL: / | RemoteAddr: [::1]:43992
+2025/08/07 22:26:25 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:26:25 CEST | Dauer: 132.626µs | Statuscode: 200 | Antwortgröße: 3757 Bytes
+2025/08/07 22:26:25 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:26:25 CEST | Methode: GET | URL: /assets/style/style.css | RemoteAddr: [::1]:43992
+2025/08/07 22:26:25 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:26:25 CEST | Methode: GET | URL: /assets/js/script.js | RemoteAddr: [::1]:43994
+2025/08/07 22:26:25 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:26:25 CEST | Dauer: 920.647µs | Statuscode: 200 | Antwortgröße: 1162 Bytes
+2025/08/07 22:26:25 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:26:25 CEST | Methode: GET | URL: /assets/banner.png | RemoteAddr: [::1]:44006
+2025/08/07 22:26:25 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:26:25 CEST | Dauer: 974.355µs | Statuscode: 200 | Antwortgröße: 1446 Bytes
+2025/08/07 22:26:25 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:26:25 CEST | Dauer: 4.590392ms | Statuscode: 200 | Antwortgröße: 3268666 Bytes
+2025/08/07 22:26:25 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:26:25 CEST | Methode: GET | URL: /.well-known/appspecific/com.chrome.devtools.json | RemoteAddr: [::1]:43992
+2025/08/07 22:26:25 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:26:25 CEST | Dauer: 59.299µs | Statuscode: 404 | Antwortgröße: 19 Bytes
+2025/08/07 22:26:25 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:26:25 CEST | Methode: GET | URL: /assets/js/utils.js | RemoteAddr: [::1]:44006
+2025/08/07 22:26:25 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:26:25 CEST | Dauer: 51.088µs | Statuscode: 200 | Antwortgröße: 1736 Bytes
+2025/08/07 22:26:25 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:26:25 CEST | Methode: GET | URL: /assets/js/calculator.js | RemoteAddr: [::1]:43992
+2025/08/07 22:26:25 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:26:25 CEST | Dauer: 50.128µs | Statuscode: 200 | Antwortgröße: 1382 Bytes
+2025/08/07 22:26:25 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:26:25 CEST | Methode: GET | URL: /assets/js/pricing.js | RemoteAddr: [::1]:44020
+2025/08/07 22:26:25 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:26:25 CEST | Methode: GET | URL: /assets/js/routes.js | RemoteAddr: [::1]:43994
+2025/08/07 22:26:25 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:26:25 CEST | Dauer: 46.399µs | Statuscode: 200 | Antwortgröße: 1276 Bytes
+2025/08/07 22:26:25 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:26:25 CEST | Dauer: 47.639µs | Statuscode: 200 | Antwortgröße: 173 Bytes
+2025/08/07 22:26:25 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:26:25 CEST | Methode: GET | URL: /assets/js/user.js | RemoteAddr: [::1]:44036
+2025/08/07 22:26:25 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:26:25 CEST | Dauer: 93.997µs | Statuscode: 200 | Antwortgröße: 1941 Bytes
+2025/08/07 22:26:25 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:26:25 CEST | Methode: GET | URL: /app/routes | RemoteAddr: [::1]:44036
+2025/08/07 22:26:25 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:26:25 CEST | Methode: GET | URL: /app/me | RemoteAddr: [::1]:43994
+2025/08/07 22:26:25 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:26:25 CEST | Dauer: 455.829µs | Statuscode: 200 | Antwortgröße: 421 Bytes
+2025/08/07 22:26:25 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:26:25 CEST | Methode: GET | URL: /assets/favicon.ico | RemoteAddr: [::1]:44036
+2025/08/07 22:26:25 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:26:25 CEST | Dauer: 167.535µs | Statuscode: 200 | Antwortgröße: 54750 Bytes
+2025/08/07 22:26:25 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:26:25 CEST | Dauer: 379.817987ms | Statuscode: 200 | Antwortgröße: 60 Bytes
+2025/08/07 22:27:21 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:27:21 CEST | Methode: GET | URL: /assets/style/style.css | RemoteAddr: [::1]:43994
+2025/08/07 22:27:21 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:27:21 CEST | Dauer: 87.868µs | Statuscode: 200 | Antwortgröße: 1446 Bytes
+2025/08/07 22:27:21 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:27:21 CEST | Methode: GET | URL: /.well-known/appspecific/com.chrome.devtools.json | RemoteAddr: [::1]:43994
+2025/08/07 22:27:21 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:27:21 CEST | Dauer: 96.457µs | Statuscode: 404 | Antwortgröße: 19 Bytes
+2025/08/07 22:27:39 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:27:39 CEST | Methode: GET | URL: / | RemoteAddr: [::1]:43994
+2025/08/07 22:27:39 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:27:39 CEST | Dauer: 133.526µs | Statuscode: 200 | Antwortgröße: 3757 Bytes
+2025/08/07 22:27:39 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:27:39 CEST | Methode: GET | URL: /assets/style/style.css | RemoteAddr: [::1]:43994
+2025/08/07 22:27:39 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:27:39 CEST | Dauer: 64.538µs | Statuscode: 200 | Antwortgröße: 1446 Bytes
+2025/08/07 22:27:39 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:27:39 CEST | Methode: GET | URL: /assets/banner.png | RemoteAddr: [::1]:43994
+2025/08/07 22:27:39 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:27:39 CEST | Methode: GET | URL: /assets/js/script.js | RemoteAddr: [::1]:44036
+2025/08/07 22:27:39 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:27:39 CEST | Dauer: 58.248µs | Statuscode: 200 | Antwortgröße: 1162 Bytes
+2025/08/07 22:27:39 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:27:39 CEST | Dauer: 2.97491ms | Statuscode: 200 | Antwortgröße: 3268666 Bytes
+2025/08/07 22:27:39 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:27:39 CEST | Methode: GET | URL: /assets/js/utils.js | RemoteAddr: [::1]:43994
+2025/08/07 22:27:39 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:27:39 CEST | Methode: GET | URL: /assets/js/calculator.js | RemoteAddr: [::1]:44036
+2025/08/07 22:27:39 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:27:39 CEST | Methode: GET | URL: /assets/js/user.js | RemoteAddr: [::1]:44006
+2025/08/07 22:27:39 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:27:39 CEST | Dauer: 49.329µs | Statuscode: 200 | Antwortgröße: 1941 Bytes
+2025/08/07 22:27:39 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:27:39 CEST | Dauer: 73.788µs | Statuscode: 200 | Antwortgröße: 1382 Bytes
+2025/08/07 22:27:39 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:27:39 CEST | Methode: GET | URL: /assets/js/pricing.js | RemoteAddr: [::1]:43992
+2025/08/07 22:27:39 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:27:39 CEST | Dauer: 65.338µs | Statuscode: 200 | Antwortgröße: 1736 Bytes
+2025/08/07 22:27:39 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:27:39 CEST | Dauer: 230.663µs | Statuscode: 200 | Antwortgröße: 1276 Bytes
+2025/08/07 22:27:39 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:27:39 CEST | Methode: GET | URL: /assets/js/routes.js | RemoteAddr: [::1]:44020
+2025/08/07 22:27:39 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:27:39 CEST | Dauer: 310.061µs | Statuscode: 200 | Antwortgröße: 173 Bytes
+2025/08/07 22:27:39 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:27:39 CEST | Methode: GET | URL: /app/routes | RemoteAddr: [::1]:44020
+2025/08/07 22:27:39 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:27:39 CEST | Methode: GET | URL: /app/me | RemoteAddr: [::1]:43992
+2025/08/07 22:27:39 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:27:39 CEST | Dauer: 316.521µs | Statuscode: 200 | Antwortgröße: 421 Bytes
+2025/08/07 22:27:39 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:27:39 CEST | Methode: GET | URL: /assets/favicon.ico | RemoteAddr: [::1]:44020
+2025/08/07 22:27:39 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:27:39 CEST | Dauer: 150.485µs | Statuscode: 200 | Antwortgröße: 54750 Bytes
+2025/08/07 22:27:39 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:27:39 CEST | Dauer: 295.815838ms | Statuscode: 200 | Antwortgröße: 60 Bytes
+2025/08/07 22:30:04 main.go:42: 🚀 Server läuft auf Port 8080
+2025/08/07 22:30:04 main.go:43: http://localhost:8080
+2025/08/07 22:30:04 main.go:44: listen tcp :8080: bind: address already in use
+2025/08/07 22:30:10 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:30:10 CEST | Methode: GET | URL: / | RemoteAddr: [::1]:46226
+2025/08/07 22:30:10 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:30:10 CEST | Dauer: 154.084µs | Statuscode: 200 | Antwortgröße: 3757 Bytes
+2025/08/07 22:30:10 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:30:10 CEST | Methode: GET | URL: /assets/style/style.css | RemoteAddr: [::1]:46226
+2025/08/07 22:30:10 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:30:10 CEST | Dauer: 123.225µs | Statuscode: 200 | Antwortgröße: 1446 Bytes
+2025/08/07 22:30:10 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:30:10 CEST | Methode: GET | URL: /assets/banner.png | RemoteAddr: [::1]:46232
+2025/08/07 22:30:10 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:30:10 CEST | Methode: GET | URL: /assets/js/script.js | RemoteAddr: [::1]:46234
+2025/08/07 22:30:10 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:30:10 CEST | Dauer: 58.848µs | Statuscode: 200 | Antwortgröße: 1162 Bytes
+2025/08/07 22:30:10 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:30:10 CEST | Dauer: 2.285767ms | Statuscode: 200 | Antwortgröße: 3268666 Bytes
+2025/08/07 22:30:10 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:30:10 CEST | Methode: GET | URL: /assets/js/utils.js | RemoteAddr: [::1]:46232
+2025/08/07 22:30:10 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:30:10 CEST | Dauer: 54.878µs | Statuscode: 200 | Antwortgröße: 1736 Bytes
+2025/08/07 22:30:10 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:30:10 CEST | Methode: GET | URL: /assets/js/routes.js | RemoteAddr: [::1]:46226
+2025/08/07 22:30:10 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:30:10 CEST | Methode: GET | URL: /assets/js/user.js | RemoteAddr: [::1]:46246
+2025/08/07 22:30:10 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:30:10 CEST | Methode: GET | URL: /assets/js/calculator.js | RemoteAddr: [::1]:46234
+2025/08/07 22:30:10 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:30:10 CEST | Methode: GET | URL: /assets/js/pricing.js | RemoteAddr: [::1]:46238
+2025/08/07 22:30:10 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:30:10 CEST | Dauer: 87.326µs | Statuscode: 200 | Antwortgröße: 1853 Bytes
+2025/08/07 22:30:10 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:30:10 CEST | Dauer: 73.357µs | Statuscode: 200 | Antwortgröße: 1276 Bytes
+2025/08/07 22:30:10 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:30:10 CEST | Dauer: 49.898µs | Statuscode: 200 | Antwortgröße: 173 Bytes
+2025/08/07 22:30:10 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:30:10 CEST | Dauer: 39.829µs | Statuscode: 200 | Antwortgröße: 1941 Bytes
+2025/08/07 22:30:10 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:30:10 CEST | Methode: GET | URL: /app/routes | RemoteAddr: [::1]:46246
+2025/08/07 22:30:10 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:30:10 CEST | Methode: GET | URL: /app/me | RemoteAddr: [::1]:46226
+2025/08/07 22:30:10 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:30:10 CEST | Dauer: 352.327µs | Statuscode: 200 | Antwortgröße: 421 Bytes
+2025/08/07 22:30:10 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:30:10 CEST | Dauer: 329.467741ms | Statuscode: 200 | Antwortgröße: 60 Bytes
+2025/08/07 22:30:59 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:30:59 CEST | Methode: GET | URL: / | RemoteAddr: [::1]:46226
+2025/08/07 22:30:59 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:30:59 CEST | Dauer: 169.984µs | Statuscode: 200 | Antwortgröße: 3757 Bytes
+2025/08/07 22:30:59 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:30:59 CEST | Methode: GET | URL: /assets/style/style.css | RemoteAddr: [::1]:46226
+2025/08/07 22:30:59 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:30:59 CEST | Dauer: 72.098µs | Statuscode: 200 | Antwortgröße: 1446 Bytes
+2025/08/07 22:30:59 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:30:59 CEST | Methode: GET | URL: /assets/banner.png | RemoteAddr: [::1]:46246
+2025/08/07 22:30:59 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:30:59 CEST | Methode: GET | URL: /assets/js/script.js | RemoteAddr: [::1]:46238
+2025/08/07 22:30:59 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:30:59 CEST | Dauer: 80.377µs | Statuscode: 200 | Antwortgröße: 991 Bytes
+2025/08/07 22:30:59 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:30:59 CEST | Dauer: 2.215476ms | Statuscode: 200 | Antwortgröße: 3268666 Bytes
+2025/08/07 22:30:59 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:30:59 CEST | Methode: GET | URL: /assets/js/utils.js | RemoteAddr: [::1]:46246
+2025/08/07 22:30:59 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:30:59 CEST | Dauer: 163.984µs | Statuscode: 200 | Antwortgröße: 1736 Bytes
+2025/08/07 22:30:59 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:30:59 CEST | Methode: GET | URL: /assets/js/pricing.js | RemoteAddr: [::1]:46226
+2025/08/07 22:30:59 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:30:59 CEST | Methode: GET | URL: /assets/js/calculator.js | RemoteAddr: [::1]:46238
+2025/08/07 22:30:59 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:30:59 CEST | Dauer: 260.64µs | Statuscode: 200 | Antwortgröße: 1276 Bytes
+2025/08/07 22:30:59 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:30:59 CEST | Dauer: 279.109µs | Statuscode: 200 | Antwortgröße: 1853 Bytes
+2025/08/07 22:30:59 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:30:59 CEST | Methode: GET | URL: /assets/js/user.js | RemoteAddr: [::1]:46234
+2025/08/07 22:30:59 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:30:59 CEST | Dauer: 223.622µs | Statuscode: 200 | Antwortgröße: 1941 Bytes
+2025/08/07 22:30:59 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:30:59 CEST | Methode: GET | URL: /app/routes | RemoteAddr: [::1]:46234
+2025/08/07 22:30:59 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:30:59 CEST | Methode: GET | URL: /app/me | RemoteAddr: [::1]:46238
+2025/08/07 22:30:59 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:30:59 CEST | Dauer: 399.165µs | Statuscode: 200 | Antwortgröße: 421 Bytes
+2025/08/07 22:30:59 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:30:59 CEST | Methode: GET | URL: /assets/favicon.ico | RemoteAddr: [::1]:46234
+2025/08/07 22:30:59 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:30:59 CEST | Dauer: 109.785µs | Statuscode: 200 | Antwortgröße: 54750 Bytes
+2025/08/07 22:30:59 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:30:59 CEST | Dauer: 91.418966ms | Statuscode: 200 | Antwortgröße: 60 Bytes
+2025/08/07 22:31:43 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:31:43 CEST | Methode: GET | URL: / | RemoteAddr: [::1]:46238
+2025/08/07 22:31:43 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:31:43 CEST | Dauer: 198.192µs | Statuscode: 200 | Antwortgröße: 3756 Bytes
+2025/08/07 22:31:43 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:31:43 CEST | Methode: GET | URL: /assets/style/style.css | RemoteAddr: [::1]:46238
+2025/08/07 22:31:43 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:31:43 CEST | Dauer: 226.961µs | Statuscode: 200 | Antwortgröße: 1446 Bytes
+2025/08/07 22:31:43 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:31:43 CEST | Methode: GET | URL: /assets/banner.png | RemoteAddr: [::1]:46234
+2025/08/07 22:31:43 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:31:43 CEST | Methode: GET | URL: /assets/js/script.js | RemoteAddr: [::1]:46226
+2025/08/07 22:31:43 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:31:43 CEST | Dauer: 44.578µs | Statuscode: 200 | Antwortgröße: 991 Bytes
+2025/08/07 22:31:43 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:31:43 CEST | Dauer: 2.309431ms | Statuscode: 200 | Antwortgröße: 3268666 Bytes
+2025/08/07 22:31:43 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:31:43 CEST | Methode: GET | URL: /assets/js/utils.js | RemoteAddr: [::1]:46234
+2025/08/07 22:31:43 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:31:43 CEST | Dauer: 105.426µs | Statuscode: 200 | Antwortgröße: 1736 Bytes
+2025/08/07 22:31:43 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:31:43 CEST | Methode: GET | URL: /assets/js/calculator.js | RemoteAddr: [::1]:46226
+2025/08/07 22:31:43 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:31:43 CEST | Methode: GET | URL: /assets/js/pricing.js | RemoteAddr: [::1]:46238
+2025/08/07 22:31:43 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:31:43 CEST | Dauer: 67.677µs | Statuscode: 200 | Antwortgröße: 1853 Bytes
+2025/08/07 22:31:43 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:31:43 CEST | Dauer: 48.708µs | Statuscode: 200 | Antwortgröße: 1276 Bytes
+2025/08/07 22:31:43 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:31:43 CEST | Methode: GET | URL: /assets/js/user.js | RemoteAddr: [::1]:46246
+2025/08/07 22:31:43 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:31:43 CEST | Dauer: 83.887µs | Statuscode: 200 | Antwortgröße: 1941 Bytes
+2025/08/07 22:31:43 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:31:43 CEST | Methode: GET | URL: /app/routes | RemoteAddr: [::1]:46246
+2025/08/07 22:31:43 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:31:43 CEST | Methode: GET | URL: /app/me | RemoteAddr: [::1]:46238
+2025/08/07 22:31:43 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:31:43 CEST | Dauer: 371.215µs | Statuscode: 200 | Antwortgröße: 421 Bytes
+2025/08/07 22:31:43 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:31:43 CEST | Methode: GET | URL: /assets/favicon.ico | RemoteAddr: [::1]:46246
+2025/08/07 22:31:43 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:31:43 CEST | Dauer: 136.025µs | Statuscode: 200 | Antwortgröße: 54750 Bytes
+2025/08/07 22:31:43 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:31:43 CEST | Dauer: 97.130326ms | Statuscode: 200 | Antwortgröße: 60 Bytes
+2025/08/07 22:31:50 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:31:50 CEST | Methode: GET | URL: / | RemoteAddr: [::1]:46238
+2025/08/07 22:31:50 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:31:50 CEST | Dauer: 152.674µs | Statuscode: 200 | Antwortgröße: 3755 Bytes
+2025/08/07 22:31:50 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:31:50 CEST | Methode: GET | URL: /assets/style/style.css | RemoteAddr: [::1]:46238
+2025/08/07 22:31:50 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:31:50 CEST | Dauer: 118.615µs | Statuscode: 200 | Antwortgröße: 1446 Bytes
+2025/08/07 22:31:50 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:31:50 CEST | Methode: GET | URL: /assets/banner.png | RemoteAddr: [::1]:46246
+2025/08/07 22:31:50 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:31:50 CEST | Methode: GET | URL: /assets/js/script.js | RemoteAddr: [::1]:46226
+2025/08/07 22:31:50 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:31:50 CEST | Dauer: 53.848µs | Statuscode: 200 | Antwortgröße: 991 Bytes
+2025/08/07 22:31:50 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:31:50 CEST | Dauer: 960.592µs | Statuscode: 200 | Antwortgröße: 3268666 Bytes
+2025/08/07 22:31:50 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:31:50 CEST | Methode: GET | URL: /assets/js/utils.js | RemoteAddr: [::1]:46226
+2025/08/07 22:31:50 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:31:50 CEST | Methode: GET | URL: /assets/js/calculator.js | RemoteAddr: [::1]:46238
+2025/08/07 22:31:50 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:31:50 CEST | Dauer: 52.908µs | Statuscode: 200 | Antwortgröße: 1736 Bytes
+2025/08/07 22:31:50 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:31:50 CEST | Methode: GET | URL: /assets/js/pricing.js | RemoteAddr: [::1]:46234
+2025/08/07 22:31:50 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:31:50 CEST | Dauer: 71.828µs | Statuscode: 200 | Antwortgröße: 1853 Bytes
+2025/08/07 22:31:50 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:31:50 CEST | Dauer: 116.865µs | Statuscode: 200 | Antwortgröße: 1276 Bytes
+2025/08/07 22:31:50 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:31:50 CEST | Methode: GET | URL: /assets/js/user.js | RemoteAddr: [::1]:46232
+2025/08/07 22:31:50 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:31:50 CEST | Dauer: 51.308µs | Statuscode: 200 | Antwortgröße: 1941 Bytes
+2025/08/07 22:31:50 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:31:50 CEST | Methode: GET | URL: /app/routes | RemoteAddr: [::1]:46246
+2025/08/07 22:31:50 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:31:50 CEST | Methode: GET | URL: /app/me | RemoteAddr: [::1]:46232
+2025/08/07 22:31:50 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:31:50 CEST | Dauer: 552.559µs | Statuscode: 200 | Antwortgröße: 421 Bytes
+2025/08/07 22:31:50 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:31:50 CEST | Methode: GET | URL: /assets/favicon.ico | RemoteAddr: [::1]:46246
+2025/08/07 22:31:50 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:31:50 CEST | Dauer: 140.445µs | Statuscode: 200 | Antwortgröße: 54750 Bytes
+2025/08/07 22:31:50 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:31:50 CEST | Dauer: 91.4895ms | Statuscode: 200 | Antwortgröße: 60 Bytes
+2025/08/07 22:33:15 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:33:15 CEST | Methode: GET | URL: / | RemoteAddr: [::1]:46232
+2025/08/07 22:33:15 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:33:15 CEST | Dauer: 121.175µs | Statuscode: 200 | Antwortgröße: 3755 Bytes
+2025/08/07 22:33:15 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:33:15 CEST | Methode: GET | URL: /assets/style/style.css | RemoteAddr: [::1]:46232
+2025/08/07 22:33:15 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:33:15 CEST | Dauer: 76.637µs | Statuscode: 200 | Antwortgröße: 1702 Bytes
+2025/08/07 22:33:15 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:33:15 CEST | Methode: GET | URL: /assets/banner.png | RemoteAddr: [::1]:46246
+2025/08/07 22:33:15 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:33:15 CEST | Methode: GET | URL: /assets/js/script.js | RemoteAddr: [::1]:46234
+2025/08/07 22:33:15 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:33:15 CEST | Dauer: 49.078µs | Statuscode: 200 | Antwortgröße: 991 Bytes
+2025/08/07 22:33:15 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:33:15 CEST | Dauer: 833.316µs | Statuscode: 200 | Antwortgröße: 3268666 Bytes
+2025/08/07 22:33:15 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:33:15 CEST | Methode: GET | URL: /assets/js/utils.js | RemoteAddr: [::1]:46246
+2025/08/07 22:33:15 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:33:15 CEST | Dauer: 49.738µs | Statuscode: 200 | Antwortgröße: 1736 Bytes
+2025/08/07 22:33:15 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:33:15 CEST | Methode: GET | URL: /assets/js/pricing.js | RemoteAddr: [::1]:46232
+2025/08/07 22:33:15 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:33:15 CEST | Methode: GET | URL: /assets/js/user.js | RemoteAddr: [::1]:46238
+2025/08/07 22:33:15 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:33:15 CEST | Dauer: 80.126µs | Statuscode: 200 | Antwortgröße: 1941 Bytes
+2025/08/07 22:33:15 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:33:15 CEST | Methode: GET | URL: /assets/js/calculator.js | RemoteAddr: [::1]:46234
+2025/08/07 22:33:15 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:33:15 CEST | Dauer: 156.353µs | Statuscode: 200 | Antwortgröße: 1853 Bytes
+2025/08/07 22:33:15 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:33:15 CEST | Dauer: 48.898µs | Statuscode: 200 | Antwortgröße: 1276 Bytes
+2025/08/07 22:33:15 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:33:15 CEST | Methode: GET | URL: /app/routes | RemoteAddr: [::1]:46232
+2025/08/07 22:33:15 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:33:15 CEST | Dauer: 322.537µs | Statuscode: 200 | Antwortgröße: 421 Bytes
+2025/08/07 22:33:15 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:33:15 CEST | Methode: GET | URL: /app/me | RemoteAddr: [::1]:46234
+2025/08/07 22:33:15 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:33:15 CEST | Methode: GET | URL: /assets/favicon.ico | RemoteAddr: [::1]:46232
+2025/08/07 22:33:15 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:33:15 CEST | Dauer: 118.785µs | Statuscode: 200 | Antwortgröße: 54750 Bytes
+2025/08/07 22:33:16 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:33:16 CEST | Dauer: 307.366749ms | Statuscode: 200 | Antwortgröße: 60 Bytes
+2025/08/07 22:33:36 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:33:36 CEST | Methode: GET | URL: / | RemoteAddr: [::1]:46234
+2025/08/07 22:33:36 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:33:36 CEST | Dauer: 92.946µs | Statuscode: 200 | Antwortgröße: 3755 Bytes
+2025/08/07 22:33:36 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:33:36 CEST | Methode: GET | URL: /assets/style/style.css | RemoteAddr: [::1]:46234
+2025/08/07 22:33:36 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:33:36 CEST | Dauer: 82.506µs | Statuscode: 200 | Antwortgröße: 1702 Bytes
+2025/08/07 22:33:36 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:33:36 CEST | Methode: GET | URL: /assets/banner.png | RemoteAddr: [::1]:46234
+2025/08/07 22:33:36 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:33:36 CEST | Methode: GET | URL: /assets/js/script.js | RemoteAddr: [::1]:46232
+2025/08/07 22:33:36 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:33:36 CEST | Dauer: 73.347µs | Statuscode: 200 | Antwortgröße: 991 Bytes
+2025/08/07 22:33:36 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:33:36 CEST | Dauer: 974.021µs | Statuscode: 200 | Antwortgröße: 3268666 Bytes
+2025/08/07 22:33:36 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:33:36 CEST | Methode: GET | URL: /assets/js/utils.js | RemoteAddr: [::1]:46232
+2025/08/07 22:33:36 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:33:36 CEST | Dauer: 50.418µs | Statuscode: 200 | Antwortgröße: 1736 Bytes
+2025/08/07 22:33:36 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:33:36 CEST | Methode: GET | URL: /assets/js/calculator.js | RemoteAddr: [::1]:46238
+2025/08/07 22:33:36 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:33:36 CEST | Methode: GET | URL: /assets/js/user.js | RemoteAddr: [::1]:46226
+2025/08/07 22:33:36 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:33:36 CEST | Dauer: 42.838µs | Statuscode: 200 | Antwortgröße: 1853 Bytes
+2025/08/07 22:33:36 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:33:36 CEST | Dauer: 50.388µs | Statuscode: 200 | Antwortgröße: 1941 Bytes
+2025/08/07 22:33:36 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:33:36 CEST | Methode: GET | URL: /assets/js/pricing.js | RemoteAddr: [::1]:46246
+2025/08/07 22:33:36 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:33:36 CEST | Dauer: 157.444µs | Statuscode: 200 | Antwortgröße: 1276 Bytes
+2025/08/07 22:33:36 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:33:36 CEST | Methode: GET | URL: /app/routes | RemoteAddr: [::1]:46246
+2025/08/07 22:33:36 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:33:36 CEST | Methode: GET | URL: /app/me | RemoteAddr: [::1]:46226
+2025/08/07 22:33:36 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:33:36 CEST | Dauer: 492.09µs | Statuscode: 200 | Antwortgröße: 421 Bytes
+2025/08/07 22:33:36 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:33:36 CEST | Methode: GET | URL: /assets/favicon.ico | RemoteAddr: [::1]:46246
+2025/08/07 22:33:36 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:33:36 CEST | Dauer: 136.204µs | Statuscode: 200 | Antwortgröße: 54750 Bytes
+2025/08/07 22:33:36 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:33:36 CEST | Dauer: 109.675525ms | Statuscode: 200 | Antwortgröße: 60 Bytes
+2025/08/07 22:33:56 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:33:56 CEST | Methode: GET | URL: / | RemoteAddr: [::1]:46226
+2025/08/07 22:33:56 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:33:56 CEST | Dauer: 125.355µs | Statuscode: 200 | Antwortgröße: 3755 Bytes
+2025/08/07 22:33:56 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:33:56 CEST | Methode: GET | URL: /assets/style/style.css | RemoteAddr: [::1]:46226
+2025/08/07 22:33:56 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:33:56 CEST | Dauer: 101.356µs | Statuscode: 200 | Antwortgröße: 1702 Bytes
+2025/08/07 22:33:56 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:33:56 CEST | Methode: GET | URL: /assets/banner.png | RemoteAddr: [::1]:46246
+2025/08/07 22:33:56 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:33:56 CEST | Methode: GET | URL: /assets/js/script.js | RemoteAddr: [::1]:46234
+2025/08/07 22:33:56 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:33:56 CEST | Dauer: 48.538µs | Statuscode: 200 | Antwortgröße: 991 Bytes
+2025/08/07 22:33:56 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:33:56 CEST | Dauer: 836.485µs | Statuscode: 200 | Antwortgröße: 3268666 Bytes
+2025/08/07 22:33:56 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:33:56 CEST | Methode: GET | URL: /assets/js/utils.js | RemoteAddr: [::1]:46246
+2025/08/07 22:33:56 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:33:56 CEST | Dauer: 76.407µs | Statuscode: 200 | Antwortgröße: 1736 Bytes
+2025/08/07 22:33:56 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:33:56 CEST | Methode: GET | URL: /assets/js/calculator.js | RemoteAddr: [::1]:46234
+2025/08/07 22:33:56 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:33:56 CEST | Methode: GET | URL: /assets/js/pricing.js | RemoteAddr: [::1]:46226
+2025/08/07 22:33:56 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:33:56 CEST | Dauer: 60.487µs | Statuscode: 200 | Antwortgröße: 1853 Bytes
+2025/08/07 22:33:56 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:33:56 CEST | Methode: GET | URL: /assets/js/user.js | RemoteAddr: [::1]:46238
+2025/08/07 22:33:56 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:33:56 CEST | Dauer: 77.417µs | Statuscode: 200 | Antwortgröße: 1941 Bytes
+2025/08/07 22:33:56 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:33:56 CEST | Dauer: 52.427µs | Statuscode: 200 | Antwortgröße: 1276 Bytes
+2025/08/07 22:33:56 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:33:56 CEST | Methode: GET | URL: /app/routes | RemoteAddr: [::1]:46226
+2025/08/07 22:33:56 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:33:56 CEST | Methode: GET | URL: /app/me | RemoteAddr: [::1]:46238
+2025/08/07 22:33:56 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:33:56 CEST | Dauer: 505.829µs | Statuscode: 200 | Antwortgröße: 421 Bytes
+2025/08/07 22:33:56 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:33:56 CEST | Methode: GET | URL: /assets/favicon.ico | RemoteAddr: [::1]:46226
+2025/08/07 22:33:56 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:33:56 CEST | Dauer: 112.525µs | Statuscode: 200 | Antwortgröße: 54750 Bytes
+2025/08/07 22:33:56 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:33:56 CEST | Dauer: 80.322305ms | Statuscode: 200 | Antwortgröße: 60 Bytes
+2025/08/07 22:35:23 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:35:23 CEST | Methode: GET | URL: / | RemoteAddr: [::1]:46238
+2025/08/07 22:35:23 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:35:23 CEST | Dauer: 147.084µs | Statuscode: 200 | Antwortgröße: 3755 Bytes
+2025/08/07 22:35:23 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:35:23 CEST | Methode: GET | URL: /assets/style/style.css | RemoteAddr: [::1]:46238
+2025/08/07 22:35:23 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:35:23 CEST | Dauer: 81.377µs | Statuscode: 200 | Antwortgröße: 1677 Bytes
+2025/08/07 22:35:23 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:35:23 CEST | Methode: GET | URL: /assets/banner.png | RemoteAddr: [::1]:46226
+2025/08/07 22:35:23 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:35:23 CEST | Methode: GET | URL: /assets/js/script.js | RemoteAddr: [::1]:46234
+2025/08/07 22:35:23 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:35:23 CEST | Dauer: 45.578µs | Statuscode: 200 | Antwortgröße: 991 Bytes
+2025/08/07 22:35:23 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:35:23 CEST | Dauer: 1.861912ms | Statuscode: 200 | Antwortgröße: 3268666 Bytes
+2025/08/07 22:35:23 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:35:23 CEST | Methode: GET | URL: /assets/js/utils.js | RemoteAddr: [::1]:46234
+2025/08/07 22:35:23 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:35:23 CEST | Methode: GET | URL: /assets/js/calculator.js | RemoteAddr: [::1]:46238
+2025/08/07 22:35:23 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:35:23 CEST | Dauer: 74.527µs | Statuscode: 200 | Antwortgröße: 1736 Bytes
+2025/08/07 22:35:23 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:35:23 CEST | Methode: GET | URL: /assets/js/pricing.js | RemoteAddr: [::1]:46246
+2025/08/07 22:35:23 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:35:23 CEST | Dauer: 47.218µs | Statuscode: 200 | Antwortgröße: 1853 Bytes
+2025/08/07 22:35:23 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:35:23 CEST | Dauer: 55.638µs | Statuscode: 200 | Antwortgröße: 1276 Bytes
+2025/08/07 22:35:23 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:35:23 CEST | Methode: GET | URL: /assets/js/user.js | RemoteAddr: [::1]:46232
+2025/08/07 22:35:23 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:35:23 CEST | Dauer: 57.928µs | Statuscode: 200 | Antwortgröße: 1941 Bytes
+2025/08/07 22:35:23 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:35:23 CEST | Methode: GET | URL: /app/routes | RemoteAddr: [::1]:46226
+2025/08/07 22:35:23 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:35:23 CEST | Methode: GET | URL: /app/me | RemoteAddr: [::1]:46232
+2025/08/07 22:35:23 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:35:23 CEST | Dauer: 687.101µs | Statuscode: 200 | Antwortgröße: 421 Bytes
+2025/08/07 22:35:23 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:35:23 CEST | Methode: GET | URL: /assets/favicon.ico | RemoteAddr: [::1]:46226
+2025/08/07 22:35:23 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:35:23 CEST | Dauer: 131.145µs | Statuscode: 200 | Antwortgröße: 54750 Bytes
+2025/08/07 22:35:23 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:35:23 CEST | Dauer: 474.491754ms | Statuscode: 200 | Antwortgröße: 60 Bytes
+2025/08/07 22:38:24 main.go:42: 🚀 Server läuft auf Port 8080
+2025/08/07 22:38:24 main.go:43: http://localhost:8080
+2025/08/07 22:38:24 main.go:44: listen tcp :8080: bind: address already in use
+2025/08/07 22:38:31 main.go:42: 🚀 Server läuft auf Port 8080
+2025/08/07 22:38:31 main.go:43: http://localhost:8080
+2025/08/07 22:38:35 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:38:35 CEST | Methode: GET | URL: / | RemoteAddr: [::1]:47624
+2025/08/07 22:38:35 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:38:35 CEST | Dauer: 1.339816ms | Statuscode: 200 | Antwortgröße: 3755 Bytes
+2025/08/07 22:38:36 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:38:36 CEST | Methode: GET | URL: /assets/style/style.css | RemoteAddr: [::1]:47624
+2025/08/07 22:38:36 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:38:36 CEST | Dauer: 109.622µs | Statuscode: 200 | Antwortgröße: 1786 Bytes
+2025/08/07 22:38:36 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:38:36 CEST | Methode: GET | URL: /assets/banner.png | RemoteAddr: [::1]:47636
+2025/08/07 22:38:36 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:38:36 CEST | Methode: GET | URL: /assets/js/script.js | RemoteAddr: [::1]:47624
+2025/08/07 22:38:36 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:38:36 CEST | Dauer: 121.143µs | Statuscode: 200 | Antwortgröße: 991 Bytes
+2025/08/07 22:38:36 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:38:36 CEST | Dauer: 2.552696ms | Statuscode: 200 | Antwortgröße: 3268666 Bytes
+2025/08/07 22:38:36 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:38:36 CEST | Methode: GET | URL: /assets/js/utils.js | RemoteAddr: [::1]:47636
+2025/08/07 22:38:36 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:38:36 CEST | Dauer: 78.148µs | Statuscode: 200 | Antwortgröße: 1736 Bytes
+2025/08/07 22:38:36 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:38:36 CEST | Methode: GET | URL: /assets/js/pricing.js | RemoteAddr: [::1]:47640
+2025/08/07 22:38:36 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:38:36 CEST | Dauer: 53.546µs | Statuscode: 200 | Antwortgröße: 1267 Bytes
+2025/08/07 22:38:36 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:38:36 CEST | Methode: GET | URL: /assets/js/calculator.js | RemoteAddr: [::1]:47624
+2025/08/07 22:38:36 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:38:36 CEST | Dauer: 122.073µs | Statuscode: 200 | Antwortgröße: 1853 Bytes
+2025/08/07 22:38:36 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:38:36 CEST | Methode: GET | URL: /assets/js/user.js | RemoteAddr: [::1]:47648
+2025/08/07 22:38:36 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:38:36 CEST | Dauer: 64.937µs | Statuscode: 200 | Antwortgröße: 1941 Bytes
+2025/08/07 22:38:36 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:38:36 CEST | Methode: GET | URL: /app/routes | RemoteAddr: [::1]:47648
+2025/08/07 22:38:36 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:38:36 CEST | Methode: GET | URL: /app/me | RemoteAddr: [::1]:47624
+2025/08/07 22:38:36 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:38:36 CEST | Dauer: 57.847µs | Statuscode: 401 | Antwortgröße: 18 Bytes
+2025/08/07 22:38:36 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:38:36 CEST | Dauer: 805.767µs | Statuscode: 200 | Antwortgröße: 421 Bytes
+2025/08/07 22:39:14 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:39:14 CEST | Methode: GET | URL: / | RemoteAddr: [::1]:47648
+2025/08/07 22:39:14 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:39:14 CEST | Dauer: 126.981µs | Statuscode: 200 | Antwortgröße: 3755 Bytes
+2025/08/07 22:39:14 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:39:14 CEST | Methode: GET | URL: /assets/style/style.css | RemoteAddr: [::1]:47648
+2025/08/07 22:39:14 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:39:14 CEST | Dauer: 151.834µs | Statuscode: 200 | Antwortgröße: 1784 Bytes
+2025/08/07 22:39:14 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:39:14 CEST | Methode: GET | URL: /assets/banner.png | RemoteAddr: [::1]:47624
+2025/08/07 22:39:14 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:39:14 CEST | Methode: GET | URL: /assets/js/script.js | RemoteAddr: [::1]:47640
+2025/08/07 22:39:14 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:39:14 CEST | Dauer: 60.285µs | Statuscode: 200 | Antwortgröße: 991 Bytes
+2025/08/07 22:39:14 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:39:14 CEST | Dauer: 1.710305ms | Statuscode: 200 | Antwortgröße: 3268666 Bytes
+2025/08/07 22:39:14 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:39:14 CEST | Methode: GET | URL: /assets/js/utils.js | RemoteAddr: [::1]:47624
+2025/08/07 22:39:14 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:39:14 CEST | Methode: GET | URL: /assets/js/calculator.js | RemoteAddr: [::1]:47640
+2025/08/07 22:39:14 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:39:14 CEST | Dauer: 48.645µs | Statuscode: 200 | Antwortgröße: 1853 Bytes
+2025/08/07 22:39:14 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:39:14 CEST | Methode: GET | URL: /assets/js/pricing.js | RemoteAddr: [::1]:47648
+2025/08/07 22:39:14 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:39:14 CEST | Methode: GET | URL: /assets/js/user.js | RemoteAddr: [::1]:47636
+2025/08/07 22:39:14 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:39:14 CEST | Dauer: 183.517µs | Statuscode: 200 | Antwortgröße: 1941 Bytes
+2025/08/07 22:39:14 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:39:14 CEST | Dauer: 109.92µs | Statuscode: 200 | Antwortgröße: 1736 Bytes
+2025/08/07 22:39:14 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:39:14 CEST | Dauer: 191.348µs | Statuscode: 200 | Antwortgröße: 1267 Bytes
+2025/08/07 22:39:14 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:39:14 CEST | Methode: GET | URL: /app/routes | RemoteAddr: [::1]:47648
+2025/08/07 22:39:14 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:39:14 CEST | Methode: GET | URL: /app/me | RemoteAddr: [::1]:47624
+2025/08/07 22:39:14 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:39:14 CEST | Dauer: 32.763µs | Statuscode: 401 | Antwortgröße: 18 Bytes
+2025/08/07 22:39:14 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:39:14 CEST | Dauer: 393.566µs | Statuscode: 200 | Antwortgröße: 421 Bytes
+2025/08/07 22:39:14 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:39:14 CEST | Methode: GET | URL: /assets/favicon.ico | RemoteAddr: [::1]:47648
+2025/08/07 22:39:14 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:39:14 CEST | Dauer: 99.329µs | Statuscode: 200 | Antwortgröße: 54750 Bytes
+2025/08/07 22:39:26 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:39:26 CEST | Methode: GET | URL: /assets/style/style.css | RemoteAddr: [::1]:47648
+2025/08/07 22:39:26 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:39:26 CEST | Dauer: 317.337µs | Statuscode: 200 | Antwortgröße: 1784 Bytes
+2025/08/07 22:39:26 middleware.go:61: Startzeit: Thu, 07 Aug 2025 22:39:26 CEST | Methode: GET | URL: /.well-known/appspecific/com.chrome.devtools.json | RemoteAddr: [::1]:47648
+2025/08/07 22:39:26 middleware.go:73: Endzeit: Thu, 07 Aug 2025 22:39:26 CEST | Dauer: 52.004µs | Statuscode: 404 | Antwortgröße: 19 Bytes
