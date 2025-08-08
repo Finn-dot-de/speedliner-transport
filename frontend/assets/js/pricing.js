@@ -16,8 +16,7 @@ export function renderPricing(routes) {
             !route ||
             typeof route.from !== "string" ||
             typeof route.to !== "string" ||
-            typeof route.pricePerM3 !== "number" ||
-            typeof route.collateralFeePercent !== "number"
+            typeof route.pricePerM3 !== "number"
         ) {
             console.warn("Invalid route object:", route);
             return;
@@ -28,7 +27,7 @@ export function renderPricing(routes) {
         const routeHtml = `
             <div style="margin-bottom: 1rem;">
                 <strong>Route: ${routeName}</strong><br/>
-                Up to 165.000m³: ${route.pricePerM3.toLocaleString()} ISK/m³ + ${route.collateralFeePercent}% collateral fee<br/>
+                Up to 165.000m³: ${route.pricePerM3.toLocaleString()} ISK/m³ + 3% collateral fee<br/>
                 165.000m³ and more: ${route.pricePerM3.toLocaleString()} ISK/m³ + 1% collateral fee
             </div>
         `;

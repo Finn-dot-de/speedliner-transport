@@ -7,29 +7,58 @@ export async function loadUser() {
         const loginContainer = document.getElementById("loginContainer");
         if (!loginContainer) return;
 
-        const imgUrl = `https://images.evetech.net/characters/${data.CharacterID}/portrait?size=64`;
+        const imgUrl = `https://images.evetech.net/characters/${data.CharacterID}/portrait?size=128`;
 
         loginContainer.innerHTML = `
-      <div id="userMenu" style="position: relative; display: inline-block; cursor: pointer;">
-        <div style="display: flex; align-items: center; gap: 0.5rem; background-color: #1f2833; padding: 0.5rem 1rem; border-radius: 6px;">
-          <img src="${imgUrl}" alt="Avatar" style="width: 32px; height: 32px; border-radius: 50%;" />
-          <span style="color: #66fcf1; font-weight: bold;">${data.CharacterName}</span>
+      <div id="userMenu" class="user-menu">
+        <div class="user-menu-toggle">
+          <img src="${imgUrl}" alt="Avatar" class="user-avatar" />
+          <span class="user-name">${data.CharacterName}</span>
+          <i id="arrow-down-avatar" class="fa-solid fa-chevron-down"></i>
         </div>
-        <div id="logoutDropdown" style="display: none; position: absolute; right: 0; top: 100%; background-color: #0b0c10; border: 1px solid #45a29e; padding: 0.5rem; border-radius: 6px; margin-top: 0.5rem;">
-          <a href="#" id="logoutLink" style="color: #c5c6c7; text-decoration: none;">Logout</a>
+        <div id="logoutDropdown" class="user-dropdown">
+          <a href="#" id="adminPanelBtn" style="display: none;">
+            <i class="fa-solid fa-shield-halved"></i> Admin Panel
+          </a>
+          <a href="#" id="providerPanelBtn" style="display: none;">
+            <i class="fa-solid fa-truck"></i> Provider
+          </a>
+          <a href="#" id="logoutLink">
+            <i class="fa-solid fa-right-from-bracket"></i> Logout
+          </a>
+
         </div>
       </div>
     `;
 
+        const roleRes = await fetch("/app/role");
+        if (roleRes.ok) {
+            const { role } = await roleRes.json();
+            if (["admin"].includes(role)) document.getElementById("adminPanelBtn").style.display = "block";
+            if (["admin", "provider"].includes(role)) document.getElementById("providerPanelBtn").style.display = "block";
+        }
+
         const userMenu = document.getElementById("userMenu");
         const dropdown = document.getElementById("logoutDropdown");
-        userMenu.addEventListener("click", () => {
-            dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+
+        userMenu.querySelector(".user-menu-toggle").addEventListener("click", (e) => {
+            e.stopPropagation(); // verhindert window.close
+            dropdown.classList.toggle("open");
         });
+
+        window.addEventListener("click", () => dropdown.classList.remove("open"));
 
         document.getElementById("logoutLink").addEventListener("click", async (e) => {
             e.preventDefault();
             await logoutUser();
+        });
+
+        document.getElementById("adminPanelBtn").addEventListener("click", () => {
+            window.location.href = "/admin.html";
+        });
+
+        document.getElementById("providerPanelBtn").addEventListener("click", () => {
+            window.location.href = "/provider.html";
         });
 
     } catch (err) {

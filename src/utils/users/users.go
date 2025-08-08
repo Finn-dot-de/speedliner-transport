@@ -6,13 +6,22 @@ import (
 	"speedliner-server/db"
 )
 
-func GetUserRole(charID int64) (string, error) {
-	var role string
-	err := db.Pool.QueryRow(context.Background(), `
-		SELECT role FROM users WHERE char_id = $1
-	`, charID).Scan(&role)
-	if err != nil {
-		return "", fmt.Errorf("GetUserRole error: %w", err)
+func HasRole(charID string, allowedRoles ...string) (bool, error) {
+	query := `
+		SELECT role 
+		FROM users 
+		WHERE char_id = $1;`
+
+	row := db.Pool.QueryRow(context.Background(), query, charID)
+	var userRole string
+	if err := row.Scan(&userRole); err != nil {
+		return false, fmt.Errorf("GetUserRoles error: %w", err)
 	}
-	return role, nil
+
+	for _, role := range allowedRoles {
+		if userRole == role {
+			return true, nil
+		}
+	}
+	return false, nil
 }

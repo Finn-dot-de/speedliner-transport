@@ -16,9 +16,7 @@ func GetOAuthConfig() *oauth2.Config {
 		ClientID:     os.Getenv("OAUTH_CLIENT_ID"),
 		ClientSecret: os.Getenv("OAUTH_CLIENT_SECRET"),
 		Scopes: []string{
-			"esi-search.search_structures.v1",
 			"esi-characters.read_contacts.v1",
-			"esi-characters.write_contacts.v1",
 			"esi-contracts.read_character_contracts.v1",
 			"esi-contracts.read_corporation_contracts.v1",
 		},

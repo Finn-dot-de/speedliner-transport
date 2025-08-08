@@ -28,6 +28,7 @@ setupAutoFormat("collateral");
     document.getElementById(id).addEventListener("input", calculator);
 });
 
+
 window.copyContractName = copyContractName;
 loadRoutes();
 loadUser();

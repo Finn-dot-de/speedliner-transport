@@ -1,6 +1,14 @@
 const routeSelect = document.getElementById("route");
-const pricingBox = document.querySelector(".calculator .result");
 let routeData = {};
+const maxcollateral = 10_000_000_000
+const maxvolume = 337000
+
+routeSelect.addEventListener("change", () => {
+    const defaultOption = routeSelect.querySelector("option[value='']");
+    if (defaultOption) {
+        defaultOption.remove();
+    }
+});
 
 export function calculator() {
     const selectedRouteId = routeSelect.value;
@@ -25,12 +33,18 @@ export function calculator() {
         return;
     }
 
-    if (volume > route.volumeMax) {
-        result.textContent = `Maximum volume exceeded (${iskFormatter.format(route.volumeMax)} m³).`;
+    if (volume > maxvolume) {
+        result.textContent = `Maximum volume exceeded (${iskFormatter.format(maxvolume)} m³).`;
         return;
     }
 
-    const collateralPercent = volume <= 165000 ? route.collateralFeePercent : 0.01;
+    if (collateral > maxcollateral) {
+        result.textContent = `Maximum of collateral can be only 10B ISK`;
+        return;
+    }
+
+    const collateralPercent = volume <= 165000 ? 0.03 : 0.01;
+    console.log(`${collateralPercent}%`);
     const volumeFee = volume * route.pricePerM3;
     const collateralFee = collateral * collateralPercent;
     const total = Math.round(volumeFee + collateralFee);

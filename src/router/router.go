@@ -4,7 +4,7 @@ import (
 	"github.com/go-chi/chi/v5"
 	"net/http"
 	"path/filepath"
-	"speedliner-server/src/handler/get"
+	"speedliner-server/src/handler"
 	"speedliner-server/src/middleware"
 )
 
@@ -18,7 +18,7 @@ func NewRouter() *chi.Mux {
 
 	// API-Routen
 	r.Route("/app/", func(sub chi.Router) {
-		get.DefineGetRoutes(sub) // Hier werden die GET-Routen hinzugefügt
+		handler.DefineApiRoutes(sub) // Hier werden die GET-Routen hinzugefügt
 	})
 
 	// Dynamisch zusammengesetzter relativer Pfad

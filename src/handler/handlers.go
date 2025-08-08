@@ -1,4 +1,4 @@
-package get
+package handler
 
 import (
 	"context"
@@ -8,6 +8,7 @@ import (
 	"log"
 	"net/http"
 	"speedliner-server/db"
+	"speedliner-server/src/middleware"
 	"strconv"
 	"time"
 
@@ -17,16 +18,17 @@ import (
 	"github.com/go-chi/chi/v5"
 )
 
-func DefineGetRoutes(r chi.Router) {
+func DefineApiRoutes(r chi.Router) {
 	r.Get("/ping", PingHandler)
 	r.Get("/login", LoginHandler)
 	r.Get("/callback", CallbackHandler)
 	r.Get("/me", MeHandler)
 	r.Get("/logout", LogoutHandler)
 	r.Get("/routes", RoutesHandler)
-	r.Post("/routes", CreateRouteHandler)
-	r.Put("/routes/{id}", UpdateRouteHandler)
-	r.Delete("/routes/{id}", DeleteRouteHandler)
+	r.With(middleware.RoleMiddleware("admin", "provider")).Post("/routes", CreateRouteHandler)
+	r.With(middleware.RoleMiddleware("admin", "provider")).Put("/routes/{id}", UpdateRouteHandler)
+	r.With(middleware.RoleMiddleware("admin", "provider")).Delete("/routes/{id}", DeleteRouteHandler)
+	r.Get("/role", GetUserRoleHandler)
 }
 
 // PingHandler godoc
@@ -95,10 +97,11 @@ func CallbackHandler(w http.ResponseWriter, r *http.Request) {
 	esiauth.SaveToken(charID, token)
 
 	http.SetCookie(w, &http.Cookie{
-		Name:     "char_id",
+		Name:     "char",
 		Value:    charID,
 		Path:     "/",
 		HttpOnly: true,
+		Expires:  time.Now().Add(48 * time.Hour),
 		SameSite: http.SameSiteLaxMode,
 	})
 
@@ -124,7 +127,7 @@ func CallbackHandler(w http.ResponseWriter, r *http.Request) {
 // @Failure      500 {string} string "Internal Server Error"
 // @Router       /app/me [get]
 func MeHandler(w http.ResponseWriter, r *http.Request) {
-	cookie, err := r.Cookie("char_id")
+	cookie, err := r.Cookie("char")
 	if err != nil || cookie.Value == "" {
 		http.Error(w, "Not logged in", http.StatusUnauthorized)
 		return
@@ -165,14 +168,14 @@ func MeHandler(w http.ResponseWriter, r *http.Request) {
 // @Success      204 {string} string "No Content"
 // @Router       /app/logout [get]
 func LogoutHandler(w http.ResponseWriter, r *http.Request) {
-	cookie, err := r.Cookie("char_id")
+	cookie, err := r.Cookie("char")
 	if err == nil && cookie.Value != "" {
 		esiauth.DeleteToken(cookie.Value)
 	}
 
 	// Cookie löschen
 	http.SetCookie(w, &http.Cookie{
-		Name:     "char_id",
+		Name:     "char",
 		Value:    "",
 		Path:     "/",
 		HttpOnly: true,
@@ -212,10 +215,13 @@ func RoutesHandler(w http.ResponseWriter, r *http.Request) {
 // @Param        route body structs.Route true "Neue Route"
 // @Success      201 {object} structs.Route
 // @Failure      400 {string} string "Invalid JSON"
+// @Failure      401 {string} string "Unauthorized"
+// @Failure      403 {string} string "Forbidden"
 // @Failure      500 {string} string "DB Insert error"
 // @Router       /app/routes [post]
 func CreateRouteHandler(w http.ResponseWriter, r *http.Request) {
 	var route structs.Route
+
 	if err := json.NewDecoder(r.Body).Decode(&route); err != nil {
 		http.Error(w, "Invalid JSON: "+err.Error(), http.StatusBadRequest)
 		return
@@ -238,6 +244,8 @@ func CreateRouteHandler(w http.ResponseWriter, r *http.Request) {
 // @Param        route body structs.Route true "Route-Daten"
 // @Success      200 {object} structs.Route
 // @Failure      400 {string} string "Invalid JSON"
+// @Failure      401 {string} string "Unauthorized"
+// @Failure      403 {string} string "Forbidden"
 // @Failure      500 {string} string "DB Update error"
 // @Router       /app/routes/{id} [put]
 func UpdateRouteHandler(w http.ResponseWriter, r *http.Request) {
@@ -262,6 +270,8 @@ func UpdateRouteHandler(w http.ResponseWriter, r *http.Request) {
 // @Produce      plain
 // @Param        id path string true "Route ID"
 // @Success      204 {string} string "Deleted"
+// @Failure      401 {string} string "Unauthorized"
+// @Failure      403 {string} string "Forbidden"
 // @Failure      500 {string} string "DB Delete error"
 // @Router       /app/routes/{id} [delete]
 func DeleteRouteHandler(w http.ResponseWriter, r *http.Request) {
@@ -271,4 +281,31 @@ func DeleteRouteHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	w.WriteHeader(http.StatusNoContent)
+}
+
+// GetUserRoleHandler godoc
+// @Summary      Benutzerrolle abrufen
+// @Description  Gibt die Rolle des eingeloggten Benutzers zurück
+// @Tags         Auth
+// @Produce      json
+// @Success      200 {object} map[string]string
+// @Failure      401 {string} string "Unauthorized"
+// @Failure      403 {string} string "Forbidden"
+// @Failure      500 {string} string "DB error"
+// @Router       /app/role [get]
+func GetUserRoleHandler(w http.ResponseWriter, r *http.Request) {
+	cookie, err := r.Cookie("char")
+	if err != nil || cookie.Value == "" {
+		http.Error(w, "Not logged in", http.StatusUnauthorized)
+		return
+	}
+
+	role, err := db.GetUserRoles(cookie.Value)
+	if err != nil {
+		http.Error(w, "DB error: "+err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	_ = json.NewEncoder(w).Encode(map[string]string{"role": role})
 }

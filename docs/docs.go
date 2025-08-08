@@ -142,6 +142,47 @@ const docTemplate = `{
                 }
             }
         },
+        "/app/role": {
+            "get": {
+                "description": "Gibt die Rolle des eingeloggten Benutzers zurück",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Benutzerrolle abrufen",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "DB error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
         "/app/routes": {
             "get": {
                 "description": "Gibt alle verfügbaren Transport-Routen zurück",
@@ -200,6 +241,18 @@ const docTemplate = `{
                             "type": "string"
                         }
                     },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
                     "500": {
                         "description": "DB Insert error",
                         "schema": {
@@ -253,6 +306,18 @@ const docTemplate = `{
                             "type": "string"
                         }
                     },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
                     "500": {
                         "description": "DB Update error",
                         "schema": {
@@ -286,6 +351,18 @@ const docTemplate = `{
                             "type": "string"
                         }
                     },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
                     "500": {
                         "description": "DB Delete error",
                         "schema": {
@@ -300,9 +377,6 @@ const docTemplate = `{
         "structs.Route": {
             "type": "object",
             "properties": {
-                "collateralFeePercent": {
-                    "type": "number"
-                },
                 "from": {
                     "type": "string"
                 },
@@ -314,9 +388,6 @@ const docTemplate = `{
                 },
                 "to": {
                     "type": "string"
-                },
-                "volumeMax": {
-                    "type": "integer"
                 }
             }
         },

@@ -50,7 +50,7 @@ func ensureSchema() error {
 			id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
 			from_system TEXT NOT NULL,
 			to_system TEXT NOT NULL,
-			price_per_m3 NUMERIC(10, 2),
+			price_per_m3 NUMERIC(10, 2)
 		);`,
 	}
 

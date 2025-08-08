@@ -19,3 +19,17 @@ func UpsertUser(charID string, name string) error {
 	}
 	return nil
 }
+
+func GetUserRoles(charID string) (string, error) {
+	query := `
+		SELECT role 
+		FROM users 
+		WHERE char_id = $1;`
+
+	row := Pool.QueryRow(context.Background(), query, charID)
+	var role string
+	if err := row.Scan(&role); err != nil {
+		return "", fmt.Errorf("GetUserRoles error: %w", err)
+	}
+	return role, nil
+}

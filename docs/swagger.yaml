@@ -2,8 +2,6 @@ basePath: /
 definitions:
   structs.Route:
     properties:
-      collateralFeePercent:
-        type: number
       from:
         type: string
       id:
@@ -12,8 +10,6 @@ definitions:
         type: integer
       to:
         type: string
-      volumeMax:
-        type: integer
     type: object
   structs.VerifyResponse:
     properties:
@@ -114,6 +110,33 @@ paths:
       summary: Healthcheck
       tags:
       - System
+  /app/role:
+    get:
+      description: Gibt die Rolle des eingeloggten Benutzers zurück
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            type: string
+        "403":
+          description: Forbidden
+          schema:
+            type: string
+        "500":
+          description: DB error
+          schema:
+            type: string
+      summary: Benutzerrolle abrufen
+      tags:
+      - Auth
   /app/routes:
     get:
       description: Gibt alle verfügbaren Transport-Routen zurück
@@ -151,6 +174,14 @@ paths:
           description: Invalid JSON
           schema:
             type: string
+        "401":
+          description: Unauthorized
+          schema:
+            type: string
+        "403":
+          description: Forbidden
+          schema:
+            type: string
         "500":
           description: DB Insert error
           schema:
@@ -172,6 +203,14 @@ paths:
       responses:
         "204":
           description: Deleted
+          schema:
+            type: string
+        "401":
+          description: Unauthorized
+          schema:
+            type: string
+        "403":
+          description: Forbidden
           schema:
             type: string
         "500":
@@ -206,6 +245,14 @@ paths:
             $ref: '#/definitions/structs.Route'
         "400":
           description: Invalid JSON
+          schema:
+            type: string
+        "401":
+          description: Unauthorized
+          schema:
+            type: string
+        "403":
+          description: Forbidden
           schema:
             type: string
         "500":
