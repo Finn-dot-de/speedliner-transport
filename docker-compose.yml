@@ -1,24 +1,44 @@
 services:
   db:
     image: postgres:15
+    restart: unless-stopped
+    env_file: .env
     environment:
       POSTGRES_USER: speedliner
       POSTGRES_PASSWORD: supersecret
       POSTGRES_DB: speedliner
-    ports:
-      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - internal
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U speedliner"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
 
   speedliner-server:
     build:
       context: .
       dockerfile: Dockerfile
+    restart: unless-stopped
+    env_file: .env
+    depends_on:
+      db:
+        condition: service_healthy
     ports:
       - "8080:8080"
-    depends_on:
-      - db
-    environment:
-      DB_HOST: db
-      DB_PORT: 5432
-      DB_USER: speedliner
-      DB_PASSWORD: supersecret
-      DB_NAME: speedliner
+    networks:
+      - internal
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/app/ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+volumes:
+  db_data:
+
+networks:
+  internal:
+    driver: bridge

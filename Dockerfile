@@ -1,18 +1,23 @@
-# Basis: Minimales Ubuntu-Image
+# Build-Stage
+FROM golang:1.24.5 as builder
+
+WORKDIR /app
+COPY . .
+
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o server
+
+# Final image
 FROM ubuntu:24.04
 
-# Arbeitsverzeichnis im Container
 WORKDIR /app
-
-# Benötigte Tools installieren (z. B. SSL, DNS-Zertifikate)
-RUN apt-get update && \
-    apt-get install -y ca-certificates && \
-    rm -rf /var/lib/apt/lists/*
-
-COPY server ./
+COPY --from=builder /app/server ./
 COPY .env ./
 
-EXPOSE 8080
+RUN apt-get update && \
+    apt-get install -y ca-certificates curl && \
+    chmod +x ./server && \
+    rm -rf /var/lib/apt/lists/*
 
-# Start-Befehl
+EXPOSE 8080
 CMD ["./server"]
+
