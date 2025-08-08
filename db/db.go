@@ -13,7 +13,7 @@ var Pool *pgxpool.Pool
 func InitDB() error {
 	dsn := os.Getenv("DATABASE_URL")
 	if dsn == "" {
-		dsn = "postgres://speedliner:supersecret@localhost:5432/speedliner"
+		return fmt.Errorf("DATABASE_URL environment variable is not set")
 	}
 
 	var err error

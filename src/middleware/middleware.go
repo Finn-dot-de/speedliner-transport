@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"sync"
 	"time"
 )
 
@@ -88,3 +89,28 @@ func NoCacheMiddleware(next http.Handler) http.Handler {
 		next.ServeHTTP(w, r)
 	})
 }
+
+var visitors sync.Map
+
+func RateLimit(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		ip := r.Header.Get("X-Forwarded-For")
+		if ip == "" {
+			ip = r.RemoteAddr
+		}
+
+		// Kombination aus IP + Pfad (damit man pro Route limitieren kann)
+		key := ip + "|" + r.URL.Path
+
+		if last, ok := visitors.Load(key); ok {
+			if time.Since(last.(time.Time)) < time.Second {
+				http.Error(w, "Too many requests", http.StatusTooManyRequests)
+				return
+			}
+		}
+
+		visitors.Store(key, time.Now())
+		next.ServeHTTP(w, r)
+	})
+}
+

@@ -7,7 +7,6 @@
 package main
 
 import (
-	"github.com/swaggo/http-swagger"
 	"log"
 	"net/http"
 	"os"
@@ -16,6 +15,8 @@ import (
 	"speedliner-server/src/middleware"
 	"speedliner-server/src/router"
 	"speedliner-server/src/utils"
+
+	httpSwagger "github.com/swaggo/http-swagger"
 )
 
 const DefaultAppPort = "8080"
@@ -39,9 +40,12 @@ func main() {
 		r.Handle("/swagger/*", httpSwagger.WrapHandler)
 	}
 
+	handler := middleware.LoggerMiddleware(middleware.NoCacheMiddleware(middleware.RateLimit(r)))
+
 	log.Println("🚀 Server läuft auf Port " + appPort)
-	log.Println("http://0.0.0.0:" + appPort)
-	log.Fatal(http.ListenAndServe(":"+appPort, r))
+	log.Println(":" + appPort)
+	log.Fatal(http.ListenAndServe(":"+appPort, handler))
+
 }
 
 func initializeLoggerOrExit(logFile string) {
