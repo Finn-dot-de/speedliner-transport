@@ -22,7 +22,7 @@ func NewRouter() *chi.Mux {
 	})
 
 	// Dynamisch zusammengesetzter relativer Pfad
-	buildDir := filepath.Join("frontend")
+	buildDir := filepath.Join("dist")
 	fs := http.FileServer(http.Dir(buildDir))
 	r.Handle("/*", fs)
 
@@ -32,7 +32,7 @@ func NewRouter() *chi.Mux {
 
 	// Root-Route (z.B. für deine index.html)
 	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
-		http.ServeFile(w, r, "frontend")
+		http.ServeFile(w, r, "dist")
 	})
 
 	return r

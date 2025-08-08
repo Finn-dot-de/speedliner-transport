@@ -20,7 +20,7 @@ func GetOAuthConfig() *oauth2.Config {
 			"esi-contracts.read_character_contracts.v1",
 			"esi-contracts.read_corporation_contracts.v1",
 		},
-		RedirectURL: "http://localhost:8080/app/callback",
+		RedirectURL: "https://speedliner-transport.com/app/callback",
 		Endpoint: oauth2.Endpoint{
 			AuthURL:  "https://login.eveonline.com/v2/oauth/authorize",
 			TokenURL: "https://login.eveonline.com/v2/oauth/token",
