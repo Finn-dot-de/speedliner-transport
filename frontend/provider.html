@@ -1,48 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Route Management</title>
-    <link rel="stylesheet" href="assets/style/style.css"/>
-    <link rel="icon" type="image/png" href="assets/favicon.ico"/>
+    <link rel="stylesheet" href="assets/style/style.css" />
+    <link rel="icon" type="image/png" href="assets/favicon.ico" />
     <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
     <script type="module" src="assets/js/provider.js"></script>
-</head>
-<body>
-<h1>Speedliner Route Management</h1>
+  </head>
+  <body>
+    <a class="home-link" href="/" title="Zur Startseite">
+      <i class="fa fa-home"></i> Startseite
+    </a>
 
-<table id="routeTable">
-    <thead>
-    <tr>
-        <th>From</th>
-        <th>To</th>
-        <th>Preis/m³</th>
-        <th>Aktionen</th>
-    </tr>
-    </thead>
-    <tbody></tbody>
-</table>
+    <h1>Speedliner Route Management</h1>
 
-<button id="addRouteBtn" onclick="showRouteForm()" title="Add new route">
-    <i class="fa-solid fa-plus"></i>
-</button>
+    <table id="routeTable">
+      <thead>
+        <tr>
+          <th>From</th>
+          <th>To</th>
+          <th>Preis/m³</th>
+          <th>Aktionen</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
 
-<div id="routeFormContainer" style="display: none; margin-top: 2rem;">
-    <h3 id="formTitle">Neue Route</h3>
-    <form id="routeForm">
+    <button id="addRouteBtn" onclick="showRouteForm()" title="Add new route">
+      <i class="fa-solid fa-plus"></i>
+    </button>
+
+    <div id="routeFormContainer" style="display: none; margin-top: 2rem;">
+      <h3 id="formTitle">Neue Route</h3>
+      <form id="routeForm">
         <input type="hidden" id="routeId" />
         <input placeholder="From" id="routeFrom" required />
         <input placeholder="To" id="routeTo" required />
-        <input type="number" placeholder="Preis/m³" id="routePricePerM3" required />
+        <input
+          type="number"
+          placeholder="Preis/m³"
+          id="routePricePerM3"
+          required
+        />
         <button type="submit">
-            <i class="fa-solid fa-floppy-disk"></i> Speichern
+          <i class="fa-solid fa-floppy-disk"></i> Speichern
         </button>
-    </form>
-
-</div>
-</body>
+      </form>
+    </div>
+  </body>
 </html>

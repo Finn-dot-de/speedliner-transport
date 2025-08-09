@@ -29,6 +29,8 @@ func DefineApiRoutes(r chi.Router) {
 	r.With(middleware.RoleMiddleware("admin", "provider")).Put("/routes/{id}", UpdateRouteHandler)
 	r.With(middleware.RoleMiddleware("admin", "provider")).Delete("/routes/{id}", DeleteRouteHandler)
 	r.Get("/role", GetUserRoleHandler)
+	r.With(middleware.RoleMiddleware("admin")).Get("/users", ListUsersHandler)
+	r.With(middleware.RoleMiddleware("admin")).Put("/users/{charID}/role", UpdateUserRoleHandler)
 }
 
 // PingHandler godoc

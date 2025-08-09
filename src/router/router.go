@@ -18,7 +18,7 @@ func NewRouter() *chi.Mux {
 
 	// API-Routen
 	r.Route("/app/", func(sub chi.Router) {
-		handler.DefineApiRoutes(sub) // Hier werden die GET-Routen hinzugefügt
+		handler.DefineApiRoutes(sub)
 	})
 
 	// Dynamisch zusammengesetzter relativer Pfad

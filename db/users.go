@@ -3,6 +3,7 @@ package db
 import (
 	"context"
 	"fmt"
+	"speedliner-server/src/utils/structs"
 )
 
 func UpsertUser(charID string, name string) error {
@@ -32,4 +33,36 @@ func GetUserRoles(charID string) (string, error) {
 		return "", fmt.Errorf("GetUserRoles error: %w", err)
 	}
 	return role, nil
+}
+
+func UpdateUserRole(charID string, role string) error {
+	query := `
+	UPDATE users 
+	SET role = $1 
+	WHERE char_id = $2;`
+
+	_, err := Pool.Exec(context.Background(), query, role, charID)
+	if err != nil {
+		return fmt.Errorf("UpdateUserRole error: %w", err)
+	}
+	return nil
+}
+
+func GetAllUsers() ([]structs.User, error) {
+	rows, err := Pool.Query(context.Background(),
+		`SELECT char_id, name, role FROM users ORDER BY name;`)
+	if err != nil {
+		return nil, fmt.Errorf("GetAllUsers query error: %w", err)
+	}
+	defer rows.Close()
+
+	var users []structs.User
+	for rows.Next() {
+		var u structs.User
+		if err := rows.Scan(&u.CharID, &u.Name, &u.Role); err != nil {
+			return nil, fmt.Errorf("GetAllUsers scan error: %w", err)
+		}
+		users = append(users, u)
+	}
+	return users, rows.Err()
 }

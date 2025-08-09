@@ -11,6 +11,21 @@ definitions:
       to:
         type: string
     type: object
+  structs.UpdateRoleReq:
+    properties:
+      role:
+        type: string
+    type: object
+  structs.User:
+    description: Darstellung eines Users für die Admin-API.
+    properties:
+      char_id:
+        type: string
+      name:
+        type: string
+      role:
+        type: string
+    type: object
   structs.VerifyResponse:
     properties:
       CharacterID:
@@ -262,6 +277,76 @@ paths:
       summary: Route aktualisieren
       tags:
       - Routes
+  /app/users:
+    get:
+      description: Gibt eine Liste aller Benutzer mit deren Rollen zurück (nur Admin).
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/structs.User'
+            type: array
+        "401":
+          description: Unauthorized
+          schema:
+            type: string
+        "403":
+          description: Forbidden
+          schema:
+            type: string
+        "500":
+          description: DB error
+          schema:
+            type: string
+      summary: Alle Benutzer abrufen
+      tags:
+      - Admin
+  /app/users/{charID}/role:
+    put:
+      consumes:
+      - application/json
+      description: Setzt die Rolle eines Benutzers anhand der charID (nur Admin).
+      parameters:
+      - description: Character ID
+        in: path
+        name: charID
+        required: true
+        type: string
+      - description: Neue Rolle
+        in: body
+        name: role
+        required: true
+        schema:
+          $ref: '#/definitions/structs.UpdateRoleReq'
+      produces:
+      - text/plain
+      responses:
+        "204":
+          description: No Content
+          schema:
+            type: string
+        "400":
+          description: Invalid JSON or role
+          schema:
+            type: string
+        "401":
+          description: Unauthorized
+          schema:
+            type: string
+        "403":
+          description: Forbidden
+          schema:
+            type: string
+        "500":
+          description: DB error
+          schema:
+            type: string
+      summary: Rolle eines Benutzers ändern
+      tags:
+      - Admin
 schemes:
 - http
 swagger: "2.0"

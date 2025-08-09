@@ -175,7 +175,6 @@ button:hover {
   color: #66fcf1;
 }
 
-
 h1 {
   color: #66fcf1;
 }
@@ -190,7 +189,8 @@ thead {
   background-color: #1f2833;
 }
 
-th, td {
+th,
+td {
   padding: 1rem;
   text-align: center;
 }
@@ -218,7 +218,8 @@ button:hover {
   background-color: #66fcf1;
 }
 
-#routeForm input, button {
+#routeForm input,
+button {
   max-width: 1200px;
 }
 
@@ -275,4 +276,74 @@ input {
 
 #addRouteBtn:hover {
   background-color: #66fcf1;
+}
+
+.home-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  background-color: #222;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
+.home-link:hover {
+  background-color: #333;
+}
+
+.home-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  background: #222;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+  margin: 12px 12px 0;
+}
+.home-link:hover {
+  background: #333;
+}
+h1 {
+  margin: 12px;
+}
+p.sub {
+  margin: 0 12px 12px;
+  color: #9db1c7;
+}
+table.admin {
+  width: calc(100% - 24px);
+  margin: 0 12px 12px;
+  border-collapse: collapse;
+}
+table.admin th,
+table.admin td {
+  padding: 0.6rem 0.8rem;
+  border-bottom: 1px solid #2a3340;
+}
+table.admin th {
+  text-align: left;
+  color: #9db1c7;
+  background: #1a222c;
+}
+select {
+  background: #0f171f;
+  color: #e6f1ff;
+  border: 1px solid #2a3340;
+  padding: 0.35rem 0.5rem;
+  border-radius: 6px;
+}
+button.save {
+  padding: 0.35rem 0.6rem;
+  border-radius: 6px;
+  border: 1px solid #2a3340;
+  background: #13202a;
+  color: #e6f1ff;
+  cursor: pointer;
+}
+button.save:hover {
+  background: #162635;
 }

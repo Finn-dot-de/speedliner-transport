@@ -42,6 +42,8 @@ func main() {
 
 	handler := middleware.LoggerMiddleware(middleware.NoCacheMiddleware(middleware.RateLimit(r)))
 
+	
+
 	log.Println("🚀 Server läuft auf Port " + appPort)
 	log.Println(":" + appPort)
 	log.Fatal(http.ListenAndServe(":"+appPort, handler))

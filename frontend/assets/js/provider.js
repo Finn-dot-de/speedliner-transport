@@ -99,7 +99,29 @@ async function deleteRoute(id) {
     await fetchRoutes();
 }
 
+async function checkAccess() {
+  try {
+    const res = await fetch('/app/role', { credentials: 'include' });
+
+    if (!res.ok) {
+      // Nicht eingeloggt → zurück zur Startseite
+      window.location.href = '/';
+      return;
+    }
+
+    const data = await res.json();
+    if (!(data.role === 'admin' || data.role === 'provider')) {
+      // Keine Berechtigung → zurück zur Startseite
+      window.location.href = '/';
+    }
+  } catch (err) {
+    console.error('Rollenprüfung fehlgeschlagen:', err);
+    window.location.href = '/';
+  }
+}
+
 // Expose globally for onclick handlers
 window.showRouteForm = showRouteForm;
 window.editRoute = editRoute;
 window.deleteRoute = deleteRoute;
+checkAccess();
