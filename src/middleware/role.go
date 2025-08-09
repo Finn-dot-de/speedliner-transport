@@ -26,7 +26,7 @@ func RoleMiddleware(allowedRoles ...string) func(http.Handler) http.Handler {
 				return
 			}
 
-			ctx := context.WithValue(r.Context(), "char", charID)
+			ctx := context.WithValue(r.Context(), contextKey("char"), charID)
 			next.ServeHTTP(w, r.WithContext(ctx))
 		})
 	}

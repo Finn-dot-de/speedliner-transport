@@ -37,9 +37,11 @@ services:
     networks: [internal]
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/app/ping"]
-      interval: 30s
+      interval: 1000s
       timeout: 10s
       retries: 5
+    volumes:
+      - ./app.log:/app/app.log
 
 volumes:
   db_data:
