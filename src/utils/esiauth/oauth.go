@@ -1,9 +1,10 @@
 package esiauth
 
 import (
-	"golang.org/x/oauth2"
 	"os"
 	"sync"
+
+	"golang.org/x/oauth2"
 )
 
 var (
@@ -15,12 +16,8 @@ func GetOAuthConfig() *oauth2.Config {
 	return &oauth2.Config{
 		ClientID:     os.Getenv("OAUTH_CLIENT_ID"),
 		ClientSecret: os.Getenv("OAUTH_CLIENT_SECRET"),
-		Scopes: []string{
-			"esi-characters.read_contacts.v1",
-			"esi-contracts.read_character_contracts.v1",
-			"esi-contracts.read_corporation_contracts.v1",
-		},
-		RedirectURL: "https://speedliner-transport.com/app/callback",
+		Scopes:       []string{},
+		RedirectURL:  "http://localhost:8080/app/callback",
 		Endpoint: oauth2.Endpoint{
 			AuthURL:  "https://login.eveonline.com/v2/oauth/authorize",
 			TokenURL: "https://login.eveonline.com/v2/oauth/token",

@@ -15,6 +15,22 @@ docker compose up -d --force-recreate speedliner-server
 
 
 # NS Build
-esbuild frontend/assets/js/admin.js    --bundle --minify --format=esm --target=es2022 --outfile=js/admin.min.js
-esbuild frontend/assets/js/provider.js --bundle --minify --format=esm --target=es2022 --outfile=js/provider.min.js
+esbuild frontend/assets/js/usermanager.js    --bundle --minify --format=esm --target=es2022 --outfile=js/usermanager.min.js
+esbuild frontend/assets/js/routemanager.js --bundle --minify --format=esm --target=es2022 --outfile=js/routemanager.min.js
 esbuild frontend/assets/js/index.js    --bundle --minify --format=esm --target=es2022 --outfile=js/index.min.js
+
+
+# Copying all Files / Powershell
+New-Item -ItemType Directory -Path ..\dist -Force | Out-Null
+
+# Einzeln
+Copy-Item -Path index.html  -Destination ..\dist -Force
+Copy-Item -Path routes.html -Destination ..\dist -Force
+Copy-Item -Path users.html  -Destination ..\dist -Force
+
+# oder in einem Rutsch
+Copy-Item -Path index.html,routes.html,users.html -Destination ..\dist -Force
+
+# oder alle HTMLs
+Copy-Item -Path *.html -Destination ..\dist -Force
+

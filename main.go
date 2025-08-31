@@ -10,8 +10,8 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"speedliner-server/db"
 	_ "speedliner-server/docs"
+	"speedliner-server/src/db"
 	"speedliner-server/src/middleware"
 	"speedliner-server/src/router"
 	"speedliner-server/src/utils"
@@ -41,8 +41,6 @@ func main() {
 	}
 
 	handler := middleware.LoggerMiddleware(middleware.NoCacheMiddleware(middleware.RateLimit(r)))
-
-	
 
 	log.Println("🚀 Server läuft auf Port " + appPort)
 	log.Println(":" + appPort)

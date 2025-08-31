@@ -27,8 +27,8 @@ export function renderPricing(routes) {
         const routeHtml = `
             <div style="margin-bottom: 1rem;">
                 <strong>Route: ${routeName}</strong><br/>
-                Up to 165.000m³: ${route.pricePerM3.toLocaleString()} ISK/m³ + 3% collateral fee<br/>
-                165.000m³ and more: ${route.pricePerM3.toLocaleString()} ISK/m³ + 1% collateral fee
+                Up to 175.500m³: ${route.pricePerM3.toLocaleString()} ISK/m³ + 3% collateral fee<br/>
+                175.500m³ and more: ${route.pricePerM3.toLocaleString()} ISK/m³ + 1% collateral fee
             </div>
         `;
 

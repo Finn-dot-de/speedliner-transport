@@ -54,11 +54,11 @@ export async function loadUser() {
         });
 
         document.getElementById("adminPanelBtn").addEventListener("click", () => {
-            window.location.href = "/admin.html";
+            window.location.href = "/users.html";
         });
 
         document.getElementById("providerPanelBtn").addEventListener("click", () => {
-            window.location.href = "/provider.html";
+            window.location.href = "/routes.html";
         });
 
     } catch (err) {

@@ -3,7 +3,7 @@ package handler
 import (
 	"encoding/json"
 	"net/http"
-	"speedliner-server/db"
+	"speedliner-server/src/db"
 	"speedliner-server/src/utils/structs"
 
 	"github.com/go-chi/chi/v5"

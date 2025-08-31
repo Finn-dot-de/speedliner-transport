@@ -3,7 +3,7 @@ package users
 import (
 	"context"
 	"fmt"
-	"speedliner-server/db"
+	"speedliner-server/src/db"
 )
 
 func HasRole(charID string, allowedRoles ...string) (bool, error) {

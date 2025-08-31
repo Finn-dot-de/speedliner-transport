@@ -1,11 +1,12 @@
 package router
 
 import (
-	"github.com/go-chi/chi/v5"
 	"net/http"
 	"path/filepath"
 	"speedliner-server/src/handler"
 	"speedliner-server/src/middleware"
+
+	"github.com/go-chi/chi/v5"
 )
 
 // NewRouter erstellt einen neuen Router mit allen Routen und Middleware
@@ -22,7 +23,7 @@ func NewRouter() *chi.Mux {
 	})
 
 	// Dynamisch zusammengesetzter relativer Pfad
-	buildDir := filepath.Join("dist")
+	buildDir := filepath.Join("frontend")
 	fs := http.FileServer(http.Dir(buildDir))
 	r.Handle("/*", fs)
 
@@ -32,7 +33,7 @@ func NewRouter() *chi.Mux {
 
 	// Root-Route (z.B. für deine index.html)
 	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
-		http.ServeFile(w, r, "dist")
+		http.ServeFile(w, r, "frontend")
 	})
 
 	return r

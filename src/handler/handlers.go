@@ -4,11 +4,11 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"io"
 	"log"
 	"net/http"
-	"speedliner-server/db"
+	db2 "speedliner-server/src/db"
 	"speedliner-server/src/middleware"
+	"speedliner-server/src/utils/esi"
 	"strconv"
 	"time"
 
@@ -82,12 +82,7 @@ func CallbackHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Verify failed: "+err.Error(), http.StatusInternalServerError)
 		return
 	}
-	defer func(Body io.ReadCloser) {
-		err := Body.Close()
-		if err != nil {
-
-		}
-	}(resp.Body)
+	defer resp.Body.Close()
 
 	var verify structs.VerifyResponse
 	if err := json.NewDecoder(resp.Body).Decode(&verify); err != nil {
@@ -110,10 +105,18 @@ func CallbackHandler(w http.ResponseWriter, r *http.Request) {
 	charID = strconv.Itoa(verify.CharacterID)
 	charName := verify.CharacterName
 
-	// In DB speichern (oder aktualisieren)
-	if err := db.UpsertUser(charID, charName); err != nil {
+	// User upserten
+	if err := db2.UpsertUser(charID, charName); err != nil {
 		log.Printf("Failed to insert user: %v", err)
-		// Optional: HTTP-Fehler zurück
+	}
+
+	// Corp/Alliance in DB persistieren
+	corpID, corpName, corpTicker, alliID, alliName, alliTicker :=
+		esi.FetchCorpAndAlliance(verify.CharacterID)
+	if corpID != 0 || corpName != "" || corpTicker != "" || alliID != nil {
+		if err := db2.UpdateUserCorp(charID, corpID, corpName, corpTicker, alliID, alliName, alliTicker); err != nil {
+			log.Printf("UpdateUserCorp: %v", err)
+		}
 	}
 
 	http.Redirect(w, r, "/", http.StatusFound)
@@ -196,7 +199,7 @@ func LogoutHandler(w http.ResponseWriter, r *http.Request) {
 // @Success      200 {array} structs.Route
 // @Router       /app/routes [get]
 func RoutesHandler(w http.ResponseWriter, r *http.Request) {
-	routes, err := db.GetAllRoutes()
+	routes, err := db2.GetAllRoutes()
 	if err != nil {
 		http.Error(w, "Failed to fetch routes: "+err.Error(), http.StatusInternalServerError)
 		return
@@ -228,7 +231,7 @@ func CreateRouteHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Invalid JSON: "+err.Error(), http.StatusBadRequest)
 		return
 	}
-	if err := db.InsertRoute(route); err != nil {
+	if err := db2.InsertRoute(route); err != nil {
 		http.Error(w, "DB Insert error: "+err.Error(), http.StatusInternalServerError)
 		return
 	}
@@ -258,7 +261,7 @@ func UpdateRouteHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	route.ID = id
-	if err := db.UpdateRoute(route); err != nil {
+	if err := db2.UpdateRoute(route); err != nil {
 		http.Error(w, "DB Update error: "+err.Error(), http.StatusInternalServerError)
 		return
 	}
@@ -278,7 +281,7 @@ func UpdateRouteHandler(w http.ResponseWriter, r *http.Request) {
 // @Router       /app/routes/{id} [delete]
 func DeleteRouteHandler(w http.ResponseWriter, r *http.Request) {
 	id := chi.URLParam(r, "id")
-	if err := db.DeleteRoute(id); err != nil {
+	if err := db2.DeleteRoute(id); err != nil {
 		http.Error(w, "DB Delete error: "+err.Error(), http.StatusInternalServerError)
 		return
 	}
@@ -302,7 +305,7 @@ func GetUserRoleHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	role, err := db.GetUserRoles(cookie.Value)
+	role, err := db2.GetUserRoles(cookie.Value)
 	if err != nil {
 		http.Error(w, "DB error: "+err.Error(), http.StatusInternalServerError)
 		return

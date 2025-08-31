@@ -20,18 +20,19 @@ function renderRoutes(routes) {
     routes.forEach(route => {
         const tr = document.createElement("tr");
         tr.innerHTML = `
-            <td>${route.from || "-"}</td>
-            <td>${route.to || "-"}</td>
-            <td>${route.pricePerM3 ?? 0} ISK</td>
-            <td>
-                <button onclick="editRoute('${route.id}')" title="Bearbeiten">
-                    <i class="fa-solid fa-pen-to-square"></i>
-                </button>
-                <button onclick="deleteRoute('${route.id}')" title="Löschen">
-                    <i class="fa-solid fa-trash"></i>
-                </button>
-            </td>
-        `;
+      <td>${route.from || "-"}</td>
+      <td>${route.to || "-"}</td>
+      <td>${route.pricePerM3 ?? 0} ISK</td>
+      <td>
+        ${route.noCollateral ? '<span class="badge" title="Für diese Route ist keine Sicherheit nötig.">No collateral</span>' : ''}
+        <button onclick="editRoute('${route.id}')" title="Bearbeiten">
+          <i class="fa-solid fa-pen-to-square"></i>
+        </button>
+        <button onclick="deleteRoute('${route.id}')" title="Löschen">
+          <i class="fa-solid fa-trash"></i>
+        </button>
+      </td>
+    `;
         tr.dataset.route = JSON.stringify(route);
         tbody.appendChild(tr);
     });
@@ -56,6 +57,7 @@ function editRoute(id) {
     document.getElementById("routeFrom").value = route.from;
     document.getElementById("routeTo").value = route.to;
     document.getElementById("routePricePerM3").value = route.pricePerM3;
+    document.getElementById("routeNoCollateral").checked = !!route.noCollateral;
 
     showRouteForm(true);
 }
@@ -66,6 +68,7 @@ async function saveRoute() {
         from: document.getElementById("routeFrom").value,
         to: document.getElementById("routeTo").value,
         pricePerM3: parseFloat(document.getElementById("routePricePerM3").value),
+        noCollateral: document.getElementById("routeNoCollateral").checked
     };
 
     const method = id ? "PUT" : "POST";
@@ -84,7 +87,7 @@ async function saveRoute() {
 
     document.getElementById("routeForm").reset();
     document.getElementById("routeFormContainer").style.display = "none";
-    fetchRoutes();
+    await fetchRoutes();
 }
 
 async function deleteRoute(id) {
