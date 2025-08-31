@@ -1,11 +1,5 @@
-x-defaults: &gateway_dns
-  dns:
-    - 172.64.36.1
-    - 172.64.36.2
-
 services:
   db:
-    <<: *gateway_dns
     image: postgres:15
     restart: unless-stopped
     env_file: .env
@@ -23,12 +17,11 @@ services:
       retries: 5
 
   speedliner-server:
-    <<: *gateway_dns
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: finndotde/speedliner:latest
     restart: unless-stopped
     env_file: .env
+    environment:
+      - APP_ENV=production
     depends_on:
       db:
         condition: service_healthy
@@ -37,11 +30,29 @@ services:
     networks: [internal]
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/app/ping"]
-      interval: 1000s
-      timeout: 10s
-      retries: 5
+      interval: 2000s
+      timeout: 3s
+      start_period: 15s
+      retries: 10
     volumes:
       - ./app.log:/app/app.log
+
+  cloudflared:
+    image: cloudflare/cloudflared:2025.8.0
+    restart: unless-stopped
+    command: tunnel --no-autoupdate --metrics 0.0.0.0:9090 --config /etc/cloudflared/config.yml run
+    volumes:
+      - ./cloudflared:/etc/cloudflared:ro
+    depends_on:
+      speedliner-server:
+        condition: service_healthy
+    networks: [internal]
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:9090/metrics"]
+      interval: 10s
+      timeout: 3s
+      retries: 6
+      start_period: 10s
 
 volumes:
   db_data:

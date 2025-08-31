@@ -1,25 +1,35 @@
-# Build-Stage
-FROM golang:1.24.5 as builder
+# syntax=docker/dockerfile:1.7
 
+########## Build ##########
+FROM --platform=$BUILDPLATFORM golang:1.24 AS builder
 WORKDIR /app
+
+# Falls Minor-Version abweicht, zieht Go die passende Toolchain
+ENV GOTOOLCHAIN=auto
+
+# Besserer Cache
+COPY go.mod go.sum ./
+RUN go mod download
+
+# Rest vom Code
 COPY . .
 
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build -o server
-# RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o server
+# Output-Ordner anlegen und NUR das Main-Paket bauen
+# Wenn dein main in ./cmd/server liegt, ersetze "." durch "./cmd/server"
+RUN mkdir -p /out && \
+    CGO_ENABLED=0 go build -ldflags="-s -w" -o /out/server .
 
-# Final image
-FROM ubuntu:24.04
-
+########## Runtime ##########
+FROM alpine:3.20
 WORKDIR /app
-COPY --from=builder /app/server ./
-COPY .env ./
-COPY dist ./dist
 
-RUN apt-get update && \
-    apt-get install -y ca-certificates curl && \
-    chmod +x ./server && \
-    rm -rf /var/lib/apt/lists/*
+# HTTPS + Healthcheck
+RUN apk add --no-cache ca-certificates curl
+
+# Binary + (optional) Frontend
+COPY --from=builder /out/server ./server
+COPY dist ./dist
+COPY .env ./
 
 EXPOSE 8080
-CMD ["./server"]
-
+ENTRYPOINT ["./server"]

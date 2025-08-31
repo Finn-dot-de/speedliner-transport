@@ -1,0 +1,20 @@
+# Zum Docker bauen wichtig !!!!
+
+docker buildx use multi
+docker buildx inspect --bootstrap
+
+docker buildx build \
+  --platform linux/amd64,linux/arm64 \
+  -t finndotde/speedliner:1.0.1 \
+  -t finndotde/speedliner:latest \
+  --push .
+
+
+docker compose pull speedliner-server
+docker compose up -d --force-recreate speedliner-server
+
+
+# NS Build
+esbuild frontend/assets/js/admin.js    --bundle --minify --format=esm --target=es2022 --outfile=js/admin.min.js
+esbuild frontend/assets/js/provider.js --bundle --minify --format=esm --target=es2022 --outfile=js/provider.min.js
+esbuild frontend/assets/js/index.js    --bundle --minify --format=esm --target=es2022 --outfile=js/index.min.js
