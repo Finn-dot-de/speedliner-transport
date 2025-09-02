@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="SqlDialectMappings">
-    <file url="file://$PROJECT_DIR$/src/utils/users/users.go" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/backup.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/src/utils/users/users.go" dialect="PostgreSQL" />
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/dcef3f2a-dd99-4093-a853-4982ef99a49f/console.sql" dialect="PostgreSQL" />
+    <file url="PROJECT" dialect="PostgreSQL" />
   </component>
 </project>

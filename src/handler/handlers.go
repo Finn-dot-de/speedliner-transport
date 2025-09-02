@@ -3,7 +3,6 @@ package handler
 import (
 	"context"
 	"encoding/json"
-	"fmt"
 	"log"
 	"net/http"
 	db2 "speedliner-server/src/db"
@@ -31,6 +30,7 @@ func DefineApiRoutes(r chi.Router) {
 	r.Get("/role", GetUserRoleHandler)
 	r.With(middleware.RoleMiddleware("admin")).Get("/users", ListUsersHandler)
 	r.With(middleware.RoleMiddleware("admin")).Put("/users/{charID}/role", UpdateUserRoleHandler)
+	r.With(middleware.RoleMiddleware("admin", "provider")).Get("/corps", ListCorpsHandler)
 }
 
 // PingHandler godoc
@@ -90,31 +90,53 @@ func CallbackHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	charID := fmt.Sprintf("%d", verify.CharacterID)
-	esiauth.SaveToken(charID, token)
-
+	// Token speichern & Cookie setzen
+	charIDStr := strconv.Itoa(verify.CharacterID)
+	esiauth.SaveToken(charIDStr, token)
 	http.SetCookie(w, &http.Cookie{
 		Name:     "char",
-		Value:    charID,
+		Value:    charIDStr,
 		Path:     "/",
 		HttpOnly: true,
 		Expires:  time.Now().Add(48 * time.Hour),
 		SameSite: http.SameSiteLaxMode,
 	})
 
-	charID = strconv.Itoa(verify.CharacterID)
-	charName := verify.CharacterName
+	// DB: alles als int64
+	charID := int64(verify.CharacterID)
 
 	// User upserten
-	if err := db2.UpsertUser(charID, charName); err != nil {
-		log.Printf("Failed to insert user: %v", err)
+	if err := db2.UpsertUser(charID, verify.CharacterName); err != nil {
+		log.Printf("UpsertUser: %v", err)
 	}
 
-	// Corp/Alliance in DB persistieren
+	// Corp/Alliance holen
 	corpID, corpName, corpTicker, alliID, alliName, alliTicker :=
 		esi.FetchCorpAndAlliance(verify.CharacterID)
-	if corpID != 0 || corpName != "" || corpTicker != "" || alliID != nil {
-		if err := db2.UpdateUserCorp(charID, corpID, corpName, corpTicker, alliID, alliName, alliTicker); err != nil {
+
+	// Alliance (optional)
+	var alliPtr *int64
+	if alliID != nil && *alliID != 0 {
+		// alliName/alliTicker können nil sein -> leere Strings
+		var aName, aTick string
+		if alliName != nil {
+			aName = *alliName
+		}
+		if alliTicker != nil {
+			aTick = *alliTicker
+		}
+		if err := db2.UpsertAlliance(*alliID, aName, aTick); err != nil {
+			log.Printf("UpsertAlliance: %v", err)
+		}
+		alliPtr = alliID
+	}
+
+	// Corp (wenn vorhanden) + beim User setzen
+	if corpID != 0 {
+		if err := db2.UpsertCorp(corpID, corpName, corpTicker, alliPtr); err != nil {
+			log.Printf("UpsertCorp: %v", err)
+		}
+		if err := db2.UpdateUserCorp(charID, corpID); err != nil {
 			log.Printf("UpdateUserCorp: %v", err)
 		}
 	}
@@ -199,16 +221,22 @@ func LogoutHandler(w http.ResponseWriter, r *http.Request) {
 // @Success      200 {array} structs.Route
 // @Router       /app/routes [get]
 func RoutesHandler(w http.ResponseWriter, r *http.Request) {
-	routes, err := db2.GetAllRoutes()
+	// optional: eingeloggten User für Sichtbarkeits-Filter ermitteln
+	var charID *int64
+	if c, err := r.Cookie("char"); err == nil && c.Value != "" {
+		if v, err2 := strconv.ParseInt(c.Value, 10, 64); err2 == nil {
+			charID = &v
+		}
+	}
+
+	routes, err := db2.GetAllRoutesForUser(charID)
 	if err != nil {
 		http.Error(w, "Failed to fetch routes: "+err.Error(), http.StatusInternalServerError)
 		return
 	}
 
 	w.Header().Set("Content-Type", "application/json")
-	if err := json.NewEncoder(w).Encode(routes); err != nil {
-		http.Error(w, "Failed to encode routes: "+err.Error(), http.StatusInternalServerError)
-	}
+	_ = json.NewEncoder(w).Encode(routes)
 }
 
 // CreateRouteHandler godoc
@@ -299,18 +327,33 @@ func DeleteRouteHandler(w http.ResponseWriter, r *http.Request) {
 // @Failure      500 {string} string "DB error"
 // @Router       /app/role [get]
 func GetUserRoleHandler(w http.ResponseWriter, r *http.Request) {
-	cookie, err := r.Cookie("char")
-	if err != nil || cookie.Value == "" {
+	c, err := r.Cookie("char")
+	if err != nil || c.Value == "" {
 		http.Error(w, "Not logged in", http.StatusUnauthorized)
 		return
 	}
+	charID, err := strconv.ParseInt(c.Value, 10, 64)
+	if err != nil {
+		http.Error(w, "Bad char id", http.StatusUnauthorized)
+		return
+	}
 
-	role, err := db2.GetUserRoles(cookie.Value)
+	role, err := db2.GetUserRoles(charID)
 	if err != nil {
 		http.Error(w, "DB error: "+err.Error(), http.StatusInternalServerError)
 		return
 	}
-
 	w.Header().Set("Content-Type", "application/json")
 	_ = json.NewEncoder(w).Encode(map[string]string{"role": role})
+}
+
+func ListCorpsHandler(w http.ResponseWriter, r *http.Request) {
+	q := r.URL.Query().Get("q")
+	items, err := db2.SearchCorps(q, 100)
+	if err != nil {
+		http.Error(w, "DB error: "+err.Error(), http.StatusInternalServerError)
+		return
+	}
+	w.Header().Set("Content-Type", "application/json")
+	_ = json.NewEncoder(w).Encode(items)
 }

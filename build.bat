@@ -1,0 +1,19 @@
+@echo off
+
+:: Zielordner sicherstellen
+if not exist ..\dist mkdir ..\dist
+if not exist ..\dist\assets mkdir ..\dist\assets
+
+:: Builds
+esbuild frontend/assets/js/usermanager.js    --bundle --minify --format=esm --target=es2022 --outfile=js/usermanager.min.js
+esbuild frontend/assets/js/routemanager.js --bundle --minify --format=esm --target=es2022 --outfile=js/routemanager.min.js
+esbuild frontend/assets/js/index.js    --bundle --minify --format=esm --target=es2022 --outfile=js/index.min.js
+
+:: HTML kopieren (überschreiben)
+cd frontend
+copy /Y index.html  ..\dist\
+copy /Y routes.html ..\dist\
+copy /Y users.html  ..\dist\
+
+:: JS nach assets kopieren
+robocopy js ..\dist\assets /E
