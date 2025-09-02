@@ -5,9 +5,9 @@ if not exist ..\dist mkdir ..\dist
 if not exist ..\dist\assets mkdir ..\dist\assets
 
 :: Builds
-esbuild frontend/assets/js/usermanager.js    --bundle --minify --format=esm --target=es2022 --outfile=js/usermanager.min.js
-esbuild frontend/assets/js/routemanager.js --bundle --minify --format=esm --target=es2022 --outfile=js/routemanager.min.js
-esbuild frontend/assets/js/index.js    --bundle --minify --format=esm --target=es2022 --outfile=js/index.min.js
+esbuild frontend/assets/js/usermanager.js    --bundle --minify --format=esm --target=es2022 --outfile=js/usermanager.js
+esbuild frontend/assets/js/routemanager.js --bundle --minify --format=esm --target=es2022 --outfile=js/routemanager.js
+esbuild frontend/assets/js/index.js    --bundle --minify --format=esm --target=es2022 --outfile=js/index.js
 
 :: HTML kopieren (überschreiben)
 cd frontend
@@ -17,3 +17,4 @@ copy /Y users.html  ..\dist\
 
 :: JS nach assets kopieren
 robocopy js ..\dist\assets /E
+robocopy assets\style ..\dist\assets /E

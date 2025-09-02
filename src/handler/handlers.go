@@ -220,21 +220,26 @@ func LogoutHandler(w http.ResponseWriter, r *http.Request) {
 // @Produce      json
 // @Success      200 {array} structs.Route
 // @Router       /app/routes [get]
+// src/handler/handler.go (RoutesHandler)
 func RoutesHandler(w http.ResponseWriter, r *http.Request) {
-	// optional: eingeloggten User für Sichtbarkeits-Filter ermitteln
 	var charID *int64
+	var role string
+
 	if c, err := r.Cookie("char"); err == nil && c.Value != "" {
 		if v, err2 := strconv.ParseInt(c.Value, 10, 64); err2 == nil {
 			charID = &v
+
+			if rr, err3 := db2.GetUserRoles(v); err3 == nil {
+				role = rr
+			}
 		}
 	}
 
-	routes, err := db2.GetAllRoutesForUser(charID)
+	routes, err := db2.GetAllRoutesForUser(charID, role)
 	if err != nil {
 		http.Error(w, "Failed to fetch routes: "+err.Error(), http.StatusInternalServerError)
 		return
 	}
-
 	w.Header().Set("Content-Type", "application/json")
 	_ = json.NewEncoder(w).Encode(routes)
 }

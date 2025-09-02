@@ -2,14 +2,15 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Route Management</title>
-    <link rel="stylesheet" href="assets/style/style.css" />
-    <link rel="icon" type="image/png" href="assets/favicon.ico" />
+    <link rel="stylesheet" href="assets/style/style.css"/>
+    <link rel="icon" type="image/png" href="assets/favicon.ico"/>
     <meta name="robots" content="noindex, nofollow">
     <meta name="description" content="Manage transport routes for Speedliner Transport in EVE Online.">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link rel="preconnect" href="https://images.evetech.net">
     <script type="module" src="assets/js/routemanager.js"></script>
 </head>
 
@@ -39,20 +40,37 @@
 <div id="routeFormContainer" style="display: none; margin-top: 2rem;">
     <h3 id="formTitle">Neue Route</h3>
     <form id="routeForm">
-        <input type="hidden" id="routeId" />
-        <input placeholder="From" id="routeFrom" required />
-        <input placeholder="To" id="routeTo" required />
-        <input type="number" placeholder="Preis/m³" id="routePricePerM3" required />
+        <input type="hidden" id="routeId"/>
+        <input placeholder="From" id="routeFrom" required/>
+        <input placeholder="To" id="routeTo" required/>
+        <input type="text" placeholder="Preis/m³" id="routePricePerM3" required/>
 
         <div class="form-row grid">
             <div class="col label">
             </div>
             <div class="col right">
                 <label class="toggle" title="When active: No collateral is required for this route.">
-                    <input type="checkbox" id="routeNoCollateral" />
+                    <input type="checkbox" id="routeNoCollateral"/>
                     <span class="slider" aria-hidden="true"></span>
                     <span class="toggle-text">No collateral required</span>
                 </label>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <label for="routeVisibility">Visibility</label>
+            <select id="routeVisibility">
+                <option value="all">Everyone (public)</option>
+                <option value="whitelist">Whitelist (only use corps)</option>
+            </select>
+        </div>
+
+        <div id="whitelistBox" class="form-row" style="display:none;">
+            <label>Allowed Corps</label>
+            <div class="whitelist-wrap">
+                <input id="corpSearch" type="text" placeholder="Corp search (Ticker/Name)"/>
+                <div id="corpSearchResults" class="dropdown"></div>
+                <div id="selectedCorps" class="tags"></div>
             </div>
         </div>
 

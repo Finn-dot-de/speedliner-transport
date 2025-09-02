@@ -1,7 +1,7 @@
-// Top-level await funktioniert nur mit type="module"
+
 const redirectHome = () => {
   location.replace("/");
-  // prevent further code running after redirect
+
   throw new Error("redirect");
 };
 
@@ -15,10 +15,10 @@ try {
   redirectHome();
 }
 
-// User-Liste laden
+
 async function loadUsers() {
   const res = await fetch("/app/users", { credentials: "include" });
-  if (!res.ok) return; // optional: Fehlerbehandlung
+  if (!res.ok) return;
   const users = await res.json();
 
   const tbody = document.querySelector("#userTable tbody");
@@ -27,7 +27,6 @@ async function loadUsers() {
   users.forEach((user) => {
     const tr = document.createElement("tr");
 
-    // Portrait
     const portraitTd = document.createElement("td");
     portraitTd.innerHTML = `
       <img src="https://images.evetech.net/characters/${user.char_id}/portrait?size=64"
@@ -36,12 +35,10 @@ async function loadUsers() {
     `;
     tr.appendChild(portraitTd);
 
-    // Name
     const nameTd = document.createElement("td");
     nameTd.textContent = user.name;
     tr.appendChild(nameTd);
 
-    // Rolle Auswahl
     const roleTd = document.createElement("td");
     const select = document.createElement("select");
     ["user", "provider", "admin"].forEach((r) => {
@@ -54,10 +51,9 @@ async function loadUsers() {
     roleTd.appendChild(select);
     tr.appendChild(roleTd);
 
-    // Speichern Button
     const actionTd = document.createElement("td");
     const btn = document.createElement("button");
-    btn.textContent = "Speichern";
+    btn.textContent = "Save";
     btn.onclick = async () => {
       const newRole = select.value;
       const resp = await fetch(`/app/users/${user.char_id}/role`, {
@@ -67,10 +63,10 @@ async function loadUsers() {
         body: JSON.stringify({ role: newRole }),
       });
       if (!resp.ok) {
-        alert("Fehler beim Speichern");
+        alert("Error to save");
         return;
       }
-      alert(`Rolle geändert zu: ${newRole}`);
+      alert(`Role change to: ${newRole}`);
     };
     actionTd.appendChild(btn);
     tr.appendChild(actionTd);
@@ -79,5 +75,4 @@ async function loadUsers() {
   });
 }
 
-// Seite füllen
 await loadUsers();

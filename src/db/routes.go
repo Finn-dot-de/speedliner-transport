@@ -3,11 +3,9 @@ package db
 import (
 	"context"
 	"speedliner-server/src/utils/structs"
-
-	"github.com/jackc/pgx/v5"
 )
 
-func InsertRoute(r structs.Route) error {
+func InsertRoute(r structs.Route) (err error) {
 	ctx := context.Background()
 	tx, err := Pool.Begin(ctx)
 	if err != nil {
@@ -21,31 +19,31 @@ func InsertRoute(r structs.Route) error {
 		}
 	}()
 
-	var id string
-	err = tx.QueryRow(ctx, `
-		INSERT INTO routes (id, from_system, to_system, price_per_m3, no_collateral, visibility)
-		VALUES (gen_random_uuid(), $1, $2, $3, $4, $5)
-		RETURNING id`,
+	// Route anlegen
+	row := tx.QueryRow(ctx, `
+        INSERT INTO routes (from_system, to_system, price_per_m3, no_collateral, visibility)
+        VALUES ($1,$2,$3,$4,$5)
+        RETURNING id`,
 		r.From, r.To, r.PricePerM3, r.NoCollateral, r.Visibility,
-	).Scan(&id)
-	if err != nil {
+	)
+	if err = row.Scan(&r.ID); err != nil {
 		return err
 	}
 
-	if r.Visibility == "whitelist" && len(r.AllowedCorpIDs) > 0 {
-		b := &pgx.Batch{}
-		for _, cid := range r.AllowedCorpIDs {
-			b.Queue(`INSERT INTO route_visibility(route_id, corp_id) VALUES ($1,$2) ON CONFLICT DO NOTHING`, id, cid)
-		}
-		br := tx.SendBatch(ctx, b)
-		if err = br.Close(); err != nil {
-			return err
+	// Whitelist pflegen
+	if r.Visibility == "whitelist" && len(r.AllowedCorps) > 0 {
+		for _, cid := range r.AllowedCorps {
+			if _, err = tx.Exec(ctx, `
+                INSERT INTO route_visibility (route_id, corp_id)
+                VALUES ($1,$2) ON CONFLICT DO NOTHING`, r.ID, cid); err != nil {
+				return err
+			}
 		}
 	}
 	return nil
 }
 
-func UpdateRoute(r structs.Route) error {
+func UpdateRoute(r structs.Route) (err error) {
 	ctx := context.Background()
 	tx, err := Pool.Begin(ctx)
 	if err != nil {
@@ -59,90 +57,104 @@ func UpdateRoute(r structs.Route) error {
 		}
 	}()
 
-	_, err = tx.Exec(ctx, `
-		UPDATE routes
-		SET from_system=$1, to_system=$2, price_per_m3=$3, no_collateral=$4, visibility=$5
-		WHERE id=$6`,
-		r.From, r.To, r.PricePerM3, r.NoCollateral, r.Visibility, r.ID)
-	if err != nil {
+	if _, err = tx.Exec(ctx, `
+        UPDATE routes
+        SET from_system=$2, to_system=$3, price_per_m3=$4, no_collateral=$5, visibility=$6
+        WHERE id = $1`,
+		r.ID, r.From, r.To, r.PricePerM3, r.NoCollateral, r.Visibility); err != nil {
 		return err
 	}
 
 	// Whitelist neu setzen
-	_, err = tx.Exec(ctx, `DELETE FROM route_visibility WHERE route_id=$1`, r.ID)
-	if err != nil {
+	if _, err = tx.Exec(ctx, `DELETE FROM route_visibility WHERE route_id=$1`, r.ID); err != nil {
 		return err
 	}
-	if r.Visibility == "whitelist" && len(r.AllowedCorpIDs) > 0 {
-		b := &pgx.Batch{}
-		for _, cid := range r.AllowedCorpIDs {
-			b.Queue(`INSERT INTO route_visibility(route_id, corp_id) VALUES ($1,$2)`, r.ID, cid)
-		}
-		br := tx.SendBatch(ctx, b)
-		if err = br.Close(); err != nil {
-			return err
+	if r.Visibility == "whitelist" && len(r.AllowedCorps) > 0 {
+		for _, cid := range r.AllowedCorps {
+			if _, err = tx.Exec(ctx, `
+                INSERT INTO route_visibility (route_id, corp_id)
+                VALUES ($1,$2) ON CONFLICT DO NOTHING`, r.ID, cid); err != nil {
+				return err
+			}
 		}
 	}
 	return nil
 }
 
-func GetAllRoutesForUser(charID *int64) ([]structs.Route, error) {
+func GetAllRoutesForUser(charID *int64, role string) ([]structs.Route, error) {
 	ctx := context.Background()
 
-	var rows pgx.Rows
-	var err error
+	// Provider/Admin? -> ungefiltert
+	if role == "admin" || role == "provider" {
+		rows, err := Pool.Query(ctx, `
+            SELECT r.id, r.from_system, r.to_system, r.price_per_m3, r.no_collateral, r.visibility
+            FROM routes r
+            ORDER BY r.from_system, r.to_system`)
+		if err != nil {
+			return nil, err
+		}
+		defer rows.Close()
 
-	if charID == nil {
-		rows, err = Pool.Query(ctx, `
-			SELECT r.id, r.from_system, r.to_system, r.price_per_m3, r.no_collateral, r.visibility,
-			       COALESCE(rv.allowed, ARRAY[]::bigint[]) AS allowed
-			FROM routes r
-			LEFT JOIN LATERAL (
-				SELECT ARRAY_AGG(v.corp_id ORDER BY v.corp_id) AS allowed
-				FROM route_visibility v
-				WHERE v.route_id = r.id
-			) rv ON TRUE
-			WHERE r.visibility = 'all'
-			ORDER BY r.from_system, r.to_system`)
-	} else {
-		rows, err = Pool.Query(ctx, `
-			SELECT r.id, r.from_system, r.to_system, r.price_per_m3, r.no_collateral, r.visibility,
-			       COALESCE(rv.allowed, ARRAY[]::bigint[]) AS allowed
-			FROM routes r
-			LEFT JOIN LATERAL (
-				SELECT ARRAY_AGG(v.corp_id ORDER BY v.corp_id) AS allowed
-				FROM route_visibility v
-				WHERE v.route_id = r.id
-			) rv ON TRUE
-			WHERE r.visibility = 'all'
-			   OR (r.visibility = 'whitelist' AND EXISTS (
-					SELECT 1
-					FROM route_visibility v
-					WHERE v.route_id = r.id
-					  AND v.corp_id = (SELECT corp_id FROM users WHERE char_id = $1)
-			   ))
-			ORDER BY r.from_system, r.to_system`, *charID)
+		var list []structs.Route
+		for rows.Next() {
+			var it structs.Route
+			if err := rows.Scan(&it.ID, &it.From, &it.To, &it.PricePerM3, &it.NoCollateral, &it.Visibility); err != nil {
+				return nil, err
+			}
+			list = append(list, it)
+		}
+		return list, rows.Err()
 	}
+
+	// normale User (eingeloggt oder anonym)
+	if charID == nil {
+		rows, err := Pool.Query(ctx, `
+            SELECT r.id, r.from_system, r.to_system, r.price_per_m3, r.no_collateral, r.visibility
+            FROM routes r
+            WHERE r.visibility='all'
+            ORDER BY r.from_system, r.to_system`)
+		if err != nil {
+			return nil, err
+		}
+		defer rows.Close()
+
+		var list []structs.Route
+		for rows.Next() {
+			var it structs.Route
+			if err := rows.Scan(&it.ID, &it.From, &it.To, &it.PricePerM3, &it.NoCollateral, &it.Visibility); err != nil {
+				return nil, err
+			}
+			list = append(list, it)
+		}
+		return list, rows.Err()
+	}
+
+	rows, err := Pool.Query(ctx, `
+        SELECT DISTINCT r.id, r.from_system, r.to_system, r.price_per_m3, r.no_collateral, r.visibility
+        FROM routes r
+        JOIN users u ON u.char_id = $1
+        WHERE r.visibility='all'
+           OR (r.visibility='whitelist' AND EXISTS (
+                SELECT 1 FROM route_visibility rv WHERE rv.route_id=r.id AND rv.corp_id=u.corp_id
+              ))
+        ORDER BY r.from_system, r.to_system`, *charID)
 	if err != nil {
 		return nil, err
 	}
 	defer rows.Close()
 
-	var out []structs.Route
+	var list []structs.Route
 	for rows.Next() {
-		var rr structs.Route
-		if err := rows.Scan(&rr.ID, &rr.From, &rr.To, &rr.PricePerM3, &rr.NoCollateral, &rr.Visibility, &rr.AllowedCorpIDs); err != nil {
+		var it structs.Route
+		if err := rows.Scan(&it.ID, &it.From, &it.To, &it.PricePerM3, &it.NoCollateral, &it.Visibility); err != nil {
 			return nil, err
 		}
-		out = append(out, rr)
+		list = append(list, it)
 	}
-	return out, rows.Err()
+	return list, rows.Err()
 }
 
-// DeleteRoute löscht eine Route anhand ihrer ID
 func DeleteRoute(id string) error {
-	_, err := Pool.Exec(context.Background(), `
-		DELETE FROM routes WHERE id = $1
-	`, id)
+	_, err := Pool.Exec(context.Background(), `DELETE FROM routes WHERE id = $1`, id)
 	return err
 }

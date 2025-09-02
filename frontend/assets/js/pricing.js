@@ -4,7 +4,6 @@ export function renderPricing(routes) {
     pricingBox.innerHTML = `<h3>Pricing:</h3>`;
 
 
-    // Defensive Checks
     if (!Array.isArray(routes)) {
         console.warn("Expected array for routes, got:", routes);
         pricingBox.innerHTML = "<p style='color: red;'>Could not load pricing info.</p>";
