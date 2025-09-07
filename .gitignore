@@ -17,3 +17,11 @@ provi/
 package-lock.json
 package.json
 
+app.log
+build.bat
+cloudflared/14d56864-f637-4c46-b404-79f731cdd50b.json
+cloudflared/cert.pem
+cloudflared/14d56864-f637-4c46-b404-79f731cdd50b.json
+cloudflared/cert.pem
+cloudflared/config.yml
+cloudflared/config.yml
