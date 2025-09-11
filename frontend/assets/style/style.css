@@ -874,7 +874,7 @@ button.save:hover {
 }
 
 html, body {
-    min-height: 104vh;
+    min-height: 106vh;
 }
 
 :root[data-theme="marauders"] body {
