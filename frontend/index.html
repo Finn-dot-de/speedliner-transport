@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="marauders">
+
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -8,32 +9,30 @@
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <meta name="theme-color" content="#0a0b0c">
     <link rel="preconnect" href="https://images.evetech.net">
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
     <meta name="description"
           content="EVE Online transport price calculator for Marauders Logstic. Calculate the cost of shipping goods in EVE Online."/>
-    <meta name="keywords"
-          content="EVE Online, Transport, Speedliner, Price, Calculator, ISK, Volume, Route"/>
+    <meta name="keywords" content="EVE Online, Transport, Speedliner, Price, Calculator, ISK, Volume, Route"/>
     <meta name="author" content="Marauders Logstic"/>
     <meta property="og:title" content="EVE Transport Price Calculator"/>
-    <meta property="og:description"
-          content="Calculate transport costs for Marauders Logstic in EVE Online."/>
+    <meta property="og:description" content="Calculate transport costs for Marauders Logstic in EVE Online."/>
     <meta property="og:image" content="assets/banner.webp"/>
     <style>
-        html, body {
+        html,
+        body {
             margin: 0;
             height: 100%;
             overflow: hidden
         }
     </style>
 </head>
+
 <body>
 <div id="loginContainer" style="position: absolute; top: 20px; right: 20px;">
     <a id="loginButton" href="/app/login"
        style="background-color:#66fcf1;color:#000;padding:.5rem 1rem;border-radius:5px;text-decoration:none;font-weight:bold;transition:background-color .2s ease;"
-       onmouseover="this.style.backgroundColor='#45a29e'"
-       onmouseout="this.style.backgroundColor='#66fcf1'">
+       onmouseover="this.style.backgroundColor='#45a29e'" onmouseout="this.style.backgroundColor='#66fcf1'">
         <i class="fas fa-user"></i> Login with EVE
         <i id="arrow-down" class="fa-solid fa-arrow-down"></i>
     </a>
@@ -76,17 +75,37 @@
         <input type="text" id="collateral" placeholder="e.g. 8.000.000.000"/>
     </div>
 
+    <!-- Express (+100%) -->
+    <div class="form-row grid" id="expressRow">
+        <label class="toggle" for="express" style="margin-top:.25rem;">
+            <input type="checkbox" id="express"/>
+            <span class="slider" aria-hidden="true"></span>
+            <span class="toggle-text">
+      Express (+100% Reward)
+      <i
+              class="fa-solid fa-circle-question help-icon"
+              title="Express = priority processing. Reward is doubled (+100%)."
+              aria-label="Express: priority processing. Reward doubled (+100%)."
+              tabindex="0">
+      </i>
+    </span>
+        </label>
+    </div>
+
+
     <div class="result" id="result"></div>
 
-    <div style="margin-top:1.5rem; padding:1rem; background-color:#ff9800; color:#000; border-radius:6px; font-weight:bold; font-size:1.1rem; display:flex; align-items:center; gap:.5rem; justify-content:center; flex-wrap:wrap;">
+    <div
+            style="margin-top:1.5rem; padding:1rem; background-color:#ff9800; color:#000; border-radius:6px; font-weight:bold; font-size:1.1rem; display:flex; align-items:center; gap:.5rem; justify-content:center; flex-wrap:wrap;">
         Private contract to:
         <span id="contractName" style="font-style: italic">Marauders Logistic</span>
-        <i class="fas fa-copy" id="copyIcon" title="Copy name" onclick="copyContractName()" style="cursor:pointer;"></i>
+        <i class="fas fa-copy" id="copyIcon" title="Copy name" onclick="copyContractName()"
+           style="cursor:pointer;"></i>
     </div>
 
     <div style="margin-top:1rem; font-size:1rem; color:#c5c6c7">
         <p><strong>Expiration:</strong> 1 week</p>
-        <p><strong>Days to complete:</strong> 3</p>
+        <p><strong>Days to complete:</strong> <span id="daysToComplete">3</span></p>
     </div>
 
     <div id="pricingBox" class="pricing-box" style="margin-top:2rem;"></div>
@@ -98,4 +117,5 @@
 
 <script type="module" src="assets/js/index.js"></script>
 </body>
+
 </html>

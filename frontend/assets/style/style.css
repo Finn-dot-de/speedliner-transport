@@ -1508,3 +1508,50 @@ html, body { min-height: 104vh; }
 @media (max-width: 900px){
     :root[data-theme="marauders"] body{ background-position: center -24px; }
 }
+
+/* --- Inputs dezenter (Marauders) --- */
+:root[data-theme="marauders"] .calculator input,
+:root[data-theme="marauders"] .calculator select {
+    background: var(--field-bg);
+    color: var(--input-text);
+    border: 1px solid var(--field-border);
+}
+
+:root[data-theme="marauders"] .calculator input:hover,
+:root[data-theme="marauders"] .calculator select:hover {
+    background: var(--field-hover);
+    border-color: #5a3a1f;
+}
+
+:root[data-theme="marauders"] .calculator input:focus,
+:root[data-theme="marauders"] .calculator select:focus {
+    /* 👉 auf Fokus NICHT aufhellen */
+    background: var(--field-hover);
+    border-color: var(--brand);
+    box-shadow: 0 0 0 1px var(--brand), 0 0 0 6px var(--calc-glow);
+    outline: none;
+    caret-color: var(--input-text);
+}
+
+:root[data-theme="marauders"] .calculator input::placeholder {
+    color: #a8a29e;
+    opacity: .75;
+}
+
+/* --- Chrome/Edge Autofill-Hintergrund überschreiben --- */
+:root[data-theme="marauders"] input:-webkit-autofill,
+:root[data-theme="marauders"] input:-webkit-autofill:hover,
+:root[data-theme="marauders"] input:-webkit-autofill:focus,
+:root[data-theme="marauders"] select:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px var(--field-bg) inset !important;
+    -webkit-text-fill-color: var(--input-text) !important;
+    caret-color: var(--input-text);
+    transition: background-color 9999s ease-out 0s; /* verhindert weißes Flashen */
+}
+
+/* optional: disabled auch dunkler */
+:root[data-theme="marauders"] .calculator input:disabled {
+    background: #171614;
+    color: #9b928a;
+    opacity: 1;
+}
