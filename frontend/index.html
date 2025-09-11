@@ -1,24 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="marauders">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Speedliner Transport</title>
+    <title>Marauders Logstic</title>
     <link rel="stylesheet" href="assets/style/style.css"/>
-    <link rel="icon" type="image/png" href="assets/favicon.ico"/>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <meta name="theme-color" content="#0a0b0c">
     <link rel="preconnect" href="https://images.evetech.net">
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
     <meta name="description"
-          content="EVE Online transport price calculator for Speedliner Transport. Calculate the cost of shipping goods in EVE Online."/>
+          content="EVE Online transport price calculator for Marauders Logstic. Calculate the cost of shipping goods in EVE Online."/>
     <meta name="keywords"
           content="EVE Online, Transport, Speedliner, Price, Calculator, ISK, Volume, Route"/>
-    <meta name="author" content="Speedliner Transport"/>
+    <meta name="author" content="Marauders Logstic"/>
     <meta property="og:title" content="EVE Transport Price Calculator"/>
     <meta property="og:description"
-          content="Calculate transport costs for Speedliner Transport in EVE Online."/>
-    <meta property="og:image" content="assets/banner.png"/>
+          content="Calculate transport costs for Marauders Logstic in EVE Online."/>
+    <meta property="og:image" content="assets/banner.webp"/>
+    <style>
+        html, body {
+            margin: 0;
+            height: 100%;
+            overflow: hidden
+        }
+    </style>
 </head>
 <body>
 <div id="loginContainer" style="position: absolute; top: 20px; right: 20px;">
@@ -31,8 +39,8 @@
     </a>
 </div>
 
-<div style="text-align:center; margin-bottom:2rem; margin-top:-30px;">
-    <img src="assets/banner.webp" alt="Speedliner Transport Banner"
+<div style="text-align:center; margin-bottom:2rem;">
+    <img src="assets/banner.webp" alt="Marauders Logstic Banner"
          style="width:100%; max-width:800px; height:auto; box-shadow:0 0 20px rgba(102,252,241,.3); border-radius:12px;"/>
 </div>
 
@@ -72,7 +80,7 @@
 
     <div style="margin-top:1.5rem; padding:1rem; background-color:#ff9800; color:#000; border-radius:6px; font-weight:bold; font-size:1.1rem; display:flex; align-items:center; gap:.5rem; justify-content:center; flex-wrap:wrap;">
         Private contract to:
-        <span id="contractName" style="font-style: italic">Philippe Rochard</span>
+        <span id="contractName" style="font-style: italic">Marauders Logistic</span>
         <i class="fas fa-copy" id="copyIcon" title="Copy name" onclick="copyContractName()" style="cursor:pointer;"></i>
     </div>
 
@@ -84,8 +92,8 @@
     <div id="pricingBox" class="pricing-box" style="margin-top:2rem;"></div>
 </div>
 
-<footer style="margin-top:25px; color:#777; font-size:.9rem">
-    &copy; 2025 Speedliner Transport – Prices are estimates. Fly safe! o7
+<footer style="margin-top:30px; color:#777; font-size:.9rem">
+    &copy; 2025 Marauders Logstic – Prices are estimates. Fly safe! o7
 </footer>
 
 <script type="module" src="assets/js/index.js"></script>

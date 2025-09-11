@@ -62,7 +62,7 @@ export async function loadUser() {
         });
 
     } catch (err) {
-        console.log("User not logged in:", err.message);
+        console.log("", err.message);
     }
 }
 

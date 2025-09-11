@@ -1,49 +1,49 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en" data-theme="marauders">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>User Admin</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>User Admin</title>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <meta name="theme-color" content="#0a0b0c">
+    <link rel="stylesheet" href="assets/style/style.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <meta name="description" content="User management for Marauders Logstic"/>
+    <meta name="keywords" content="EVE Online, Speedliner, Transport, User Management"/>
+    <meta name="author" content="Marauders Logstic"/>
+    <meta property="og:title" content="Marauders Logstic User Management"/>
+    <meta property="og:description" content="Manage users and their roles for Marauders Logstic in EVE Online."/>
+    <meta property="og:image" content="assets/banner.png"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:site_name" content="Marauders Logstic"/>
 
-  <link rel="icon" href="assets/favicon.ico" />
-  <link rel="stylesheet" href="assets/style/style.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <meta name="description" content="User management for Speedliner Transport" />
-  <meta name="keywords" content="EVE Online, Speedliner, Transport, User Management" />
-  <meta name="author" content="Speedliner Transport" />
-  <meta property="og:title" content="Speedliner Transport User Management" />
-  <meta property="og:description" content="Manage users and their roles for Speedliner Transport in EVE Online." />
-  <meta property="og:image" content="assets/banner.png" />
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Speedliner Transport" />
+    <meta name="robots" content="noindex, nofollow">
 
-  <meta name="robots" content="noindex, nofollow">
+    <script type="module" src="assets/js/usermanager.js"></script>
 
-  <script type="module" src="assets/js/usermanager.js"></script>
-
-  </script>
+    </script>
 </head>
 
 <body>
-  <a class="home-link" href="/" title="Zur Startseite">
+<a class="home-link" href="/" title="Zur Startseite">
     <i class="fa fa-home"></i> Startseite
-  </a>
+</a>
 
-  <h1>User-Verwaltung</h1>
-  <p class="sub">Nur Admins. Rollen der Benutzer ändern.</p>
+<h1>User-Verwaltung</h1>
+<p class="sub">Nur Admins. Rollen der Benutzer ändern.</p>
 
-  <table id="userTable" class="admin">
+<table id="userTable" class="admin">
     <thead>
-      <tr>
+    <tr>
         <th>Portrait</th>
         <th>Name</th>
         <th>Rolle</th>
         <th>Aktion</th>
-      </tr>
+    </tr>
     </thead>
     <tbody></tbody>
-  </table>
+</table>
 </body>
 
 </html>

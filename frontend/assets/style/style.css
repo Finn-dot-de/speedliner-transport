@@ -370,7 +370,6 @@ button.save:hover {
     color: #fff
 }
 
-/* ==== User Menu (restore look) ==== */
 .user-menu {
     position: relative;
     display: inline-block
@@ -443,9 +442,6 @@ button.save:hover {
     transform: rotate(180deg)
 }
 
-/* ===========================
-   Dark Select (Calculator only)
-   =========================== */
 .calculator .select-wrap {
     position: relative
 }
@@ -480,7 +476,6 @@ button.save:hover {
     cursor: not-allowed
 }
 
-/* eigener Pfeil */
 .calculator .select-wrap::after {
     content: "";
     position: absolute;
@@ -496,7 +491,6 @@ button.save:hover {
     filter: drop-shadow(0 0 4px rgba(102, 252, 241, .25));
 }
 
-/* native Dropdown-Liste abdunkeln */
 .calculator .select-wrap select option {
     background: #0f171f;
     color: #e6f1ff;
@@ -508,7 +502,6 @@ button.save:hover {
     color: var(--brand);
 }
 
-/* Fallback, falls mal kein Wrapper vorhanden ist */
 .calculator select#route {
     appearance: none;
     -webkit-appearance: none;
@@ -519,7 +512,6 @@ button.save:hover {
     border-radius: 8px;
 }
 
-/* Guards: Controls nicht größer als Card */
 .calculator input,
 .calculator select,
 .calculator .select-wrap {
@@ -630,7 +622,6 @@ button.save:hover {
     font-size: .9rem
 }
 
-/* ========= Route-Form: dunkle Inputs + Card-Polish ========= */
 #routeFormContainer {
     background: var(--panel);
     border: 1px solid var(--border);
@@ -639,7 +630,6 @@ button.save:hover {
     padding: 1.25rem;
 }
 
-/* Nur im Routen-Form dunkle Felder – überschreibt das globale input/select */
 #routeFormContainer input[type="text"],
 #routeFormContainer input[type="number"],
 #routeFormContainer select {
@@ -658,12 +648,10 @@ button.save:hover {
     outline: none;
 }
 
-/* Save-Button nur im Formular vollbreit – nicht global */
 #routeFormContainer button[type="submit"] {
     width: 100%;
 }
 
-/* ========= Tabelle: Icon-Buttons kompakt machen ========= */
 #routeTable button {
     width: auto;
     margin: 0 0 0 .35rem;
@@ -686,7 +674,6 @@ button.save:hover {
     transform: translateY(-1px);
 }
 
-/* Kleine Badge, die du im Table nutzt */
 .badge {
     display: inline-block;
     margin-right: .5rem;
@@ -698,14 +685,12 @@ button.save:hover {
     background: rgba(102, 252, 241, .08);
 }
 
-/* ========= Whitelist-UI: Dropdown sauber unter Input ========= */
 .whitelist-wrap {
     position: relative;
 }
 
-/* Container referenzieren */
 .dropdown {
-    position: absolute; /* floatet unter dem Input */
+    position: absolute;
     left: 0;
     right: 0;
     top: calc(100% + 6px);
@@ -732,7 +717,6 @@ button.save:hover {
     background: #1a222c;
 }
 
-/* Tags/Chips */
 .tags {
     display: flex;
     gap: .5rem;
@@ -766,7 +750,6 @@ button.save:hover {
     color: #fff;
 }
 
-/* Chips/Tags mit Avatar */
 .tag-corp {
     display: flex;
     align-items: center;
@@ -817,7 +800,6 @@ button.save:hover {
     color: #fff;
 }
 
-/* Dropdown-Einträge mit Icon */
 .dropdown .item {
     display: flex;
     align-items: center;
@@ -837,23 +819,692 @@ button.save:hover {
     text-overflow: ellipsis;
 }
 
-.route-meta { margin:.35rem 0 .5rem; display:flex; gap:.5rem; align-items:center; }
+.route-meta {
+    margin: .35rem 0 .5rem;
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+}
+
 .badge-corp {
-    background: rgba(102,252,241,.10);
+    background: rgba(102, 252, 241, .10);
     border: 1px solid var(--brand-2);
     color: var(--brand);
     padding: .2rem .55rem;
     border-radius: 999px;
     font-weight: 700;
     font-size: .9rem;
-    display:inline-flex; gap:.35rem; align-items:center;
+    display: inline-flex;
+    gap: .35rem;
+    align-items: center;
 }
+
 .badge-nocoll {
-    background: rgba(255,152,0,.12);
+    background: rgba(255, 152, 0, .12);
     border: 1px solid #ff9800;
     color: #ffcc80;
     padding: .2rem .55rem;
     border-radius: 999px;
     font-weight: 700;
     font-size: .9rem;
+}
+
+/* ===========================
+   MARAUDERS THEME
+   =========================== */
+:root[data-theme="marauders"] {
+    --bg: #0a0b0c;
+    --panel: #171a1d;
+    --panel-2: #121416;
+    --text: #e2e2e2;
+    --muted: #b2b2b2;
+
+    --brand: #C8701A;
+    --brand-2: #8F4E10;
+    --brand-3: #F0A354;
+    --accent-bone: #E8D9C6;
+
+    --danger: #d9534f;
+    --border: #3a2b1d;
+    --table-even: #14171a;
+    --table-hover: #1f2327;
+
+    --input-bg: #222528;
+    --input-text: #f5f5f5;
+}
+
+html, body { min-height: 104vh; }
+
+:root[data-theme="marauders"] body{
+    background-color: var(--bg);
+
+
+    background-image:
+            linear-gradient(180deg, rgba(0,0,0,.65), rgba(0,0,0,.85)),
+            url("../background.webp");
+
+
+    background-repeat: no-repeat, no-repeat;
+    background-position: center 0, center top;
+    background-size: 100% 100%, cover;
+       background-attachment: scroll, scroll;
+}
+
+:root[data-theme="marauders"] h1 {
+    color: var(--brand-3);
+}
+
+:root[data-theme="marauders"] button {
+    background: linear-gradient(180deg, var(--brand) 0%, var(--brand-2) 100%);
+    color: #0d0d0d;
+    border: 1px solid #6e3b0c;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, .4), inset 0 1px 0 rgba(255, 255, 255, .06);
+}
+
+:root[data-theme="marauders"] button:hover {
+    filter: brightness(1.08);
+}
+
+:root[data-theme="marauders"] #loginButton {
+    background: var(--brand) !important;
+    color: #0d0d0d !important;
+    border-radius: 6px;
+    font-weight: 700;
+}
+
+:root[data-theme="marauders"] #loginButton:hover {
+    filter: brightness(1.08);
+}
+
+:root[data-theme="marauders"] .calculator {
+    box-shadow: 0 0 15px rgba(200, 112, 26, .18);
+}
+
+:root[data-theme="marauders"] .pricing-box,
+:root[data-theme="marauders"] .calculator .info-box {
+    background: linear-gradient(180deg, #8F4E10, #6E3B0C);
+    border: 1px solid #4d2b07;
+    color: var(--accent-bone);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, .45), inset 0 1px 0 rgba(255, 255, 255, .05);
+}
+
+:root[data-theme="marauders"] .pricing-box h3,
+:root[data-theme="marauders"] .calculator .info-box h3 {
+    color: #FFD59A;
+}
+
+:root[data-theme="marauders"] input,
+:root[data-theme="marauders"] select {
+    background: var(--input-bg);
+    color: var(--input-text);
+}
+
+:root[data-theme="marauders"] input:focus,
+:root[data-theme="marauders"] select:focus {
+    border-color: var(--brand);
+    box-shadow: 0 0 0 1px var(--brand), 0 0 0 6px rgba(200, 112, 26, .18);
+}
+
+:root[data-theme="marauders"] .calculator .select-wrap select {
+    background: #151b20;
+    color: var(--accent-bone);
+    border: 1px solid var(--border);
+}
+
+:root[data-theme="marauders"] .calculator .select-wrap::after {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23C8701A' d='M7 10l5 5 5-5z'/></svg>");
+    filter: drop-shadow(0 0 4px rgba(200, 112, 26, .25));
+}
+
+:root[data-theme="marauders"] table.admin th {
+    background: #1a1714;
+    color: #d2c7bb;
+}
+
+:root[data-theme="marauders"] tbody tr:nth-child(even) {
+    background: var(--table-even);
+}
+
+:root[data-theme="marauders"] tbody tr:hover {
+    background: var(--table-hover);
+}
+
+:root[data-theme="marauders"] .home-link {
+    background: #2a1d12;
+    border: 1px solid #6e3b0c;
+}
+
+:root[data-theme="marauders"] .home-link:hover {
+    background: #342316;
+    color: var(--brand-3);
+}
+
+:root[data-theme="marauders"] img[alt*="Banner"] {
+    box-shadow: 0 0 20px rgba(200, 112, 26, .30) !important;
+}
+
+:root[data-theme="marauders"] .calculator {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .45), 0 0 18px rgba(200, 112, 26, .12);
+}
+
+:root[data-theme="marauders"] .calculator label {
+    color: var(--accent-bone);
+    font-weight: 700;
+}
+
+:root[data-theme="marauders"] .calculator input,
+:root[data-theme="marauders"] .calculator select {
+    background: #1a1d20;
+    color: var(--input-text);
+    border: 1px solid #342517;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+:root[data-theme="marauders"] .calculator input::placeholder {
+    color: #a9a9a9;
+    opacity: .75;
+}
+
+:root[data-theme="marauders"] .calculator input:focus,
+:root[data-theme="marauders"] .calculator select:focus {
+    border-color: var(--brand);
+    box-shadow: 0 0 0 1px var(--brand), 0 0 0 6px rgba(200, 112, 26, .18);
+}
+
+:root[data-theme="marauders"] .calculator .select-wrap select {
+    background: #151b20;
+    color: var(--accent-bone);
+    border: 1px solid var(--border);
+}
+
+:root[data-theme="marauders"] .calculator .select-wrap::after {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23C8701A' d='M7 10l5 5 5-5z'/></svg>");
+    filter: drop-shadow(0 0 4px rgba(200, 112, 26, .25));
+}
+
+:root[data-theme="marauders"] .help-icon {
+    margin-left: 6px;
+    cursor: help;
+    color: var(--brand-3);
+    filter: drop-shadow(0 0 4px rgba(200, 112, 26, .28));
+}
+
+:root[data-theme="marauders"] .contract-banner {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    border-radius: 10px;
+    font-weight: 800;
+    letter-spacing: .2px;
+    color: #0d0d0d;
+    background: linear-gradient(180deg, var(--brand) 0%, var(--brand-2) 100%);
+    border: 1px solid #6e3b0c;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, .35), inset 0 1px 0 rgba(255, 255, 255, .06);
+}
+
+:root[data-theme="marauders"] .contract-name {
+    font-style: italic;
+}
+
+:root[data-theme="marauders"] .copy-icon {
+    cursor: pointer;
+    opacity: .9;
+}
+
+:root[data-theme="marauders"] .copy-icon:hover {
+    opacity: 1;
+    filter: drop-shadow(0 0 6px rgba(200, 112, 26, .35));
+}
+
+:root[data-theme="marauders"] .pricing-box {
+    background: linear-gradient(180deg, #92562c, #6E3B0C);
+    border: 1px solid #4d2b07;
+    color: var(--accent-bone);
+}
+
+:root[data-theme="marauders"] .pricing-box h3 {
+    color: #FFD59A;
+}
+
+:root[data-theme="marauders"] .pricing-item strong {
+    color: var(--accent-bone);
+}
+
+:root[data-theme="marauders"] .badge-corp {
+    background: rgba(200, 112, 26, .10);
+    border: 1px solid var(--brand-2);
+    color: var(--brand-3);
+}
+
+:root[data-theme="marauders"] .badge-nocoll {
+    background: rgba(255, 184, 77, .12);
+    border: 1px solid #C8701A;
+    color: #FFD59A;
+}
+
+:root[data-theme="marauders"] .result {
+    margin-top: 1rem;
+    padding: .75rem 1rem;
+    background: #121416;
+    color: var(--accent-bone);
+    border: 1px solid #3a2b1d;
+    border-left: 6px solid var(--brand);
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1.05rem;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, .35);
+}
+
+.result {
+    display: none;
+}
+
+.result.is-visible {
+    display: block;
+}
+
+
+:root[data-theme="marauders"] .result .value {
+    color: var(--brand-3);
+    font-weight: 600;
+}
+
+:root[data-theme="marauders"] .result strong {
+    color: inherit;
+}
+
+.result.error {
+    border-left-color: #d9534f;
+    background: #1b1212;
+    color: #ffdede;
+}
+
+:root[data-theme="marauders"] .calculator{
+    box-shadow: 0 10px 30px rgba(0,0,0,.5);
+    border: 1px solid var(--border);
+}
+
+:root[data-theme="marauders"] .calculator input,
+:root[data-theme="marauders"] .calculator select{
+    background: #1a1d20;
+    color: var(--input-text);
+    border: 1px solid #342517;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+:root[data-theme="marauders"] .calculator input::placeholder{
+    color:#a9a9a9; opacity:.75;
+}
+
+:root[data-theme="marauders"] .calculator input:focus,
+:root[data-theme="marauders"] .calculator select:focus{
+    border-color: var(--brand);
+    box-shadow: 0 0 0 1px var(--brand), 0 0 0 6px rgba(200,112,26,.18);
+}
+
+:root[data-theme="marauders"] .calculator .select-wrap select{
+    background: #171a1c;
+    color: var(--accent-bone);
+    border: 1px solid var(--border);
+}
+
+:root[data-theme="marauders"] .calculator .fa-circle-info{
+    color: var(--brand-3) !important;
+    filter: drop-shadow(0 0 4px rgba(200,112,26,.28));
+}
+
+:root[data-theme="marauders"] .pricing-box{
+    /* deutlich dunkler, weniger Sättigung */
+    background: linear-gradient(180deg, #2b1b10, #20140c) !important;
+    border: 1px solid #3f2715 !important;
+    color: #e8dccb;
+    box-shadow: 0 10px 24px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.03);
+}
+
+:root[data-theme="marauders"] .pricing-box h3{
+    color:#f0c892;
+}
+
+:root[data-theme="marauders"] .pricing-item strong{
+    color:#f3e6d5;
+}
+
+:root[data-theme="marauders"] .badge-corp{
+    background: rgba(200,112,26,.09);
+    border: 1px solid #6e3b0c;
+    color: #f0c892;
+}
+:root[data-theme="marauders"] .badge-nocoll{
+    background: rgba(255,184,77,.12);
+    border: 1px solid #C8701A;
+    color: #FFD59A;
+}
+
+:root[data-theme="marauders"] .result.is-visible{
+    background:#121416;
+    border:1px solid #3a2b1d;
+    border-left:6px solid var(--brand);
+    color:var(--accent-bone);
+}
+
+:root[data-theme="marauders"]{
+    --calc-bg:      #141312;
+    --calc-bg-2:    #1b1a18;
+    --calc-border:  #3a2b1d;
+    --calc-glow:    rgba(200,112,26,.12);
+
+    --field-bg:     #191714;
+    --field-hover:  #1f1c18;
+    --field-border: #3a2b1d;
+}
+
+:root[data-theme="marauders"] .calculator{
+    background:
+            radial-gradient(120% 80% at 50% 0, rgba(200,112,26,.06), rgba(0,0,0,0) 60%),
+            var(--calc-bg);
+    border: 1px solid var(--calc-border);
+    border-radius: 16px;
+    box-shadow: 0 18px 50px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.03);
+}
+
+:root[data-theme="marauders"] .calculator label{
+    color: var(--accent-bone);
+    font-weight: 700;
+}
+
+:root[data-theme="marauders"] .calculator input,
+:root[data-theme="marauders"] .calculator select{
+    background: var(--field-bg);
+    color: var(--input-text);
+    border: 1px solid var(--field-border);
+    border-radius: 10px;
+    font-weight: 600;
+}
+:root[data-theme="marauders"] .calculator input:hover,
+:root[data-theme="marauders"] .calculator select:hover{
+    background: var(--field-hover);
+    border-color: #5a3a1f;
+}
+:root[data-theme="marauders"] .calculator input::placeholder{
+    color:#a8a29e; opacity:.75;
+}
+
+:root[data-theme="marauders"] .calculator input:focus,
+:root[data-theme="marauders"] .calculator select:focus{
+    border-color: var(--brand);
+    box-shadow: 0 0 0 1px var(--brand), 0 0 0 6px var(--calc-glow);
+}
+
+:root[data-theme="marauders"] .calculator .select-wrap select{
+    background:#171614;
+    color: var(--accent-bone);
+    border: 1px solid var(--field-border);
+}
+:root[data-theme="marauders"] .calculator .select-wrap::after{
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23C8701A' d='M7 10l5 5 5-5z'/></svg>");
+    filter: drop-shadow(0 0 4px rgba(200,112,26,.28));
+}
+
+:root[data-theme="marauders"] .calculator .fa-circle-info{
+    color: var(--brand-3) !important;
+    filter: drop-shadow(0 0 4px rgba(200,112,26,.28));
+}
+
+.select-wrap { position: relative; }
+
+.select-wrap select.is-hidden {
+    position:absolute; inset:0; width:100%; height:100%;
+    opacity:0; pointer-events:none;
+}
+
+.mr-select-trigger{
+    width:100%; text-align:left;
+    padding:.65rem .9rem;
+    background:#171614;
+    color:var(--accent-bone);
+    border:1px solid var(--field-border, #3a2b1d);
+    border-radius:10px;
+    font-weight:600;
+    cursor:pointer;
+    display:flex; align-items:center; justify-content:space-between; gap:.75rem;
+}
+.mr-select-trigger:hover{ background:#1f1c18; border-color:#5a3a1f; }
+.mr-select-trigger:focus-visible{
+    outline:none;
+    box-shadow:0 0 0 1px var(--brand), 0 0 0 6px rgba(200,112,26,.18);
+    border-color:var(--brand);
+}
+
+.mr-select-trigger::after{
+    content:"";
+    width:12px; height:12px; flex:0 0 12px;
+    filter: drop-shadow(0 0 4px rgba(200,112,26,.28));
+    background: no-repeat center/100%
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23C8701A' d='M7 10l5 5 5-5z'/></svg>");
+    transition:transform .18s ease;
+}
+.mr-select-trigger[aria-expanded="true"]::after{ transform:rotate(180deg); }
+
+.mr-select-list{
+    position:absolute; left:0; right:0; top:calc(100% + 6px);
+    background:#121110;
+    border:1px solid #3a2b1d;
+    border-radius:10px;
+    box-shadow:0 16px 32px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.03);
+    max-height:260px; overflow:auto; z-index:1000;
+    padding:.35rem; display:none;
+}
+.mr-select-list.open{ display:block; }
+
+.mr-option{
+    padding:.55rem .65rem; border-radius:8px;
+    color:var(--accent-bone); cursor:pointer;
+    display:flex; align-items:center; gap:.5rem;
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+.mr-option:hover{ background:#1c1814; }
+.mr-option.is-selected{ background:#2a1d12; color:#FFD59A; }
+.mr-option.is-disabled{ opacity:.5; cursor:not-allowed; }
+
+.mr-option .badge-corp{
+    background:rgba(200,112,26,.09); border:1px solid #6e3b0c; color:#f0c892;
+    padding:.1rem .4rem; border-radius:999px; font-size:.85em;
+}
+.mr-option .badge-nocoll{
+    background:rgba(255,184,77,.12); border:1px solid #C8701A; color:#FFD59A;
+    padding:.1rem .4rem; border-radius:999px; font-size:.85em;
+}
+
+:root[data-theme="marauders"] .mr-select-trigger{
+    width: 100% !important;
+    margin-top: 0 !important;
+    padding: .65rem .9rem !important;
+    font: inherit !important;
+    font-weight: 600 !important;
+    line-height: 1.2 !important;
+
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    gap: .75rem;
+    background: #181716 !important;
+    color: var(--accent-bone) !important;
+    border: 1px solid var(--field-border, #3a2b1d) !important;
+    border-radius: 10px !important;
+    box-shadow: none !important;
+    cursor: pointer;
+    transition: background .15s ease, border-color .15s ease, box-shadow .15s ease;
+}
+:root[data-theme="marauders"] .mr-select-trigger:hover{
+    background: #1f1e1c !important;
+    border-color: #5a3a1f !important;
+}
+:root[data-theme="marauders"] .mr-select-trigger:active{
+    transform: none !important;
+}
+:root[data-theme="marauders"] .mr-select-trigger:focus-visible{
+    outline: none !important;
+    border-color: var(--brand) !important;
+    box-shadow: 0 0 0 1px var(--brand), 0 0 0 6px rgba(200,112,26,.18) !important;
+}
+
+:root[data-theme="marauders"] .mr-select-trigger::after{
+    content:"";
+    width:12px; height:12px; flex:0 0 12px;
+    background: no-repeat center/100%
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23C8701A' d='M7 10l5 5 5-5z'/></svg>");
+    filter: drop-shadow(0 0 4px rgba(200,112,26,.25));
+    transition: transform .18s ease;
+}
+:root[data-theme="marauders"] .mr-select-trigger[aria-expanded="true"]::after{
+    transform: rotate(180deg);
+}
+
+:root[data-theme="marauders"] .mr-select-list{
+    background: #121110;
+    border: 1px solid #3a2b1d;
+    border-radius: 10px;
+    box-shadow: 0 16px 32px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.03);
+    padding: .35rem;
+}
+:root[data-theme="marauders"] .mr-option{
+    padding: .55rem .7rem;
+    border-radius: 8px;
+    color: var(--accent-bone);
+}
+:root[data-theme="marauders"] .mr-option:hover{
+    background: #1a1815;
+}
+:root[data-theme="marauders"] .mr-option.is-selected{
+    background: #241c16;
+    outline: 1px solid #4a311c;
+    color: #f0c892;
+}
+
+:root[data-theme="marauders"] .mr-option .badge-corp{
+    background: rgba(200,112,26,.10);
+    border: 1px solid #6e3b0c;
+    color: #f0c892;
+    padding: .1rem .45rem;
+    border-radius: 999px;
+    font-size: .85em;
+}
+:root[data-theme="marauders"] .mr-option .badge-nocoll{
+    background: rgba(255,184,77,.12);
+    border: 1px solid #C8701A;
+    color: #FFD59A;
+    padding: .1rem .45rem;
+    border-radius: 999px;
+    font-size: .85em;
+}
+
+
+:root[data-theme="marauders"] .mr-select-list{
+    top: calc(100% + 2px);
+    min-width: 100%;
+    margin: 0;
+}
+
+:root[data-theme="marauders"] .mr-select-trigger{
+    justify-content: space-between;
+}
+:root[data-theme="marauders"] .mr-trigger-left{
+    display:flex; align-items:center; gap:.5rem; min-width:0;
+}
+:root[data-theme="marauders"] .mr-label{
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+:root[data-theme="marauders"] .mr-flags{
+    display:inline-flex; gap:.35rem; flex:0 0 auto;
+}
+
+:root[data-theme="marauders"] .mr-flags .badge-corp,
+:root[data-theme="marauders"] .mr-option .badge-corp{
+    background:rgba(200,112,26,.10); border:1px solid #6e3b0c; color:#f0c892;
+    padding:.1rem .45rem; border-radius:999px; font-size:.85em;
+}
+:root[data-theme="marauders"] .mr-flags .badge-nocoll,
+:root[data-theme="marauders"] .mr-option .badge-nocoll{
+    background:rgba(255,184,77,.12); border:1px solid #C8701A; color:#FFD59A;
+    padding:.1rem .45rem; border-radius:999px; font-size:.85em;
+}
+
+:root[data-theme="marauders"] .user-menu-toggle{
+    background:#181716;                     /* warm, kein Blau */
+    color:var(--accent-bone);
+    border:1px solid #3a2b1d;
+    border-radius:14px;
+    padding:.6rem 1rem;
+    gap:.75rem;
+    box-shadow:0 12px 28px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.03);
+}
+:root[data-theme="marauders"] .user-menu-toggle:hover{
+    background:#1f1e1c;
+    border-color:#5a3a1f;
+}
+
+:root[data-theme="marauders"] .user-avatar{
+    box-shadow:0 0 0 2px #2a1d12, 0 0 0 3px #3a2b1d;
+}
+
+:root[data-theme="marauders"] .user-name{
+    color:var(--accent-bone);
+    font-weight:800;
+    letter-spacing:.2px;
+}
+:root[data-theme="marauders"] .user-menu-toggle:hover .user-name{
+    color:var(--brand-3);
+}
+
+:root[data-theme="marauders"] .user-menu-toggle .fa-chevron-down{
+    color:var(--brand-3);
+    transition:transform .18s ease, color .15s ease;
+}
+:root[data-theme="marauders"] .user-dropdown.open ~ .user-menu-toggle .fa-chevron-down,
+:root[data-theme="marauders"] .user-menu.open .fa-chevron-down{
+    transform:rotate(180deg);
+}
+
+:root[data-theme="marauders"] .user-dropdown{
+    background:#121110;
+    border:1px solid #3a2b1d;
+    border-radius:12px;
+    padding:.5rem;
+    min-width:240px;
+    box-shadow:0 18px 40px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.03);
+}
+
+:root[data-theme="marauders"] .user-dropdown a,
+:root[data-theme="marauders"] .user-dropdown a:visited{
+    color:var(--accent-bone);
+    padding:.45rem .6rem;
+    border-radius:8px;
+    display:flex; align-items:center; gap:.5rem;
+}
+:root[data-theme="marauders"] .user-dropdown a:hover,
+:root[data-theme="marauders"] .user-dropdown a:focus-visible{
+    background:#1a1815;
+    color:#f0c892;
+    outline:none;
+}
+
+@media (max-width:640px){
+    :root[data-theme="marauders"] .user-menu-toggle{ padding:.5rem .75rem; }
+    :root[data-theme="marauders"] .user-name{ font-size:.95rem; }
+}
+
+:root[data-theme="marauders"] body{
+    background-position: center -48px;
+}
+@media (max-width: 900px){
+    :root[data-theme="marauders"] body{ background-position: center -24px; }
 }
