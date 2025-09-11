@@ -18,3 +18,8 @@ copy /Y users.html  ..\dist\
 :: JS nach assets kopieren
 robocopy js ..\dist\assets /E
 robocopy assets\style ..\dist\assets /E
+
+
+DB=speedliner
+docker exec -it 7044c01a28a3 psql -U speedliner -d "$DB" -c \
+"DROP SCHEMA public CASCADE; CREATE SCHEMA public; ALTER SCHEMA public OWNER TO speedliner; GRANT ALL ON SCHEMA public TO speedliner; GRANT ALL ON SCHEMA public TO public;"
