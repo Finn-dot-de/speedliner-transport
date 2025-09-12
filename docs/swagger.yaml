@@ -1,14 +1,53 @@
 basePath: /
 definitions:
+  structs.MailRecipient:
+    properties:
+      id:
+        example: 1234546456
+        type: integer
+      type:
+        enum:
+        - character
+        - corporation
+        - alliance
+        - mailing_list
+        example: character
+        type: string
+    type: object
   structs.Route:
     properties:
+      allowedCorps:
+        items:
+          type: integer
+        type: array
       from:
         type: string
       id:
         type: string
+      noCollateral:
+        type: boolean
       pricePerM3:
-        type: integer
+        type: number
       to:
+        type: string
+      visibility:
+        description: '"all" | "whitelist"'
+        type: string
+    type: object
+  structs.SendMailRequest:
+    properties:
+      autoApproveCspa:
+        example: false
+        type: boolean
+      body:
+        example: Hello World
+        type: string
+      recipients:
+        items:
+          $ref: '#/definitions/structs.MailRecipient'
+        type: array
+      subject:
+        example: Test
         type: string
     type: object
   structs.UpdateRoleReq:
@@ -91,6 +130,44 @@ paths:
       summary: Logout
       tags:
       - Auth
+  /app/mail:
+    post:
+      consumes:
+      - application/json
+      description: Sendet eine EVE-Mail über ESI (/characters/{character_id}/mail/).
+        Es wird **keine** CSPA-Berechnung durchgeführt; `approved_cost` wird als 0
+        gesendet.
+      parameters:
+      - description: Mail-Daten
+        in: body
+        name: mail
+        required: true
+        schema:
+          $ref: '#/definitions/structs.SendMailRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: mail_id
+          schema:
+            additionalProperties:
+              type: integer
+            type: object
+        "400":
+          description: Invalid JSON / Validation error
+          schema:
+            type: string
+        "401":
+          description: Unauthorized
+          schema:
+            type: string
+        "502":
+          description: ESI error
+          schema:
+            type: string
+      summary: EVE-Mail senden (ohne CSPA)
+      tags:
+      - Mail
   /app/me:
     get:
       description: Gibt Charakter-ID und Name zurück (aus Cookie)

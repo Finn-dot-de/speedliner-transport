@@ -1,14 +1,18 @@
 package handler
 
 import (
+	"bytes"
 	"context"
 	"encoding/json"
+	"fmt"
+	"io"
 	"log"
 	"net/http"
 	db2 "speedliner-server/src/db"
 	"speedliner-server/src/middleware"
 	"speedliner-server/src/utils/esi"
 	"strconv"
+	"strings"
 	"time"
 
 	"speedliner-server/src/utils/esiauth"
@@ -31,6 +35,7 @@ func DefineApiRoutes(r chi.Router) {
 	r.With(middleware.RoleMiddleware("admin")).Get("/users", ListUsersHandler)
 	r.With(middleware.RoleMiddleware("admin")).Put("/users/{charID}/role", UpdateUserRoleHandler)
 	r.With(middleware.RoleMiddleware("admin", "provider")).Get("/corps", ListCorpsHandler)
+	r.Post("/mail", SendMailHandler)
 }
 
 // PingHandler godoc
@@ -361,4 +366,95 @@ func ListCorpsHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	w.Header().Set("Content-Type", "application/json")
 	_ = json.NewEncoder(w).Encode(items)
+}
+
+// SendMailHandler godoc
+// @Summary      EVE-Mail senden (ohne CSPA)
+// @Description  Sendet eine EVE-Mail über ESI. Empfänger nutzt kein CSPA, daher wird `approved_cost` immer 0 gesendet.
+// @Tags         Mail
+// @Accept       json
+// @Produce      json
+// @Param        mail body structs.SendMailRequest true "Mail-Daten" example({"subject":"Test","body":"Hello World","recipients":[{"id":2118431553,"type":"character"}]})
+// @Success      201 {object} handler.MailIDResponse
+// @Failure      400 {object} handler.ErrorResponse
+// @Failure      401 {object} handler.ErrorResponse
+// @Failure      502 {object} handler.ErrorResponse
+// @Router       /app/mail [post]
+func SendMailHandler(w http.ResponseWriter, r *http.Request) {
+	c, err := r.Cookie("char")
+	if err != nil || c.Value == "" {
+		http.Error(w, "Not logged in", http.StatusUnauthorized)
+		return
+	}
+
+	token, ok := esiauth.LoadToken(c.Value)
+	if !ok {
+		http.Error(w, "No token for user", http.StatusUnauthorized)
+		return
+	}
+	httpClient := esiauth.GetOAuthConfig().Client(context.Background(), token)
+
+	// Request einlesen (du hast die Structs ja schon)
+	var req structs.SendMailRequest
+	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
+		http.Error(w, "Invalid JSON: "+err.Error(), http.StatusBadRequest)
+		return
+	}
+	if req.Subject == "" || req.Body == "" || len(req.Recipients) == 0 {
+		http.Error(w, "subject, body, recipients required", http.StatusBadRequest)
+		return
+	}
+
+	// Empfänger in ESI-Format bringen + minimal prüfen
+	allowed := map[string]bool{"character": true, "corporation": true, "alliance": true, "mailing_list": true}
+	recipients := make([]map[string]interface{}, 0, len(req.Recipients))
+	for _, rcpt := range req.Recipients {
+		if rcpt.ID <= 0 || !allowed[rcpt.Type] {
+			http.Error(w, "invalid recipient entry", http.StatusBadRequest)
+			return
+		}
+		recipients = append(recipients, map[string]interface{}{
+			"recipient_id":   rcpt.ID,
+			"recipient_type": rcpt.Type,
+		})
+	}
+
+	// ESI-Aufruf (approved_cost = 0 reicht; Default bei ESI ist ebenfalls 0)
+	url := fmt.Sprintf("https://esi.evetech.net/latest/characters/%s/mail/?datasource=tranquility", c.Value)
+	payload := map[string]interface{}{
+		"approved_cost": 0,
+		"subject":       req.Subject,
+		"body":          req.Body,
+		"recipients":    recipients,
+	}
+	body, _ := json.Marshal(payload)
+
+	reqESI, _ := http.NewRequest("POST", url, bytes.NewReader(body))
+	reqESI.Header.Set("Content-Type", "application/json")
+	reqESI.Header.Set("User-Agent", "speedliner-server/1.0 (mail)")
+
+	resp, err := httpClient.Do(reqESI)
+	if err != nil {
+		http.Error(w, "ESI error: "+err.Error(), http.StatusBadGateway)
+		return
+	}
+	defer func(Body io.ReadCloser) {
+		err := Body.Close()
+		if err != nil {
+			return
+		}
+	}(resp.Body)
+
+	if resp.StatusCode != http.StatusCreated {
+		b, _ := io.ReadAll(resp.Body)
+		http.Error(w, fmt.Sprintf("ESI send failed: %s: %s", resp.Status, string(b)), http.StatusBadGateway)
+		return
+	}
+
+	raw, _ := io.ReadAll(resp.Body)
+	mailID, _ := strconv.Atoi(strings.TrimSpace(string(raw)))
+
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusCreated)
+	_ = json.NewEncoder(w).Encode(map[string]int{"mail_id": mailID})
 }

@@ -87,6 +87,61 @@
                 }
             }
         },
+        "/app/mail": {
+            "post": {
+                "description": "Sendet eine EVE-Mail über ESI (/characters/{character_id}/mail/). Es wird **keine** CSPA-Berechnung durchgeführt; `approved_cost` wird als 0 gesendet.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Mail"
+                ],
+                "summary": "EVE-Mail senden (ohne CSPA)",
+                "parameters": [
+                    {
+                        "description": "Mail-Daten",
+                        "name": "mail",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/structs.SendMailRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "mail_id",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid JSON / Validation error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "502": {
+                        "description": "ESI error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
         "/app/me": {
             "get": {
                 "description": "Gibt Charakter-ID und Name zurück (aus Cookie)",
@@ -477,20 +532,75 @@
         }
     },
     "definitions": {
+        "structs.MailRecipient": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "example": 1234546456
+                },
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "character",
+                        "corporation",
+                        "alliance",
+                        "mailing_list"
+                    ],
+                    "example": "character"
+                }
+            }
+        },
         "structs.Route": {
             "type": "object",
             "properties": {
+                "allowedCorps": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
                 "from": {
                     "type": "string"
                 },
                 "id": {
                     "type": "string"
                 },
+                "noCollateral": {
+                    "type": "boolean"
+                },
                 "pricePerM3": {
-                    "type": "integer"
+                    "type": "number"
                 },
                 "to": {
                     "type": "string"
+                },
+                "visibility": {
+                    "description": "\"all\" | \"whitelist\"",
+                    "type": "string"
+                }
+            }
+        },
+        "structs.SendMailRequest": {
+            "type": "object",
+            "properties": {
+                "autoApproveCspa": {
+                    "type": "boolean",
+                    "example": false
+                },
+                "body": {
+                    "type": "string",
+                    "example": "Hello World"
+                },
+                "recipients": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/structs.MailRecipient"
+                    }
+                },
+                "subject": {
+                    "type": "string",
+                    "example": "Test"
                 }
             }
         },

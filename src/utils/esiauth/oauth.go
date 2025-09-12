@@ -16,8 +16,10 @@ func GetOAuthConfig() *oauth2.Config {
 	return &oauth2.Config{
 		ClientID:     os.Getenv("OAUTH_CLIENT_ID"),
 		ClientSecret: os.Getenv("OAUTH_CLIENT_SECRET"),
-		Scopes:       []string{},
-		RedirectURL:  "http://localhost:8080/app/callback",
+		Scopes: []string{
+			"esi-mail.send_mail.v1", "publicData",
+		},
+		RedirectURL: "http://localhost:8080/app/callback",
 		Endpoint: oauth2.Endpoint{
 			AuthURL:  "https://login.eveonline.com/v2/oauth/authorize",
 			TokenURL: "https://login.eveonline.com/v2/oauth/token",
