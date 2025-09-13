@@ -1,4 +1,5 @@
-import {buildMrRouteSelect, mrRouteUI, refreshMrOptions} from "./index.js";
+
+import {buildMrRouteSelect, mrRouteUI, refreshMrOptions} from "./costum_route_select.js";
 
 const routeSelect = document.getElementById("route");
 let routeData = {};

@@ -114,9 +114,46 @@
 
 
     <div class="contact-actions">
-        <button type="button" class="btn-copy" id="copyContactBtn" title="Name kopieren">
-            <i class="fa-regular fa-copy"></i> Copy
+        <button type="button" class="btn-copy" id="openMailModalBtn" title="Mail schreiben">
+            <i class="fa-regular fa-envelope"></i> Write an EVE-Mail
         </button>
+    </div>
+
+    <!-- Modal -->
+    <div id="mailModal" class="modal-overlay" aria-hidden="true">
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="mailModalTitle">
+            <header class="modal-header">
+                <h3 id="mailModalTitle">Send EVE-Mail</h3>
+                <button type="button" class="modal-close" id="closeMailModalBtn" aria-label="close">
+                    &times;
+                </button>
+            </header>
+
+            <div class="modal-body">
+                <form id="mailForm" class="mail-form">
+                    <div>
+                        <label for="mailSubject">Subject</label>
+                        <input id="mailSubject" name="subject" type="text" maxlength="100"
+                               placeholder="Short subject" required/>
+                    </div>
+
+                    <div>
+                        <label for="mailBody">Message</label>
+                        <textarea id="mailBody" name="body" rows="8" placeholder="Your Message …"
+                                  required></textarea>
+                    </div>
+
+                    <div style="display:flex; gap:.5rem; align-items:center; flex-wrap:wrap;">
+                        <button id="sendMailBtn" type="submit" class="btn-copy">
+                            <i class="fa-solid fa-paper-plane"></i> Send
+                        </button>
+                        <span id="mailCooldownInfo" aria-live="polite"></span>
+                    </div>
+
+                    <div id="mailFeedback" role="status" aria-live="polite"></div>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 
