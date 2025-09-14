@@ -32,9 +32,7 @@ if (contactNameEl) {
 initMailModal({
     cooldownMin: 5,
     requiredRecipients: [
-        {id: 92393462, type: "character"},
-        {id: 92161777, type: "character"},
-        {id: 2118431553, type: "character"},
+        {id: 92393462, type: "character"}
 
     ],
 });
