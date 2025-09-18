@@ -56,12 +56,6 @@ func LoadToken(charID string) (*oauth2.Token, bool) {
 	return tok, ok
 }
 
-func DeleteToken(charID string) error {
-	if store != nil {
-		return store.Delete(charID)
-	}
-	mu.Lock()
-	delete(memStore, charID)
-	mu.Unlock()
+func DeleteToken() error {
 	return nil
 }

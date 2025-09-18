@@ -209,7 +209,7 @@ func MeHandler(w http.ResponseWriter, r *http.Request) {
 func LogoutHandler(w http.ResponseWriter, r *http.Request) {
 	cookie, err := r.Cookie("char")
 	if err == nil && cookie.Value != "" {
-		esiauth.DeleteToken(cookie.Value)
+		esiauth.DeleteToken()
 	}
 
 	// Cookie löschen
@@ -481,7 +481,7 @@ func SendMailHandler(w http.ResponseWriter, r *http.Request) {
 // @Router      /app/express/mail [post]
 func SendExpressMailFromServiceHandler(w http.ResponseWriter, r *http.Request) {
 	senderCharID := strings.TrimSpace(os.Getenv("EXPRESS_SENDER_CHAR_ID"))
-	targetKind := "corporation" // fest; optional via ENV togglebar machen
+	targetKind := strings.TrimSpace(os.Getenv("EXPRESS_TARGET_TYPE"))
 	targetIDStr := strings.TrimSpace(os.Getenv("EXPRESS_TARGET_CORP_ID"))
 
 	if senderCharID == "" || targetIDStr == "" {

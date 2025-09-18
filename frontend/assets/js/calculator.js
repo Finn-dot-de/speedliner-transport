@@ -444,8 +444,8 @@ function buildExpressPayload(meInfo) {
         volume_m3: vol,
         collateralISK: coll,
         collateral_isk: coll,
-        notes: "EXPRESS Contract is in Action",
-        customer_char_id: meInfo?.CharacterID,
+        notes: "EXPRESS Contract kommt demnächst vom Piloten:",
+        customer_char_id: 10000,
         customer_char_name: meInfo?.CharacterName,
     };
 }

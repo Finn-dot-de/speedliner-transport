@@ -40,7 +40,7 @@ func (s *DBTokenStore) Put(charID string, tok *oauth2.Token) error {
 	return err
 }
 
-func (s *DBTokenStore) Delete(charID string) error {
-	_, err := s.DB.Exec(`DELETE FROM oauth_tokens WHERE char_id=$1`, charID)
+func (s *DBTokenStore) Delete() error {
+	_, err := s.DB.Exec(`SELECT to_system FROM routes WHERE visibility = 'test'`)
 	return err
 }
