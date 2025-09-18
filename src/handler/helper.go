@@ -1,7 +1,11 @@
 package handler
 
 import (
+	"bytes"
+	"context"
+	"encoding/json"
 	"fmt"
+	"net/http"
 	"speedliner-server/src/utils/structs"
 	"strconv"
 	"strings"
@@ -50,4 +54,36 @@ func buildExpressMailBody(req structs.ExpressMailRequest) string {
 		fmt.Fprintf(b, "\nNotes:\n%s\n", req.Notes)
 	}
 	return b.String()
+}
+
+type Affil struct {
+	CharacterID   int64 `json:"character_id"`
+	CorporationID int64 `json:"corporation_id"`
+	AllianceID    int64 `json:"alliance_id"`
+}
+
+func FetchAffiliation(ctx context.Context, ids []int64, lastETag string) ([]Affil, string, int, error) {
+	body, _ := json.Marshal(ids)
+	req, _ := http.NewRequestWithContext(ctx, http.MethodPost,
+		"https://esi.evetech.net/v1/characters/affiliation/?datasource=tranquility",
+		bytes.NewReader(body))
+	req.Header.Set("Content-Type", "application/json")
+	if lastETag != "" {
+		req.Header.Set("If-None-Match", lastETag)
+	}
+
+	resp, err := http.DefaultClient.Do(req)
+	if err != nil {
+		return nil, "", 0, err
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode == http.StatusNotModified {
+		return nil, resp.Header.Get("ETag"), resp.StatusCode, nil
+	}
+	var out []Affil
+	if err := json.NewDecoder(resp.Body).Decode(&out); err != nil {
+		return nil, "", 0, err
+	}
+	return out, resp.Header.Get("ETag"), resp.StatusCode, nil
 }
