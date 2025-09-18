@@ -1,5 +1,43 @@
 basePath: /
 definitions:
+  structs.ErrorResponse:
+    properties:
+      error:
+        example: Invalid JSON
+        type: string
+    type: object
+  structs.ExpressMailRequest:
+    properties:
+      collateral_isk:
+        description: 0..20B
+        type: integer
+      customer_char_id:
+        description: 'optional: Wer hat ausgelöst?'
+        type: integer
+      customer_char_name:
+        type: string
+      express:
+        description: "true"
+        type: boolean
+      notes:
+        description: optional
+        type: string
+      reward_isk:
+        description: z.B. 826500000
+        type: integer
+      route:
+        description: '"Amarr ↔ K-6K16"'
+        type: string
+      volume_m3:
+        description: z.B. 165000
+        type: integer
+    type: object
+  structs.MailIDResponse:
+    properties:
+      mail_id:
+        example: 399492427
+        type: integer
+    type: object
   structs.MailRecipient:
     properties:
       id:
@@ -104,6 +142,47 @@ paths:
       summary: ESI Callback
       tags:
       - Auth
+  /app/express/mail:
+    post:
+      consumes:
+      - application/json
+      description: Verwendet einen fest konfigurierten Service-Char (ENV), sendet
+        Mail an eine Ziel-Corp (ENV).
+      parameters:
+      - description: Express Daten
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/structs.ExpressMailRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: mail_id
+          schema:
+            additionalProperties:
+              type: integer
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "401":
+          description: Unauthorized
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+        "502":
+          description: Bad Gateway
+          schema:
+            type: string
+      summary: EVE-Mail für EXPRESS senden (Service-Char -> Ziel-Corp)
+      tags:
+      - Mail
   /app/login:
     get:
       description: Leitet zum ESI-Login um
@@ -134,9 +213,8 @@ paths:
     post:
       consumes:
       - application/json
-      description: Sendet eine EVE-Mail über ESI (/characters/{character_id}/mail/).
-        Es wird **keine** CSPA-Berechnung durchgeführt; `approved_cost` wird als 0
-        gesendet.
+      description: Sendet eine EVE-Mail über ESI. Empfänger nutzt kein CSPA, daher
+        wird `approved_cost` immer 0 gesendet.
       parameters:
       - description: Mail-Daten
         in: body
@@ -148,23 +226,21 @@ paths:
       - application/json
       responses:
         "201":
-          description: mail_id
+          description: Created
           schema:
-            additionalProperties:
-              type: integer
-            type: object
+            $ref: '#/definitions/structs.MailIDResponse'
         "400":
-          description: Invalid JSON / Validation error
+          description: Bad Request
           schema:
-            type: string
+            $ref: '#/definitions/structs.ErrorResponse'
         "401":
           description: Unauthorized
           schema:
-            type: string
+            $ref: '#/definitions/structs.ErrorResponse'
         "502":
-          description: ESI error
+          description: Bad Gateway
           schema:
-            type: string
+            $ref: '#/definitions/structs.ErrorResponse'
       summary: EVE-Mail senden (ohne CSPA)
       tags:
       - Mail

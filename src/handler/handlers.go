@@ -4,10 +4,12 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"log"
 	"net/http"
+	"os"
 	db2 "speedliner-server/src/db"
 	"speedliner-server/src/middleware"
 	"speedliner-server/src/utils/esi"
@@ -19,6 +21,8 @@ import (
 	"speedliner-server/src/utils/structs"
 
 	"github.com/go-chi/chi/v5"
+	"github.com/jackc/pgx/v5"
+	"golang.org/x/oauth2"
 )
 
 func DefineApiRoutes(r chi.Router) {
@@ -36,6 +40,9 @@ func DefineApiRoutes(r chi.Router) {
 	r.With(middleware.RoleMiddleware("admin")).Put("/users/{charID}/role", UpdateUserRoleHandler)
 	r.With(middleware.RoleMiddleware("admin", "provider")).Get("/corps", ListCorpsHandler)
 	r.Post("/mail", SendMailHandler)
+	r.Post("/express/mail", SendExpressMailFromServiceHandler)
+	r.With(middleware.RoleMiddleware("admin")).Get("/express/token-status", ExpressTokenStatusHandler)
+
 }
 
 // PingHandler godoc
@@ -375,10 +382,10 @@ func ListCorpsHandler(w http.ResponseWriter, r *http.Request) {
 // @Accept       json
 // @Produce      json
 // @Param        mail body structs.SendMailRequest true "Mail-Daten" example({"subject":"Test","body":"Hello World","recipients":[{"id":2118431553,"type":"character"}]})
-// @Success      201 {object} handler.MailIDResponse
-// @Failure      400 {object} handler.ErrorResponse
-// @Failure      401 {object} handler.ErrorResponse
-// @Failure      502 {object} handler.ErrorResponse
+// @Success      201 {object} structs.MailIDResponse
+// @Failure      400 {object} structs.ErrorResponse
+// @Failure      401 {object} structs.ErrorResponse
+// @Failure      502 {object} structs.ErrorResponse
 // @Router       /app/mail [post]
 func SendMailHandler(w http.ResponseWriter, r *http.Request) {
 	c, err := r.Cookie("char")
@@ -457,4 +464,194 @@ func SendMailHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusCreated)
 	_ = json.NewEncoder(w).Encode(map[string]int{"mail_id": mailID})
+}
+
+// SendExpressMailFromServiceHandler godoc
+// @Summary     EVE-Mail für EXPRESS senden (Service-Char -> Ziel-Corp)
+// @Description Verwendet einen fest konfigurierten Service-Char (ENV), sendet Mail an eine Ziel-Corp (ENV).
+// @Tags        Mail
+// @Accept      json
+// @Produce     json
+// @Param       body body structs.ExpressMailRequest true "Express Daten"
+// @Success     201 {object} map[string]int "mail_id"
+// @Failure     400 {string} string
+// @Failure     401 {string} string
+// @Failure     500 {string} string
+// @Failure     502 {string} string
+// @Router      /app/express/mail [post]
+func SendExpressMailFromServiceHandler(w http.ResponseWriter, r *http.Request) {
+	senderCharID := strings.TrimSpace(os.Getenv("EXPRESS_SENDER_CHAR_ID"))
+	targetKind := "corporation" // fest; optional via ENV togglebar machen
+	targetIDStr := strings.TrimSpace(os.Getenv("EXPRESS_TARGET_CORP_ID"))
+
+	if senderCharID == "" || targetIDStr == "" {
+		http.Error(w, "missing EXPRESS_SENDER_CHAR_ID or EXPRESS_TARGET_CORP_ID", http.StatusInternalServerError)
+		return
+	}
+	targetID, err := strconv.ParseInt(targetIDStr, 10, 64)
+	if err != nil || targetID <= 0 {
+		http.Error(w, "bad EXPRESS_TARGET_CORP_ID", http.StatusInternalServerError)
+		return
+	}
+
+	var req structs.ExpressMailRequest
+	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
+		http.Error(w, "Invalid JSON: "+err.Error(), http.StatusBadRequest)
+		return
+	}
+	if !req.Express || strings.TrimSpace(req.Route) == "" || req.RewardISK <= 0 || req.VolumeM3 <= 0 {
+		http.Error(w, "missing required express fields", http.StatusBadRequest)
+		return
+	}
+
+	// Empfänger gegen ESI prüfen → vermeidet 400 "Bad corporation or allianceID"
+	if ok, status, verr := validateRecipient(targetKind, targetID); verr != nil {
+		http.Error(w, "validate recipient error: "+verr.Error(), http.StatusBadGateway)
+		return
+	} else if !ok {
+		http.Error(w, fmt.Sprintf("invalid %s id %d (ESI %s)", targetKind, targetID, status), http.StatusBadRequest)
+		return
+	}
+
+	tok, ok := esiauth.LoadToken(senderCharID)
+	if !ok {
+		http.Error(w, "service token missing (login service char once)", http.StatusUnauthorized)
+		return
+	}
+
+	cfg := esiauth.GetOAuthConfig()
+	ctx := context.Background()
+	baseTS := cfg.TokenSource(ctx, tok)
+	ts := esiauth.NewSavingTokenSource(senderCharID, baseTS)
+	httpClient := oauth2.NewClient(ctx, ts)
+
+	subject := fmt.Sprintf("EXPRESS: %s — %s ISK", req.Route, formatISK(req.RewardISK))
+	body := buildExpressMailBody(req)
+
+	payload := map[string]interface{}{
+		"approved_cost": 0,
+		"subject":       subject,
+		"body":          body,
+		"recipients": []map[string]interface{}{
+			{
+				"recipient_id":   targetID,
+				"recipient_type": targetKind, // <— wichtig
+			},
+		},
+	}
+	bts, _ := json.Marshal(payload)
+
+	url := fmt.Sprintf("https://esi.evetech.net/latest/characters/%s/mail/?datasource=tranquility", senderCharID)
+	reqESI, _ := http.NewRequest("POST", url, bytes.NewReader(bts))
+	reqESI.Header.Set("Content-Type", "application/json")
+	reqESI.Header.Set("User-Agent", "speedliner-server/1.0 (express-mail)")
+
+	resp, err := httpClient.Do(reqESI)
+	if err != nil {
+		http.Error(w, "ESI error: "+err.Error(), http.StatusBadGateway)
+		return
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusCreated {
+		raw, _ := io.ReadAll(resp.Body)
+		http.Error(w, fmt.Sprintf("ESI send failed: %s: %s", resp.Status, string(raw)), http.StatusBadGateway)
+		return
+	}
+
+	raw, _ := io.ReadAll(resp.Body)
+	mailID, _ := strconv.Atoi(strings.TrimSpace(string(raw)))
+
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusCreated)
+	_ = json.NewEncoder(w).Encode(map[string]int{"mail_id": mailID})
+}
+
+func ExpressTokenStatusHandler(w http.ResponseWriter, r *http.Request) {
+	senderCharID := strings.TrimSpace(os.Getenv("EXPRESS_SENDER_CHAR_ID"))
+	if senderCharID == "" {
+		http.Error(w, "missing ENV EXPRESS_SENDER_CHAR_ID", http.StatusInternalServerError)
+		return
+	}
+
+	// 1) Token aus Store laden (existiert?)
+	tok, ok := esiauth.LoadToken(senderCharID)
+
+	// 2) updated_at aus DB lesen
+	var updatedAt *time.Time
+	if db2.Pool != nil {
+		var ua time.Time
+		err := db2.Pool.QueryRow(context.Background(),
+			`SELECT updated_at FROM oauth_tokens WHERE char_id=$1`, senderCharID,
+		).Scan(&ua)
+		if err == nil {
+			updatedAt = &ua
+		} else if !errors.Is(err, pgx.ErrNoRows) {
+			http.Error(w, "db query error: "+err.Error(), http.StatusInternalServerError)
+			return
+		}
+	}
+
+	// 3) Expiry-Infos aus dem Access-Token (falls vorhanden)
+	var exp *time.Time
+	var minsLeft *int64
+	var expired *bool
+	if tok != nil {
+		t := tok.Expiry
+		exp = &t
+		ml := int64(time.Until(t).Minutes())
+		minsLeft = &ml
+		ex := time.Now().After(t)
+		expired = &ex
+	}
+
+	// 4) Antwort bauen
+	resp := map[string]interface{}{
+		"sender_char_id":       senderCharID,
+		"has_token":            ok && tok != nil,
+		"updated_at":           nil,
+		"access_token_expiry":  nil,
+		"minutes_until_expiry": nil,
+		"access_token_expired": nil,
+	}
+	if updatedAt != nil {
+		resp["updated_at"] = updatedAt.UTC().Format(time.RFC3339)
+	}
+	if exp != nil {
+		resp["access_token_expiry"] = exp.UTC().Format(time.RFC3339)
+	}
+	if minsLeft != nil {
+		resp["minutes_until_expiry"] = *minsLeft
+	}
+	if expired != nil {
+		resp["access_token_expired"] = *expired
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	_ = json.NewEncoder(w).Encode(resp)
+}
+
+func validateRecipient(kind string, id int64) (bool, string, error) {
+	var url string
+	switch kind {
+	case "corporation":
+		url = fmt.Sprintf("https://esi.evetech.net/latest/corporations/%d/?datasource=tranquility", id)
+	case "alliance":
+		url = fmt.Sprintf("https://esi.evetech.net/latest/alliances/%d/?datasource=tranquility", id)
+	default:
+		return false, "", fmt.Errorf("unsupported target kind: %s", kind)
+	}
+
+	req, _ := http.NewRequest("GET", url, nil)
+	req.Header.Set("User-Agent", "speedliner-server/1.0 (validate)")
+	resp, err := http.DefaultClient.Do(req)
+	if err != nil {
+		return false, "", err
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK {
+		return false, resp.Status, nil
+	}
+	return true, "OK", nil
 }

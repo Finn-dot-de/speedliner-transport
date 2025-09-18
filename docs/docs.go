@@ -50,6 +50,67 @@ const docTemplate = `{
                 }
             }
         },
+        "/app/express/mail": {
+            "post": {
+                "description": "Verwendet einen fest konfigurierten Service-Char (ENV), sendet Mail an eine Ziel-Corp (ENV).",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Mail"
+                ],
+                "summary": "EVE-Mail für EXPRESS senden (Service-Char -\u003e Ziel-Corp)",
+                "parameters": [
+                    {
+                        "description": "Express Daten",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/structs.ExpressMailRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "mail_id",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "502": {
+                        "description": "Bad Gateway",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
         "/app/login": {
             "get": {
                 "description": "Leitet zum ESI-Login um",
@@ -92,7 +153,7 @@ const docTemplate = `{
         },
         "/app/mail": {
             "post": {
-                "description": "Sendet eine EVE-Mail über ESI (/characters/{character_id}/mail/). Es wird **keine** CSPA-Berechnung durchgeführt; ` + "`" + `approved_cost` + "`" + ` wird als 0 gesendet.",
+                "description": "Sendet eine EVE-Mail über ESI. Empfänger nutzt kein CSPA, daher wird ` + "`" + `approved_cost` + "`" + ` immer 0 gesendet.",
                 "consumes": [
                     "application/json"
                 ],
@@ -116,30 +177,27 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "201": {
-                        "description": "mail_id",
+                        "description": "Created",
                         "schema": {
-                            "type": "object",
-                            "additionalProperties": {
-                                "type": "integer"
-                            }
+                            "$ref": "#/definitions/structs.MailIDResponse"
                         }
                     },
                     "400": {
-                        "description": "Invalid JSON / Validation error",
+                        "description": "Bad Request",
                         "schema": {
-                            "type": "string"
+                            "$ref": "#/definitions/structs.ErrorResponse"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "type": "string"
+                            "$ref": "#/definitions/structs.ErrorResponse"
                         }
                     },
                     "502": {
-                        "description": "ESI error",
+                        "description": "Bad Gateway",
                         "schema": {
-                            "type": "string"
+                            "$ref": "#/definitions/structs.ErrorResponse"
                         }
                     }
                 }
@@ -535,6 +593,60 @@ const docTemplate = `{
         }
     },
     "definitions": {
+        "structs.ErrorResponse": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "type": "string",
+                    "example": "Invalid JSON"
+                }
+            }
+        },
+        "structs.ExpressMailRequest": {
+            "type": "object",
+            "properties": {
+                "collateral_isk": {
+                    "description": "0..20B",
+                    "type": "integer"
+                },
+                "customer_char_id": {
+                    "description": "optional: Wer hat ausgelöst?",
+                    "type": "integer"
+                },
+                "customer_char_name": {
+                    "type": "string"
+                },
+                "express": {
+                    "description": "true",
+                    "type": "boolean"
+                },
+                "notes": {
+                    "description": "optional",
+                    "type": "string"
+                },
+                "reward_isk": {
+                    "description": "z.B. 826500000",
+                    "type": "integer"
+                },
+                "route": {
+                    "description": "\"Amarr ↔ K-6K16\"",
+                    "type": "string"
+                },
+                "volume_m3": {
+                    "description": "z.B. 165000",
+                    "type": "integer"
+                }
+            }
+        },
+        "structs.MailIDResponse": {
+            "type": "object",
+            "properties": {
+                "mail_id": {
+                    "type": "integer",
+                    "example": 399492427
+                }
+            }
+        },
         "structs.MailRecipient": {
             "type": "object",
             "properties": {

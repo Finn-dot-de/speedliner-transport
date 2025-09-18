@@ -53,3 +53,62 @@ export function setupAutoFormat(inputId) {
         input.setSelectionRange(newCursor, newCursor);
     });
 }
+
+export function copyByElementText(elId, iconId) {
+    const el = document.getElementById(elId);
+    const icon = document.getElementById(iconId);
+    const text = (el?.value ?? el?.textContent ?? "").trim();
+
+    if (!text) {
+        console.warn("Nothing to copy");
+        return Promise.resolve();
+    }
+
+    const applySuccessState = (ico) => {
+        if (!ico) return;
+        // ursprünglichen FA-Style merken (regular/solid)
+        const wasRegular = ico.classList.contains("fa-regular");
+        ico.dataset.faStyle = wasRegular ? "regular" : "solid";
+
+        // auf Check umschalten (immer solid)
+        ico.classList.remove("fa-regular", "fa-copy");
+        ico.classList.add("fa-solid", "fa-check");
+        ico.title = "Copied!";
+        ico.style.color = "green";
+
+        setTimeout(() => {
+            // zurück zu Copy + ursprünglichen Style
+            ico.classList.remove("fa-check");
+            ico.classList.add("fa-copy");
+
+            if (ico.dataset.faStyle === "regular") {
+                ico.classList.remove("fa-solid");
+                ico.classList.add("fa-regular");
+            } else {
+                ico.classList.add("fa-solid"); // bleibt solid
+            }
+
+            ico.title = "Copy";
+            ico.style.color = "";
+            delete ico.dataset.faStyle;
+        }, 2000);
+    };
+
+    const applyErrorState = (ico) => {
+        if (!ico) return;
+        ico.title = "Copy failed";
+        ico.style.color = "red";
+        setTimeout(() => {
+            ico.title = "Copy";
+            ico.style.color = "";
+        }, 2000);
+    };
+
+    return navigator.clipboard
+        .writeText(text)
+        .then(() => applySuccessState(icon))
+        .catch((err) => {
+            console.error("Error with copying:", err);
+            applyErrorState(icon);
+        });
+}

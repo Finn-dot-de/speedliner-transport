@@ -1,5 +1,5 @@
 import {copyContractName, setupAutoFormat} from "./utils.js";
-import {calculator} from "./calculator.js";
+import {calculator, sendExpressOnce} from "./calculator.js";
 import {loadUser} from "./user.js";
 import {initMailModal} from "./mail.js";
 import {CONTACT_NAME, contactNameEl, loadRoutes, ta} from "./costum_route_select.js";
@@ -32,7 +32,7 @@ if (contactNameEl) {
 initMailModal({
     cooldownMin: 5,
     requiredRecipients: [
-        {id: 92393462, type: "character"}
+        {id: 98813580, type: "corporation"}
 
     ],
 });
@@ -44,7 +44,7 @@ if (ta) {
         e.target.style.height = Math.min(e.target.scrollHeight, window.innerHeight * 0.6) + 'px';
     };
     ta.addEventListener('input', grow);
-    grow({target: ta}); // initial
+    grow({target: ta});
 }
 
 

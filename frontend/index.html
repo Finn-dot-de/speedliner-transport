@@ -44,7 +44,6 @@
                 <option value="">Select route...</option>
             </select>
         </div>
-        <!-- Badges zu der gewählten Route (Corp/No collateral) -->
         <div id="routeMeta" class="route-meta"></div>
     </div>
 
@@ -56,7 +55,6 @@
     </label>
     <input type="text" id="volume" placeholder="e.g. 165.000"/>
 
-    <!-- Collateral komplett ein-/ausblendbar -->
     <div id="collateralRow">
         <label for="collateral">
             Collateral (max 20B ISK)
@@ -67,7 +65,6 @@
         <input type="text" id="collateral" placeholder="e.g. 8.000.000.000"/>
     </div>
 
-    <!-- Express (+100%) -->
     <div class="form-row grid" id="expressRow">
         <label class="toggle" for="express" style="margin-top:.25rem;">
             <input type="checkbox" id="express"/>
@@ -86,6 +83,12 @@
 
 
     <div class="result" id="result"></div>
+
+    <div id="expressHint" class="info-box" style="display:none; margin-top:.5rem;">
+        Put <strong>“EXPRESS”</strong> in the EVE contract description
+    </div>
+
+    <textarea id="contractExpressDesc" style="position:absolute; left:-9999px; height:0; width:0;"></textarea>
 
     <div
             style="margin-top:1.5rem; padding:1rem; background-color:#ff9800; color:#000; border-radius:6px; font-weight:bold; font-size:1.1rem; display:flex; align-items:center; gap:.5rem; justify-content:center; flex-wrap:wrap;">
@@ -156,6 +159,32 @@
         </div>
     </div>
 </div>
+
+<div id="expressModal" class="modal-overlay" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="expressModalTitle">
+        <header class="modal-header">
+            <h3 id="expressModalTitle">Express contract</h3>
+            <button type="button" class="modal-close" id="expressModalClose" aria-label="close">&times;</button>
+        </header>
+
+        <div class="modal-body">
+            <p>Put <strong>“EXPRESS”</strong> in the EVE contract description (2–4h after acceptance).</p>
+
+            <pre id="expressModalText" class="info-box" style="white-space:pre-wrap; margin-top:.5rem;"></pre>
+
+            <div style="display:flex; gap:.5rem; margin-top:.75rem; flex-wrap:wrap;">
+                <button type="button" class="btn-copy" id="expressConfirmBtn">
+                    <i class="fa-regular fa-copy" id="expressConfirmIcon"></i>
+                    Confirm & copy
+                </button>
+                <button type="button" class="btn-outline" id="expressCancelBtn">
+                    Cancel (disable Express)
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
 <footer style="margin-top:30px; color:#777; font-size:.9rem">

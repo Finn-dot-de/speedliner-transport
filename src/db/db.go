@@ -90,7 +90,13 @@ func ensureSchema() error {
 		 LEFT JOIN corps     c ON c.corp_id = u.corp_id
 		 LEFT JOIN alliances a ON a.alliance_id = c.alliance_id;`,
 
-		// -> Für bestehende DB, falls die Constraint beim ersten CREATE noch nicht drin war:
+		`CREATE TABLE IF NOT EXISTS oauth_tokens (
+			  char_id TEXT PRIMARY KEY,
+			  token_json TEXT NOT NULL,
+			  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+			);
+			`,
+		 
 		`DO $$
 		BEGIN
 		  IF NOT EXISTS (

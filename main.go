@@ -15,6 +15,7 @@ import (
 	"speedliner-server/src/middleware"
 	"speedliner-server/src/router"
 	"speedliner-server/src/utils"
+	"speedliner-server/src/utils/esiauth"
 
 	httpSwagger "github.com/swaggo/http-swagger"
 )
@@ -30,6 +31,11 @@ func main() {
 	if err := db.InitDB(); err != nil {
 		log.Fatal(err)
 	}
+	if db.Pool == nil {
+		log.Fatal("DB pool not initialized")
+	}
+	// <-- hier Store an PGX-Pool hängen
+	esiauth.InitStore(esiauth.NewPGXTokenStore(db.Pool))
 
 	appPort := os.Getenv("APP_PORT")
 	if appPort == "" {
@@ -45,7 +51,6 @@ func main() {
 	log.Println("🚀 Server läuft auf Port " + appPort)
 	log.Println(":" + appPort)
 	log.Fatal(http.ListenAndServe(":"+appPort, handler))
-
 }
 
 func initializeLoggerOrExit(logFile string) {
