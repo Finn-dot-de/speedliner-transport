@@ -19,13 +19,13 @@ export function renderPricing(routes) {
 
         const name   = `${route.from} ↔ ${route.to}`;
         const isCorp = route.visibility === "whitelist";
+        const minP   = Number(route.minPrice ?? 0);
 
         const badges = [
             isCorp ? `<span class="badge-corp">🔒 Corp</span>` : "",
-            route.noCollateral ? `<span class="badge-nocoll">No collateral</span>` : ""
+            route.noCollateral ? `<span class="badge-nocoll">No collateral</span>` : "",
         ].join(" ");
 
-        // Wenn noCollateral: gleiche Zeilen, NUR ohne “+ … collateral fee”
         const body = route.noCollateral
             ? `Up to ${LIM}: ${fmt(route.pricePerM3)} ISK/m³<br/>
          ${LIM} and more: ${fmt(route.pricePerM3)} ISK/m³`
@@ -36,6 +36,7 @@ export function renderPricing(routes) {
       <div class="pricing-item" style="margin-bottom:1rem;">
         <strong>Route: ${name}</strong> ${badges}<br/>
         ${body}
+        ${minP > 0 ? `<div><small>Minimum reward per contract: <strong>${fmt(minP)} ISK</strong></small></div>` : ""}
       </div>
     `);
     });

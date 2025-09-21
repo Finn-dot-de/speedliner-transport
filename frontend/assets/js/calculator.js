@@ -1,5 +1,5 @@
 import {buildMrRouteSelect, mrRouteUI, refreshMrOptions} from "./costum_route_select.js";
-import {copyByElementText} from "./utils.js";
+import {copyByElementText, parseIntStrict} from "./utils.js";
 
 const routeSelect = document.getElementById("route");
 let routeData = {};
@@ -80,12 +80,13 @@ export function calculator() {
         lastQuote = null;
         updateDays();
         updateExpressUI();
-        maybeOpenExpressModal(); // falls später gültig wird
+        maybeOpenExpressModal();
         return;
     }
 
-    const isCorpRoute = route.visibility === "whitelist";
+    const isCorpRoute   = route.visibility === "whitelist";
     const hideCollateral = !!route.noCollateral;
+    const minPrice      = Number(route.minPrice ?? 0);
 
     if (routeMeta) {
         routeMeta.innerHTML = `
@@ -105,66 +106,58 @@ export function calculator() {
         if (collateralRow) collateralRow.style.display = "block";
     }
 
-    const volumeRaw = volumeInput.value;
-    const volume = parseInt((volumeRaw || "").replace(/\D/g, ""), 10);
+    // --- Eingaben strikt parsen ---
+    const volume     = parseIntStrict(volumeInput.value);
+    let collateral   = hideCollateral ? 0 : parseIntStrict(collateralInput.value);
 
-    let collateral = 0;
-    if (!hideCollateral) {
-        const collateralRaw = collateralInput.value;
-        collateral = parseInt((collateralRaw || "").replace(/\D/g, ""), 10);
+    // --- Validierung: leer/0/NaN => Fehler ---
+    if (volume === null || volume <= 0) {
+        showResult("Please enter a valid volume (≥ 1 m³).", true);
+        lastQuote = null; updateExpressUI(); maybeOpenExpressModal(); return;
+    }
+    if (!hideCollateral && (collateral === null || collateral <= 0)) {
+        showResult("Please enter a valid collateral (≥ 1 ISK).", true);
+        lastQuote = null; updateExpressUI(); maybeOpenExpressModal(); return;
     }
 
-    if (isNaN(volume)) {
-        showResult("Please enter valid values for volume.", true);
-        lastQuote = null;
-        updateExpressUI();
-        maybeOpenExpressModal();
-        return;
-    }
-    if (!hideCollateral && isNaN(collateral)) {
-        showResult("Please enter a valid collateral.", true);
-        lastQuote = null;
-        updateExpressUI();
-        maybeOpenExpressModal();
-        return;
-    }
+    // Obergrenzen
     if (volume > MAX_VOLUME) {
         showResult(`Maximum volume exceeded (${iskFmt.format(MAX_VOLUME)} m³).`, true);
-        lastQuote = null;
-        updateExpressUI();
-        maybeOpenExpressModal();
-        return;
+        lastQuote = null; updateExpressUI(); maybeOpenExpressModal(); return;
     }
     if (!hideCollateral && collateral > MAX_COLLATERAL) {
         showResult(`Maximum of collateral can be only 20B ISK`, true);
-        lastQuote = null;
-        updateExpressUI();
-        maybeOpenExpressModal();
-        return;
+        lastQuote = null; updateExpressUI(); maybeOpenExpressModal(); return;
     }
 
+    // Berechnung
     const collateralPercent = hideCollateral ? 0 : (volume <= (MAX_VOLUME / 2) ? 0.03 : 0.01);
-    const volumeFee = volume * route.pricePerM3;
-    const collateralFee = collateral * collateralPercent;
-    const baseTotal = Math.round(volumeFee + collateralFee);
+    const volumeFee    = volume * route.pricePerM3;
+    const collateralFee= collateral * collateralPercent;
+    const baseBeforeMin= Math.round(volumeFee + collateralFee);
+    const baseTotal    = Math.max(baseBeforeMin, minPrice);
 
     const expressOn = !!expressInput?.checked;
     const finalTotal = expressOn ? baseTotal * 2 : baseTotal;
 
+    const minApplied = minPrice > 0 && baseBeforeMin < minPrice;
     const resultHtml = expressOn
         ? `Reward (Express): <span class="value">${iskFmt.format(finalTotal)} ISK</span><br>
-       <small>Basis: ${iskFmt.format(baseTotal)} ISK · +100% Express</small>`
-        : `Reward: <span class="value">${iskFmt.format(finalTotal)} ISK</span>`;
+       <small>Basis: ${iskFmt.format(baseTotal)} ISK · +100% Express${minApplied ? ` · Minimum price active (${iskFmt.format(minPrice)} ISK)` : ""}</small>`
+        : `Reward: <span class="value">${iskFmt.format(finalTotal)} ISK</span>` +
+        (minApplied ? `<br><small>Minimum price active: ${iskFmt.format(minPrice)} ISK</small>` : "");
 
     showResult(resultHtml);
 
-    // letzte Quote merken
+    // Quote speichern
     const routeLabel = routeSelect.options[routeSelect.selectedIndex]?.text?.split(" — ")[0] ?? "-";
     lastQuote = {
         routeLabel,
         volume,
         collateral: hideCollateral ? 0 : (Number.isFinite(collateral) ? collateral : 0),
         baseTotal,
+        baseBeforeMin,
+        minPrice,
         finalTotal,
         expressOn,
         days: expressOn ? 1 : 3
@@ -178,17 +171,29 @@ export function setRoutesData(routes) {
     routeData = {};
     routeSelect.innerHTML = `<option value="">Select route...</option>`;
 
-    routes.forEach(route => {
-        routeData[route.id] = route;
-        const isCorpRoute = route.visibility === "whitelist";
-        const flags = [isCorpRoute ? "🔒 Corp" : null, route.noCollateral ? "No collateral" : null]
-            .filter(Boolean).join(" · ");
+    routes.forEach(_r => {
+        // normalize legacy field names
+        const r = {
+            ..._r,
+            minPrice: Number(_r.minPrice ?? _r["min_price"] ?? 0)
+        };
 
-        const option = document.createElement("option");
-        option.value = route.id;
-        option.textContent = `${route.from} ↔ ${route.to}${flags ? " — " + flags : ""}`;
-        option.title = flags || "";
-        routeSelect.appendChild(option);
+        routeData[r.id] = r;
+
+        const isCorpRoute = r.visibility === "whitelist";
+        const minP = Number(r.minPrice || 0);
+        const flags = [
+            isCorpRoute ? "🔒 Corp" : null,
+            r.noCollateral ? "No collateral" : null,
+            // falls du die Anzeige im Dropdown NICHT willst, kommentiere die nächste Zeile aus
+            // minP > 0 ? `Min ${new Intl.NumberFormat("de-DE").format(minP)} ISK` : null,
+        ].filter(Boolean).join(" · ");
+
+        const opt = document.createElement("option");
+        opt.value = r.id;
+        opt.textContent = `${r.from} ↔ ${r.to}${flags ? " — " + flags : ""}`;
+        opt.title = flags || "";
+        routeSelect.appendChild(opt);
     });
 
     routeSelect.addEventListener("change", calculator);
@@ -259,7 +264,6 @@ copyExpressBtn?.addEventListener("click", async () => {
     }
 });
 
-
 routeSelect.addEventListener("change", updateExpressUI);
 expressInput?.addEventListener("input", updateExpressUI);
 
@@ -270,7 +274,6 @@ updateExpressUI();
 const expressModal = document.getElementById("expressModal");
 const expressModalText = document.getElementById("expressModalText");
 const expressConfirmBtn = document.getElementById("expressConfirmBtn");
-const expressConfirmIcon = document.getElementById("expressConfirmIcon");
 const expressCancelBtn = document.getElementById("expressCancelBtn");
 const expressModalClose = document.getElementById("expressModalClose");
 
@@ -396,7 +399,6 @@ function fmtMMSS(ms) {
     return `${m}:${String(r).padStart(2, "0")}`;
 }
 
-
 async function fetchMe() {
     try {
         const res = await fetch("/app/me", { credentials: "include" });
@@ -467,7 +469,7 @@ export async function sendExpressOnce() {
                 btn.innerHTML = oldHtml;
             }, 1500);
         }
-        return; // NICHT kopieren, NICHT schließen – wie gewünscht "nichts passiert"
+        return;
     }
 
     if (expressIsSending) return;
@@ -479,20 +481,15 @@ export async function sendExpressOnce() {
     }
 
     try {
-        // Nutzerinfo holen (optional)
         let me = await fetchMe();
-
-        // Payload bauen
         const payload = buildExpressPayload(me);
 
-        // Senden
         const res = await fetch("/app/express/mail", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             credentials: "include",
             body: JSON.stringify(payload),
         });
-
 
         if (res.status === 201) {
             setCookie(EXPRESS_COOKIE, String(Date.now()), EXPRESS_COOLDOWN_MIN);
@@ -501,7 +498,6 @@ export async function sendExpressOnce() {
             expressModalShown = true;
             closeExpressModal();
 
-            // Done-Icon
             if (icon) {
                 icon.classList.remove("fa-spinner", "fa-spin");
                 icon.classList.add("fa-check");

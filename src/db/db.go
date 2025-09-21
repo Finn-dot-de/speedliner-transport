@@ -96,7 +96,7 @@ func ensureSchema() error {
 			  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 			);
 			`,
-		 
+
 		`DO $$
 		BEGIN
 		  IF NOT EXISTS (
@@ -118,6 +118,22 @@ func ensureSchema() error {
 		);`,
 
 		`CREATE INDEX IF NOT EXISTS idx_route_visibility_corp ON route_visibility(corp_id);`,
+
+		`ALTER TABLE routes 
+    		ADD COLUMN IF NOT EXISTS min_price NUMERIC(14,2) 
+    		NOT NULL DEFAULT 50000000;`,
+
+		`DO $$
+		BEGIN
+		IF NOT EXISTS (
+		SELECT 1 FROM pg_constraint
+		WHERE conname = 'routes_min_price_nonneg'
+		AND conrelid = 'routes'::regclass
+	) THEN
+		ALTER TABLE routes
+		ADD CONSTRAINT routes_min_price_nonneg CHECK (min_price >= 0);
+		END IF;
+		END$$;`,
 	}
 
 	for _, s := range stmts {

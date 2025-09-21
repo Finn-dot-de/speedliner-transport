@@ -112,3 +112,11 @@ export function copyByElementText(elId, iconId) {
             applyErrorState(icon);
         });
 }
+
+// --- Parsing & Validation helpers ---
+export function parseIntStrict(raw) {
+    const s = String(raw ?? "").replace(/\D/g, "").trim(); // nur Ziffern
+    if (s === "") return null;                              // leer -> ungültig
+    const n = Number.parseInt(s, 10);
+    return Number.isFinite(n) ? n : null;
+}

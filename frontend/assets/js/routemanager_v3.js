@@ -1,3 +1,14 @@
+// ===== Helpers =====
+const fmtISK = (n) => Number(n || 0).toLocaleString("de-DE") + " ISK";
+const onlyDigits = (s) => String(s ?? "").replace(/\D/g, "");
+const parseISK = (s) => {
+    const d = onlyDigits(s);
+    if (d === "") return 0;                 // leer = 0
+    const n = Number.parseInt(d, 10);
+    return Number.isFinite(n) ? n : 0;
+};
+
+// ===== Boot =====
 document.addEventListener("DOMContentLoaded", () => {
     initWhitelistUI();
     fetchRoutes();
@@ -7,12 +18,14 @@ document.addEventListener("DOMContentLoaded", () => {
         await saveRoute();
     });
 });
+checkAccess();
 
 // ===== Routes =====
 async function fetchRoutes() {
     const res = await fetch("/app/routes", { credentials: "include" });
     const data = await res.json();
-    renderRoutes(data);
+    const norm = (r) => ({ ...r, minPrice: Number(r.minPrice ?? r["min_price"] ?? 0) });
+    renderRoutes(data.map(norm));
 }
 
 function renderRoutes(routes) {
@@ -24,7 +37,8 @@ function renderRoutes(routes) {
         tr.innerHTML = `
       <td>${route.from || "-"}</td>
       <td>${route.to || "-"}</td>
-      <td>${route.pricePerM3 ?? 0} ISK</td>
+      <td>${fmtISK(route.pricePerM3)}</td>
+      <td>${fmtISK(route.minPrice)}</td>
       <td>
         ${route.visibility === 'whitelist'
             ? '<span class="badge" title="Nur ausgewählte Corps">Whitelist</span>'
@@ -50,8 +64,8 @@ function showRouteForm(editing = false) {
     if (!editing) {
         document.getElementById("routeForm").reset();
         document.getElementById("routeId").value = "";
-        if (visibilitySelect) visibilitySelect.value = "all";
-        if (whitelistBox) whitelistBox.style.display = "none";
+        visibilitySelect.value = "all";
+        whitelistBox.style.display = "none";
         resetWhitelistUI();
     }
 }
@@ -61,25 +75,22 @@ function editRoute(id) {
     const route = JSON.parse(row.dataset.route);
 
     document.getElementById("routeId").value = route.id;
-    document.getElementById("routeFrom").value = route.from;
-    document.getElementById("routeTo").value = route.to;
-    document.getElementById("routePricePerM3").value = route.pricePerM3;
+    document.getElementById("routeFrom").value = route.from || "";
+    document.getElementById("routeTo").value = route.to || "";
+    document.getElementById("routePricePerM3").value = String(route.pricePerM3 ?? "");
+    document.getElementById("routeMinPrice").value =
+        route.minPrice ? route.minPrice.toLocaleString("de-DE") : "";
     document.getElementById("routeNoCollateral").checked = !!route.noCollateral;
 
-    // Visibility + Whitelist
     const vis = route.visibility || "all";
     visibilitySelect.value = vis;
     whitelistBox.style.display = vis === "whitelist" ? "block" : "none";
     resetWhitelistUI();
 
-    // allowedCorps kann [id,...] oder [{corpId,name,ticker},...] sein
     if (Array.isArray(route.allowedCorps)) {
         route.allowedCorps.forEach(x => {
-            if (typeof x === "number") {
-                addSelectedCorp({ corpId: x, name: `Corp #${x}`, ticker: "" });
-            } else if (x && typeof x === "object" && "corpId" in x) {
-                addSelectedCorp(x);
-            }
+            if (typeof x === "number") addSelectedCorp({ corpId: x, name: `Corp #${x}`, ticker: "" });
+            else if (x && typeof x === "object" && "corpId" in x) addSelectedCorp(x);
         });
         renderSelectedTags(Array.from(selectedCorps.values()));
     }
@@ -89,20 +100,31 @@ function editRoute(id) {
 
 async function saveRoute() {
     const id = document.getElementById("routeId").value;
+
     const route = {
-        from: document.getElementById("routeFrom").value,
-        to: document.getElementById("routeTo").value,
-        pricePerM3: parseFloat(document.getElementById("routePricePerM3").value),
+        from: document.getElementById("routeFrom").value.trim(),
+        to: document.getElementById("routeTo").value.trim(),
+        pricePerM3: parseFloat(String(document.getElementById("routePricePerM3").value).replace(",", ".")),
+        minPrice: parseISK(document.getElementById("routeMinPrice").value), // <-- Mindest-Reward
         noCollateral: document.getElementById("routeNoCollateral").checked,
         visibility: visibilitySelect.value,
-        allowedCorps: visibilitySelect.value === "whitelist"
-            ? Array.from(selectedCorps.keys()) // nur IDs ans Backend
-            : []
+        allowedCorps: visibilitySelect.value === "whitelist" ? Array.from(selectedCorps.keys()) : []
     };
+
+    // simple validation
+    if (!route.from || !route.to || !Number.isFinite(route.pricePerM3)) {
+        alert("Please specify From/To and valid price/m³.");
+        return;
+    }
+    if (route.minPrice < 0) {
+        alert("Minimum reward can't be negative.");
+        return;
+    }
 
     const method = id ? "PUT" : "POST";
     const url = id ? `/app/routes/${id}` : "/app/routes";
 
+    // console.debug("Saving route payload:", route);
     const res = await fetch(url, {
         method,
         credentials: "include",
@@ -111,7 +133,9 @@ async function saveRoute() {
     });
 
     if (!res.ok) {
-        alert("Fehler beim Speichern der Route");
+        const txt = await res.text().catch(() => "");
+        console.error("Save failed", res.status, txt);
+        alert("Error saving route!!!");
         return;
     }
 
@@ -121,7 +145,7 @@ async function saveRoute() {
 }
 
 async function deleteRoute(id) {
-    if (!confirm("Wirklich löschen?")) return;
+    if (!confirm("Really delete?")) return;
 
     const res = await fetch(`/app/routes/${id}`, { method: "DELETE", credentials: "include" });
     if (!res.ok) {
@@ -145,14 +169,12 @@ async function checkAccess() {
         window.location.href = '/';
     }
 }
-checkAccess();
 
 // ===== Whitelist-UI =====
 let selectedCorps = new Map(); // corpId -> {corpId,ticker,name}
 let visibilitySelect, whitelistBox, corpSearchInput, corpSearchResults, selectedCorpsBox;
 
 function initWhitelistUI() {
-    // Elemente NACH DOMContentLoaded holen
     visibilitySelect  = document.getElementById("routeVisibility");
     whitelistBox      = document.getElementById("whitelistBox");
     corpSearchInput   = document.getElementById("corpSearch");
@@ -203,7 +225,6 @@ function removeSelectedCorp(id) {
     renderSelectedTags(Array.from(selectedCorps.values()));
 }
 
-// ---- Tags rendern (ersetzt deine aktuelle renderSelectedTags) ----
 function renderSelectedTags(items) {
     selectedCorpsBox.innerHTML = "";
     items.forEach(({ corpId, ticker, name }) => {
@@ -258,7 +279,6 @@ async function searchCorps(q) {
 // helper
 const corpLogoUrl = (id, size=32) =>
     `https://images.evetech.net/corporations/${id}/logo?size=${size}`;
-
 
 // Utils
 function debounce(fn, wait = 300) {

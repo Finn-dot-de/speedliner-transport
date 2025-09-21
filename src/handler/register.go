@@ -22,8 +22,8 @@ func DefineApiRoutes(r chi.Router) {
 	r.With(middleware.RoleMiddleware("admin", "provider")).Delete("/routes/{id}", DeleteRouteHandler)
 
 	// Users/Corps
-	r.With(middleware.RoleMiddleware("admin")).Get("/users", ListUsersHandler)                    // falls vorhanden
-	r.With(middleware.RoleMiddleware("admin")).Put("/users/{charID}/role", UpdateUserRoleHandler) // falls vorhanden
+	r.With(middleware.RoleMiddleware("admin")).Get("/users", ListUsersHandler)
+	r.With(middleware.RoleMiddleware("admin")).Put("/users/{charID}/role", UpdateUserRoleHandler)
 	r.With(middleware.RoleMiddleware("admin", "provider")).Get("/corps", ListCorpsHandler)
 
 	// Mail

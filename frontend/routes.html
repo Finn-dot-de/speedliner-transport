@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="marauders">
-
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -20,7 +19,7 @@
     <i class="fa fa-home"></i> Startseite
 </a>
 
-<h1>Speedliner Route Management</h1>
+<h1>Marauders Route Management</h1>
 
 <table id="routeTable">
     <thead>
@@ -28,6 +27,7 @@
         <th>From</th>
         <th>To</th>
         <th>Preis/m³</th>
+        <th>Min-Reward</th>
         <th>Actions</th>
     </tr>
     </thead>
@@ -38,17 +38,51 @@
     <i class="fa-solid fa-plus"></i>
 </button>
 
-<div id="routeFormContainer" style="display: none; margin-top: 2rem;">
+<div id="routeFormContainer" style="display:none; margin-top:2rem;">
     <h3 id="formTitle">Neue Route</h3>
     <form id="routeForm">
         <input type="hidden" id="routeId"/>
-        <input placeholder="From" id="routeFrom" required/>
-        <input placeholder="To" id="routeTo" required/>
-        <input type="text" placeholder="Preis/m³" id="routePricePerM3" required/>
+
+        <div class="form-row">
+            <label for="routeFrom">From</label>
+            <input id="routeFrom" name="from" placeholder="z. B. Jita" required/>
+        </div>
+
+        <div class="form-row">
+            <label for="routeTo">To</label>
+            <input id="routeTo" name="to" placeholder="z. B. Amarr" required/>
+        </div>
+
+        <div class="form-row">
+            <label for="routePricePerM3">Preis pro m³</label>
+            <input
+                    id="routePricePerM3"
+                    name="pricePerM3"
+                    type="text"
+                    inputmode="decimal"
+                    placeholder="z. B. 120"
+                    required
+            />
+        </div>
+
+        <div class="form-row">
+            <label for="routeMinPrice">Mindest-Reward (ISK)</label>
+            <input
+                    id="routeMinPrice"
+                    name="minPrice"
+                    type="text"
+                    inputmode="numeric"
+                    placeholder="z. B. 50.000.000"
+                    aria-describedby="minRewardHelp"
+            />
+            <small id="minRewardHelp" class="help-text">
+                Untergrenze des Rewards. Standard: 50 Mio ISK.
+            </small>
+        </div>
+
 
         <div class="form-row grid">
-            <div class="col label">
-            </div>
+            <div class="col label"></div>
             <div class="col right">
                 <label class="toggle" title="When active: No collateral is required for this route.">
                     <input type="checkbox" id="routeNoCollateral"/>
@@ -75,12 +109,10 @@
             </div>
         </div>
 
-
         <button type="submit">
             <i class="fa-solid fa-floppy-disk"></i> Save
         </button>
     </form>
 </div>
 </body>
-
 </html>

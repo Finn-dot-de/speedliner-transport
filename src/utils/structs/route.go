@@ -8,4 +8,5 @@ type Route struct {
 	NoCollateral bool    `json:"noCollateral"`
 	Visibility   string  `json:"visibility"` // "all" | "whitelist"
 	AllowedCorps []int64 `json:"allowedCorps,omitempty"`
+	MinPrice     float64 `json:"minPrice"`
 }

@@ -1,5 +1,5 @@
 import {copyContractName, setupAutoFormat} from "./utils.js";
-import {calculator, sendExpressOnce} from "./calculator.js";
+import {calculator} from "./calculator.js";
 import {loadUser} from "./user.js";
 import {initMailModal} from "./mail.js";
 import {CONTACT_NAME, contactNameEl, loadRoutes, ta} from "./costum_route_select.js";
